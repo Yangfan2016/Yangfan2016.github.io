@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>[转]如何监听JS变量的变化 | Yangfan&#39;s blog | The site of the Yangfan2016</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="如何监听JS变量的变化[转]读前必看Object.defineProperty()  https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty 如何监听 js 中变量的变化?我现在有这样一个需求，需要监控js的某个变量的改变，如果该变量发生变化，则触发">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[转]如何监听JS变量的变化">
+<meta property="og:url" content="http://yangfan.site/2017/09/20/转-如何监听JS变量的变化/index.html">
+<meta property="og:site_name" content="Yangfan&#39;s blog">
+<meta property="og:description" content="如何监听JS变量的变化[转]读前必看Object.defineProperty()  https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty 如何监听 js 中变量的变化?我现在有这样一个需求，需要监控js的某个变量的改变，如果该变量发生变化，则触发">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-09-08T07:04:52.430Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[转]如何监听JS变量的变化">
+<meta name="twitter:description" content="如何监听JS变量的变化[转]读前必看Object.defineProperty()  https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty 如何监听 js 中变量的变化?我现在有这样一个需求，需要监控js的某个变量的改变，如果该变量发生变化，则触发">
+    
+        <link rel="alternate" type="application/atom+xml" title="Yangfan&#39;s blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/uploads/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/uploads/me.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">yangfan</h5>
+          <a href="mailto:zhangh201601@gmail.com" title="zhangh201601@gmail.com" class="mail">zhangh201601@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Yangfan2016" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">[转]如何监听JS变量的变化</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">[转]如何监听JS变量的变化</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-09-20T06:04:08.000Z" itemprop="datePublished" class="page-time">
+  2017-09-20
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#如何监听JS变量的变化-转"><span class="post-toc-number">1.</span> <span class="post-toc-text">如何监听JS变量的变化[转]</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#读前必看"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">读前必看</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#如何监听-js-中变量的变化"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">如何监听 js 中变量的变化?</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#脏值检测"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">脏值检测</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-转-如何监听JS变量的变化"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">[转]如何监听JS变量的变化</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-09-20 14:04:08" datetime="2017-09-20T06:04:08.000Z"  itemprop="datePublished">2017-09-20</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="如何监听JS变量的变化-转"><a href="#如何监听JS变量的变化-转" class="headerlink" title="如何监听JS变量的变化[转]"></a>如何监听JS变量的变化[转]</h1><h2 id="读前必看"><a href="#读前必看" class="headerlink" title="读前必看"></a>读前必看</h2><p>Object.defineProperty()  <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty</a></p>
+<h2 id="如何监听-js-中变量的变化"><a href="#如何监听-js-中变量的变化" class="headerlink" title="如何监听 js 中变量的变化?"></a>如何监听 js 中变量的变化?</h2><p>我现在有这样一个需求，需要监控js的某个变量的改变，如果该变量发生变化，则触发一些事件，不能使用timeinterval之类的定时去监控的方法，不知道有比较好的解决方案么？</p>
+<p>这个问题问的很好。</p>
+<p>流行的MVVM的JS库/框架都有共同的特点就是数据绑定，在数据变更后响应式的自动进行相关计算并变更DOM展现。所以这个问题也可以理解为如何实现MVVM库/框架的数据绑定。</p>
+<p>常见的数据绑定的实现有脏值检测，基于ES5的getter和setter，以及ES已被废弃的Object.observe，和ES6中添加的Proxy。</p>
+<h2 id="脏值检测"><a href="#脏值检测" class="headerlink" title="脏值检测"></a>脏值检测</h2><p>angular使用的就是脏值检测，原理是比较新值和旧值，当值真的发生改变时再去更改DOM，所以angular中有一个$digest。那么为什么在像ng-click这样的内置指令在触发后会自动变更呢？原理也很简单，在ng-click这样的内置指令中最后追加了$digest。</p>
+<p>简易的实现一个脏值检测：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>two-way binding<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span> <span class="attr">onload</span>=<span class="string">"init()"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">ng-click</span>=<span class="string">"inc"</span>&gt;</span></span><br><span class="line">            Increase</span><br><span class="line">        <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">ng-click</span>=<span class="string">"reset"</span>&gt;</span></span><br><span class="line">            Reset</span><br><span class="line">        <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span> <span class="attr">style</span>=<span class="string">"color:red"</span> <span class="attr">ng-bind</span>=<span class="string">"counter"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span> <span class="attr">style</span>=<span class="string">"color:blue"</span> <span class="attr">ng-bind</span>=<span class="string">"counter"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span> <span class="attr">style</span>=<span class="string">"color:green"</span> <span class="attr">ng-bind</span>=<span class="string">"counter"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">            <span class="comment">/* 数据模型区开始 */</span></span></span><br><span class="line"><span class="javascript">            <span class="keyword">var</span> counter = <span class="number">0</span>;</span></span><br><span class="line"><span class="javascript">            <span class="function"><span class="keyword">function</span> <span class="title">inc</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="undefined">                counter++;</span></span><br><span class="line"><span class="undefined">            &#125;</span></span><br><span class="line"><span class="javascript">            <span class="function"><span class="keyword">function</span> <span class="title">reset</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="undefined">                counter = 0;</span></span><br><span class="line"><span class="undefined">            &#125;</span></span><br><span class="line"><span class="javascript">            <span class="comment">/* 数据模型区结束 */</span></span></span><br><span class="line"><span class="javascript">            <span class="comment">/* 绑定关系区开始 */</span></span></span><br><span class="line"><span class="javascript">            <span class="function"><span class="keyword">function</span> <span class="title">init</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="undefined">                bind();</span></span><br><span class="line"><span class="undefined">            &#125;</span></span><br><span class="line"><span class="javascript">            <span class="function"><span class="keyword">function</span> <span class="title">bind</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">                <span class="keyword">var</span> list = <span class="built_in">document</span>.querySelectorAll(<span class="string">"[ng-click]"</span>);</span></span><br><span class="line"><span class="javascript">                <span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;list.length; i++) &#123;</span></span><br><span class="line"><span class="javascript">                    list[i].onclick = (<span class="function"><span class="keyword">function</span>(<span class="params">index</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">                        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">                            <span class="built_in">window</span>[list[index].getAttribute(<span class="string">"ng-click"</span>)]();</span></span><br><span class="line"><span class="undefined">                            apply();</span></span><br><span class="line"><span class="undefined">                        &#125;;</span></span><br><span class="line"><span class="undefined">                    &#125;)(i);</span></span><br><span class="line"><span class="undefined">                &#125;</span></span><br><span class="line"><span class="undefined">            &#125;</span></span><br><span class="line"><span class="javascript">            <span class="function"><span class="keyword">function</span> <span class="title">apply</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">                <span class="keyword">var</span> list = <span class="built_in">document</span>.querySelectorAll(<span class="string">"[ng-bind='counter']"</span>);</span></span><br><span class="line"><span class="javascript">                <span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;list.length; i++) &#123;</span></span><br><span class="line"><span class="javascript">                    <span class="keyword">if</span> (list[i].innerHTML != counter) &#123;</span></span><br><span class="line"><span class="undefined">                        list[i].innerHTML = counter;</span></span><br><span class="line"><span class="undefined">                    &#125;</span></span><br><span class="line"><span class="undefined">                &#125;</span></span><br><span class="line"><span class="undefined">            &#125;</span></span><br><span class="line"><span class="javascript">            <span class="comment">/* 绑定关系区结束 */</span></span></span><br><span class="line"><span class="undefined">        </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这样做的坏处是自己变更数据后，是无法自动改变DOM的，必须要想办法触发apply()，所以只能借助ng-click的包装，在ng-click中包含真实的click事件监听并追加脏值检测以判断是否要更新DOM。</p>
+<p>另外一个坏处是如果不注意，每次脏值检测会检测大量的数据，而很多数据是没有检测的必要的，容易影响性能。</p>
+<p>关于如何实现一个和angular一样的脏值检测，知道原理后还有很多工作要去做，以及如何优化等等。如果有兴趣可以看看民工叔曾经推荐的《Build Your Own Angular.js》，第一章Scope便讲了如何实现angular的作用域和脏值检测。对了，上面的例子也是从民工叔的博客稍加修改来的，建议最后去看下原文，链接在参考资料中。</p>
+<p>ES5的getter与setter<br>在ES5中新增了一个Object.defineProperty，直接在一个对象上定义一个新属性，或者修改一个已经存在的属性， 并返回这个对象。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj, prop, descriptor)</span><br></pre></td></tr></table></figure>
+<p>其接受的第三个参数可以取get和set并各自对应一个getter和setter方法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> a = &#123; <span class="attr">zhihu</span>:<span class="number">0</span> &#125;;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(a, <span class="string">'zhihu'</span>, &#123;</span><br><span class="line">  get: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'get：'</span> + zhihu);</span><br><span class="line">    <span class="keyword">return</span> zhihu;</span><br><span class="line">  &#125;,</span><br><span class="line">  set: <span class="function"><span class="keyword">function</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">    zhihu = value;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'set:'</span> + zhihu);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line">a.zhihu = <span class="number">2</span>; <span class="comment">// set:2</span></span><br><span class="line"><span class="built_in">console</span>.log(a.zhihu); <span class="comment">// get：2</span></span><br><span class="line">                      <span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
+<p>基于ES5的getter和setter可以说几乎完美符合了要求。为什么要说几乎呢？</p>
+<p>首先IE8及更低版本IE是无法使用的，而且这个特性是没有polyfill的，无法在不支持的平台实现，<br>这也是基于ES5getter和setter的Vue.js不支持IE8及更低版本IE的原因。也许有人会提到avalon，avalon在低版本IE借助vbscript一些黑魔法实现了类似的功能。</p>
+<p>除此之外，还有一个问题就是修改数组的length，直接用索引设置元素如items[0] = {}，以及数组的push等变异方法是无法触发setter的。<br>如果想要解决这个问题可以参考Vue的做法，在Vue的observer/array.js中，Vue直接修改了数组的原型方法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">const</span> arrayProto = <span class="built_in">Array</span>.prototype</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> arrayMethods = <span class="built_in">Object</span>.create(arrayProto)</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Intercept mutating methods and emit events</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">;[</span><br><span class="line">  <span class="string">'push'</span>,</span><br><span class="line">  <span class="string">'pop'</span>,</span><br><span class="line">  <span class="string">'shift'</span>,</span><br><span class="line">  <span class="string">'unshift'</span>,</span><br><span class="line">  <span class="string">'splice'</span>,</span><br><span class="line">  <span class="string">'sort'</span>,</span><br><span class="line">  <span class="string">'reverse'</span></span><br><span class="line">]</span><br><span class="line">.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">method</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// cache original method</span></span><br><span class="line">  <span class="keyword">var</span> original = arrayProto[method]</span><br><span class="line">  def(arrayMethods, method, <span class="function"><span class="keyword">function</span> <span class="title">mutator</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// avoid leaking arguments:</span></span><br><span class="line">    <span class="comment">// http://jsperf.com/closure-with-arguments</span></span><br><span class="line">    <span class="keyword">var</span> i = <span class="built_in">arguments</span>.length</span><br><span class="line">    <span class="keyword">var</span> args = <span class="keyword">new</span> <span class="built_in">Array</span>(i)</span><br><span class="line">    <span class="keyword">while</span> (i--) &#123;</span><br><span class="line">      args[i] = <span class="built_in">arguments</span>[i]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> result = original.apply(<span class="keyword">this</span>, args)</span><br><span class="line">    <span class="keyword">var</span> ob = <span class="keyword">this</span>.__ob__</span><br><span class="line">    <span class="keyword">var</span> inserted</span><br><span class="line">    <span class="keyword">switch</span> (method) &#123;</span><br><span class="line">      <span class="keyword">case</span> <span class="string">'push'</span>:</span><br><span class="line">        inserted = args</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">'unshift'</span>:</span><br><span class="line">        inserted = args</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">'splice'</span>:</span><br><span class="line">        inserted = args.slice(<span class="number">2</span>)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (inserted) ob.observeArray(inserted)</span><br><span class="line">    <span class="comment">// notify change</span></span><br><span class="line">    ob.dep.notify()</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>这样重写了原型方法，在执行数组变异方法后依然能够触发视图的更新。</p>
+<p>但是这样还是不能解决修改数组的length和直接用索引设置元素如items[0] = {}的问题，想要解决依然可以参考Vue的做法：<br>前一个问题可以直接用新的数组代替旧的数组；后一个问题可以为数组拓展一个$set方法，在执行修改后顺便触发视图的更新。</p>
+<p>已被废弃的Object.observe<br>Object.observe曾在ES7的草案中，并在提议中进展到stage2，最终依然被废弃。<br>这里只举一个MDN上的例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 一个数据模型</span></span><br><span class="line"><span class="keyword">var</span> user = &#123;</span><br><span class="line">  id: <span class="number">0</span>,</span><br><span class="line">  name: <span class="string">'Brendan Eich'</span>,</span><br><span class="line">  title: <span class="string">'Mr.'</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 创建用户的greeting</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">updateGreeting</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  user.greeting = <span class="string">'Hello, '</span> + user.title + <span class="string">' '</span> + user.name + <span class="string">'!'</span>;</span><br><span class="line">&#125;</span><br><span class="line">updateGreeting();</span><br><span class="line"><span class="built_in">Object</span>.observe(user, <span class="function"><span class="keyword">function</span>(<span class="params">changes</span>) </span>&#123;</span><br><span class="line">  changes.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">change</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 当name或title属性改变时, 更新greeting</span></span><br><span class="line">    <span class="keyword">if</span> (change.name === <span class="string">'name'</span> || change.name === <span class="string">'title'</span>) &#123;</span><br><span class="line">      updateGreeting();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>由于是已经废弃了的特性，Chrome虽然曾经支持但也已经废弃了支持，这里不再讲更多，有兴趣可以搜一搜以前的文章，这曾经是一个被看好的特性（Object.observe()带来的数据绑定变革）。<br>当然关于它也有一些替代品Polymer/observe-js。</p>
+<p>ES6带来的Proxy<br>人如其名，类似HTTP中的代理：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> p = <span class="keyword">new</span> <span class="built_in">Proxy</span>(target, handler);</span><br><span class="line">target为目标对象，可以是任意类型的对象，比如数组，函数，甚至是另外一个代理对象。</span><br><span class="line">handler为处理器对象，包含了一组代理方法，分别控制所生成代理对象的各种行为。</span><br></pre></td></tr></table></figure>
+<p>举个例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">let</span> a = <span class="keyword">new</span> <span class="built_in">Proxy</span>(&#123;&#125;, &#123;</span><br><span class="line">  set: <span class="function"><span class="keyword">function</span>(<span class="params">obj, prop, value</span>) </span>&#123;</span><br><span class="line">    obj[prop] = value;</span><br><span class="line">    <span class="keyword">if</span> (prop === <span class="string">'zhihu'</span>) &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">"set "</span> + prop + <span class="string">": "</span> + obj[prop]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line">a.zhihu = <span class="number">100</span>;</span><br></pre></td></tr></table></figure>
+<p>当然，Proxy的能力远不止此，还可以实现代理转发等等。</p>
+<p>但是要注意的是目前浏览器中只有Firefox18支持这个特性，而babel官方也表明不支持这个特性：</p>
+<blockquote>
+<p>Unsupported feature<br>Due to the limitations of ES5, Proxies cannot be transpiled or polyfilled.</p>
+</blockquote>
+<p>目前已经有babel插件可以实现，但是据说实现的比较复杂。<br>如果是Node的话升级到目前的最新版本应该就可以使用了，上面的例子测试环境为Node v6.4.0。</p>
+<p>原文：<a href="https://blog.daraw.cn/2016/08/17/how-to-monitor-changes-of-js-variable/" target="_blank" rel="noopener">https://blog.daraw.cn/2016/08/17/how-to-monitor-changes-of-js-variable/</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2018-09-08T07:04:52.430Z" itemprop="dateUpdated">2018-09-08 15:04:52</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="http://yangfan.site">
+            <img src="/uploads/me.jpg" alt="yangfan">
+            yangfan
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yangfan.site/2017/09/20/转-如何监听JS变量的变化/&title=《[转]如何监听JS变量的变化》 — Yangfan's blog&pic=http://yangfan.site/uploads/me.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yangfan.site/2017/09/20/转-如何监听JS变量的变化/&title=《[转]如何监听JS变量的变化》 — Yangfan's blog&source=html css js 前端 小程序" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yangfan.site/2017/09/20/转-如何监听JS变量的变化/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《[转]如何监听JS变量的变化》 — Yangfan's blog&url=http://yangfan.site/2017/09/20/转-如何监听JS变量的变化/&via=http://yangfan.site" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yangfan.site/2017/09/20/转-如何监听JS变量的变化/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/10/12/axios-入门/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">axios 入门</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/07/16/shell常用命令/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">shell常用命令</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "N85dVznr0Vh9jlIIvVLlxPxc-gzGzoHsz",
+            appKey: "ID0DznFMscpigUQk6S2RviUn",
+            avatar: "mm",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>yangfan &copy; 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yangfan.site/2017/09/20/转-如何监听JS变量的变化/&title=《[转]如何监听JS变量的变化》 — Yangfan's blog&pic=http://yangfan.site/uploads/me.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yangfan.site/2017/09/20/转-如何监听JS变量的变化/&title=《[转]如何监听JS变量的变化》 — Yangfan's blog&source=html css js 前端 小程序" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yangfan.site/2017/09/20/转-如何监听JS变量的变化/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《[转]如何监听JS变量的变化》 — Yangfan's blog&url=http://yangfan.site/2017/09/20/转-如何监听JS变量的变化/&via=http://yangfan.site" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yangfan.site/2017/09/20/转-如何监听JS变量的变化/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yangfan.site/2017/09/20/转-如何监听JS变量的变化/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '又好了！';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
