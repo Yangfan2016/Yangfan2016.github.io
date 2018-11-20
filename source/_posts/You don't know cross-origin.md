@@ -1,5 +1,5 @@
 ---
-title: 前端跨域，原来如此
+title: You don't know cross-origin
 date: 2018-11-19 20:19:05
 tags:
 ---
@@ -98,7 +98,7 @@ let img=new Image();
 img.addEventListener("load",function () {
     console.log("Send success"); // todo
 });
-img.src="http://site.c.com?count=666";
+img.src="http://site.c.com/a.gif?count=666";
 ```
 3. postMessage+iframe
 
