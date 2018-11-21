@@ -4,6 +4,8 @@ date: 2018-11-19 20:19:05
 tags:
 ---
 
+![cross-origin](https://raw.githubusercontent.com/Yangfan2016/PicBed/master/Blog/cross-origin.png)
+
 ## Why 
 > 为什么会存在跨域问题
 
@@ -16,24 +18,24 @@ tags:
 
 要解决跨域问题，就要绕过浏览器对js的限制，另辟蹊径
 
-- 需要后台配合的解决方案
+
 1. JSONP  
 这是最简单，也是最流行的跨域解决方案，它利用script标签不受同源策略的影响，解决跨域，需要后台配合，返回特殊格式的数据
 
 前端
 ```html
 <script>
-function JSONP(link) {
-    let script=document.createElement("script");
-    script.src=link;
-    document.body.appendChild(script);
-}
+    function JSONP(link) {
+        let script=document.createElement("script");
+        script.src=link;
+        document.body.appendChild(script);
+    }
 
-function getUser(data) {
-    console.log(data);// todo
-}
-const API_URL_USER='http://cache.video.iqiyi.com/jp/avlist/202861101/1/?callback=jsonpCb'; // 这里以爱奇艺的接口为例（来源网络，侵删）
-JSONP(API_URL_USER);
+    function getUser(data) {
+        console.log(data);// todo
+    }
+    const API_URL_USER='http://cache.video.iqiyi.com/jp/avlist/202861101/1/?callback=jsonpCb'; // 这里以爱奇艺的接口为例（来源网络，侵删）
+    JSONP(API_URL_USER);
 </script>
 ```
 
@@ -84,13 +86,101 @@ const proxy=require("http-proxy-middleware"); // 这里使用这个中间件完�
 app.use('/api', proxy("http://b.com")); // http://a.com/api -> http://b.com/api
 ```
 
-- 前端解决方案
-1. document.domian
+4. window.name+iframe  
+MDN里解释道它是`获取/设置窗口的名称`，因为的它在不同页面甚至域名加载后值都不会改变，该属性也被用于作为 JSONP 的一个更安全的备选来提供跨域通信（cross-domain messaging）
+
+前端
+```html
+<!--http://a.com/page1.html-->
+<script>
+    function request(url,callback) {
+        let iframe=document.createElement("iframe");
+        let isFirst=true;
+        iframe.style.display="none";
+        iframe.addEventListener("load",function () {
+            if (isFirst) { 
+                isFirst=false; // 防止iframe循环加载
+                iframe.src="http://a.com/page2.html";
+                callback && callback(iframe.contentWindow.name);
+                iframe.remove();               
+            }
+        });
+        iframe.src=url;
+    }
+
+    requeset("http://b.com/user",function (data) {
+        console.log(data); // todo
+    });
+</script>
+```
+后端
+```js
+// Express(Nodejs)
+// mock data
+const USERS=[
+    {name:"Tom",age:23},
+    {name:"Jack",age:23}
+];
+
+app.get("/user",function (req,res) {
+    res.send(`
+        <script>
+            ;window.name=${JSON.stringify(USERS)};
+        </script>
+    `);
+});
+```
+
+
+5. document.domian
 这个使用情况有限，例如  
 http://a.c.com    
 http://b.c.com  
 主域相同时，分别设置他们页面的`document.domain="c.com";`
-1. 图片ping  
+
+6. locaction.hash+iframe
+嵌套两层iframe，达到第一层与第三层同域，就可以互相通信了
+
+```html
+<!--http://a.com/page1.html-->
+<script>
+    let iframe=document.createElement("iframe");
+    iframe.style.display="none";
+    iframe.src="http://b.com/user.html";
+
+    window.addEventListener("hashchange",function () {
+        console.log(location.hash.slice(1)); // todo
+    });
+</script>
+```
+```html
+<!--http://b.com/user.html-->
+<script>
+    let iframe=document.createElement("iframe");
+    iframe.style.display="none";
+
+    function getUserData() {
+        fetch("http://b.com/user")
+            .then(res=>{
+                let data=res.json();
+                iframe.src=`http://a.com/page2.html#${data}`;
+            });
+    }
+
+    getUserData();
+
+    window.addEventListener("hashchange",function () {
+        getUserData();
+    });
+</script>
+```
+```html
+<script>
+    top.location.hash=window.location.hash;
+</script>
+```
+
+7. 图片ping  
 这个只能发出去请求，无法获取到服务器的响应，常常用于网站流量统计
 
 ```js
@@ -100,7 +190,7 @@ img.addEventListener("load",function () {
 });
 img.src="http://site.c.com/a.gif?count=666";
 ```
-3. postMessage+iframe
+8. postMessage+iframe
 
 ```html
 <!-- http://a.com -->
@@ -144,11 +234,11 @@ window.addEventListener("messagae",function({detail,origin}){
 </script>
 ```
 
-4. postMessage+form+iframe  
+9. postMessage+form+iframe  
 
 这个需要后台配合返回特殊格式的数据，TL,DR 可以看这个[demo](https://github.com/Yangfan2016/cross-domain/blob/master/9-iframe_form_postMessage/index.html)
 
-5. WebSocket  
+10. WebSocket  
 
 WebSocket是一种通信协议，该协议不实行同源政策，
 注意需要浏览器和服务器都支持的情况下
