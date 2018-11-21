@@ -34,7 +34,7 @@ tags:
     function getUser(data) {
         console.log(data);// todo
     }
-    const API_URL_USER='http://cache.video.iqiyi.com/jp/avlist/202861101/1/?callback=jsonpCb'; // 这里以爱奇艺的接口为例（来源网络，侵删）
+    const API_URL_USER='http://cache.video.iqiyi.com/jp/avlist/202861101/1/?callback=getUser'; // 这里以爱奇艺的接口为例（来源网络，侵删）
     JSONP(API_URL_USER);
 </script>
 ```
