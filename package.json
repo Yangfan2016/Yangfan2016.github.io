@@ -19,5 +19,11 @@
     "hexo-generator-feed":"^1.2.2",
     "hexo-generator-json-content":"^3.0.1",
     "hexo-server": "^0.2.0"
+  },
+  "scripts": {
+    "g":"hexo g",
+    "c":"hexo clean",
+    "s":"hexo s",
+    "d":"hexo d"
   }
 }
