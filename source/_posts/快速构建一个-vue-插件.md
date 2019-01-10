@@ -5,7 +5,7 @@ tags:
 ---
 
 
-### 前言
+### 碎碎念
 
 上一篇[文章](https://juejin.im/post/5c2f248b51882525030dc50b)，我们介绍了如何构建一个 react 插件，今天我们说说如何构建 vue 插件
 
@@ -52,7 +52,7 @@ module.exports = {
         path: path.resolve(__dirname, './dist'),
         filename: '[name].min.js',
         publicPath: "./dist/",
-        libraryTarget: 'umd',
+        libraryTarget: 'umd', // 按 UMD 模式打包
     },
     module: {
         rules: [
@@ -106,18 +106,39 @@ module.exports = {
 
 ### 编写插件
 
-写 vue 插件稍微复杂一点，根据[官网](https://cn.vuejs.org/v2/guide/plugins.html#%E5%BC%80%E5%8F%91%E6%8F%92%E4%BB%B6)的案例，我们需要提供一个 包含 install 方法的对象或者函数（[传送门](https://cn.vuejs.org/v2/api/#Vue-use)），供 Vue.use 调用注册你的插件
+写 vue 插件稍微复杂一点 😢，根据[官网](https://cn.vuejs.org/v2/guide/plugins.html#%E5%BC%80%E5%8F%91%E6%8F%92%E4%BB%B6)的案例，我们需要提供一个包含 install 方法的对象或者一个函数（[传送门](https://cn.vuejs.org/v2/api/#Vue-use)），供 Vue.use 调用注册你的插件
 
 - 写法一
 
 ```js
-import CompConfig from './YanProgress.vue'; // 这个就是你平时写的 SFC 组件
+import Component from './YanProgress.vue'; // 这个就是你平时写的 SFC 组件
 
 // 这里要导出一个包含 install 方法的对象
 let plugin = { // 这里要导出一个 install 方法
     install(Vue,options) { 
         // 这里写你的代码，你可以全局注册组件，也可以写全局指令，也可以扩展 Vue 的方法
-        Vue.component('yan-progress',CompConfig); 
+        // 1. 全局组件
+        Vue.component('yan-progress',Component); 
+        // 2. 全局方法或属性
+        Vue.myGlobalMethod = function () {
+            // 逻辑...
+        }
+        // 3. 全局指令
+        Vue.directive('my-directive', {
+            bind (el, binding, vnode, oldVnode) {
+                // 逻辑...
+            }
+        })
+        // 4. 注入组件
+        Vue.mixin({
+            created: function () {
+                // 逻辑...
+            }
+        })
+        // 5. 添加实例方法
+        Vue.prototype.$myMethod = function (methodOptions) {
+            // 逻辑...
+        }
     }
 };
 
