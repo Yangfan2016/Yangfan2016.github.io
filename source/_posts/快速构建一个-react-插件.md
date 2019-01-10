@@ -57,8 +57,8 @@ react-yan-progress
 ```js
 {
     "devDependencies": {
-	"@babel/core": "^7.1.6",
-	"@babel/preset-env": "^7.1.6", 
+        "@babel/core": "^7.1.6",
+        "@babel/preset-env": "^7.1.6", 
         "@babel/preset-react": "^7.0.0", // for react
         "@types/react": "^16.7.18", // 声明文件
         "@types/react-dom": "^16.0.11", // 声明文件
