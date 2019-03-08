@@ -1,15 +1,10 @@
 ---
-title: Git上传文件到Github
+title: 入门级的git使用指北
 date: 2018-05-08 12:08:03
 tags: [博客,Git]
 ---
 
-# Git的简单使用
-
-
 > Git 一种免费的开源分布式版本控制系统
-
-![git-scm](https://git-scm.com/images/branching-illustration@2x.png)
 
 
 ## Config
@@ -95,9 +90,27 @@ $ git status # 查看当前工作区提交状态
 $ git log # 查看提交历史记录
 ```
 
+## Undo
+
+git add 之前
+```bash
+$ git checkout -- a.js # 撤销某个/某些文件的更改
+```
+
+git add 之后，git commit 之前
+```bash
+$ git reset HEAD a.js # 撤销某个/某些文件的添加
+```
+
+git commit 之后
+```bash
+$ git reset HEAD^ --hard # 撤销本次提交（commit）
+$ git reset <commit_id> --hard # 撤回到指定的 commit
+```
+
 ## Relationship
 
-![git-relationship](https://raw.githubusercontent.com/Yangfan2016/PicBed/master/Blog/git-map.jpg)
+![git-relationship](https://user-gold-cdn.xitu.io/2018/10/28/166b9e70067850da?w=570&h=184&f=png&s=60462)
 
 ## Refs
 1. [git-scm](https://git-scm.com/docs)
