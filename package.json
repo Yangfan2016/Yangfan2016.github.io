@@ -21,6 +21,7 @@
     "hexo-server": "^0.2.0"
   },
   "scripts": {
+    "hexo":"hexo",
     "g":"hexo g",
     "c":"hexo clean",
     "s":"hexo s",
