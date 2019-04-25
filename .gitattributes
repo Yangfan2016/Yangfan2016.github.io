@@ -6,3 +6,14 @@
 
 
 *.md text eol=lf
+
+*.ttf   binary
+*.ttf   binary
+*.woff   binary
+*.woff2   binary
+*.eot   binary
+*.otf   binary
+
+
+*.jpg   binary
+*.png   binary
