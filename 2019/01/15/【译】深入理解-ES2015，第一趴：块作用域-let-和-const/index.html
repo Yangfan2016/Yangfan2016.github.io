@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>【译】深入理解 ES2015，第一趴：块作用域 let 和 const | Yangfan&#39;s blog | The site of the Yangfan2016</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="翻译计划">
+    <meta name="description" content="【译】深入理解 ES2015，第一趴：块作用域 let 和 const  原文地址：http://javascriptissexy.com/understanding-es2015-in-depth-part-1-block-scope-with-let-and-const/ 原文作者：Dan Wellman Markdown 地址：https://github.com/Yangfan2016/l">
+<meta name="keywords" content="翻译计划">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【译】深入理解 ES2015，第一趴：块作用域 let 和 const">
+<meta property="og:url" content="http://yangfan.site/2019/01/15/【译】深入理解-ES2015，第一趴：块作用域-let-和-const/index.html">
+<meta property="og:site_name" content="Yangfan&#39;s blog">
+<meta property="og:description" content="【译】深入理解 ES2015，第一趴：块作用域 let 和 const  原文地址：http://javascriptissexy.com/understanding-es2015-in-depth-part-1-block-scope-with-let-and-const/ 原文作者：Dan Wellman Markdown 地址：https://github.com/Yangfan2016/l">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/1/14/1684c6ca914e0347?w=780&h=505&f=png&s=32363">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/1/14/1684c6ca800aacd1?w=635&h=505&f=png&s=31601">
+<meta property="og:updated_time" content="2019-04-25T08:24:11.877Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【译】深入理解 ES2015，第一趴：块作用域 let 和 const">
+<meta name="twitter:description" content="【译】深入理解 ES2015，第一趴：块作用域 let 和 const  原文地址：http://javascriptissexy.com/understanding-es2015-in-depth-part-1-block-scope-with-let-and-const/ 原文作者：Dan Wellman Markdown 地址：https://github.com/Yangfan2016/l">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2019/1/14/1684c6ca914e0347?w=780&h=505&f=png&s=32363">
+    
+        <link rel="alternate" type="application/atom+xml" title="Yangfan&#39;s blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/uploads/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/uploads/me.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">yangfan</h5>
+          <a href="mailto:zhangh201601@gmail.com" title="zhangh201601@gmail.com" class="mail">zhangh201601@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Yangfan2016" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">【译】深入理解 ES2015，第一趴：块作用域 let 和 const</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">【译】深入理解 ES2015，第一趴：块作用域 let 和 const</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-01-15T09:23:17.000Z" itemprop="datePublished" class="page-time">
+  2019-01-15
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#【译】深入理解-ES2015，第一趴：块作用域-let-和-const"><span class="post-toc-number">1.</span> <span class="post-toc-text">【译】深入理解 ES2015，第一趴：块作用域 let 和 const</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#快速了解作用域"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">快速了解作用域</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#全局作用域包含了-globalVariable-以及两个内嵌的函数作用域。每个内嵌的函数作用域又包含自己的变量，但是这些变量不能被全局作用域访问。虚线表示的是作用域链的查找方向"><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">全局作用域包含了 globalVariable 以及两个内嵌的函数作用域。每个内嵌的函数作用域又包含自己的变量，但是这些变量不能被全局作用域访问。虚线表示的是作用域链的查找方向</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#函数作用域可以嵌套在其他的函数作用域里，但是作用域链查找规则是一样的，因此在-inner-作用域下可以访问到-variable1-和-variable2，但是在-outer-作用域下只能访问-variable1"><span class="post-toc-number">1.1.2.</span> <span class="post-toc-text">函数作用域可以嵌套在其他的函数作用域里，但是作用域链查找规则是一样的，因此在 inner 作用域下可以访问到  variable1 和 variable2，但是在 outer 作用域下只能访问 variable1</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#JavaScript-的新作用域"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">JavaScript 的新作用域</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#声明提升"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">声明提升</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用-let"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">使用 let</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#暂时性死区"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">暂时性死区</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用-const"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">使用 const</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#不可变性"><span class="post-toc-number">1.7.</span> <span class="post-toc-text">不可变性</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#练习"><span class="post-toc-number">1.8.</span> <span class="post-toc-text">练习</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#成功是通过不断的练习和知识的积累，而非智力"><span class="post-toc-number">1.8.1.</span> <span class="post-toc-text">成功是通过不断的练习和知识的积累，而非智力</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-【译】深入理解-ES2015，第一趴：块作用域-let-和-const"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">【译】深入理解 ES2015，第一趴：块作用域 let 和 const</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-01-15 17:23:17" datetime="2019-01-15T09:23:17.000Z"  itemprop="datePublished">2019-01-15</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="【译】深入理解-ES2015，第一趴：块作用域-let-和-const"><a href="#【译】深入理解-ES2015，第一趴：块作用域-let-和-const" class="headerlink" title="【译】深入理解 ES2015，第一趴：块作用域 let 和 const"></a>【译】深入理解 ES2015，第一趴：块作用域 let 和 const</h2><blockquote>
+<ul>
+<li>原文地址：<a href="http://javascriptissexy.com/understanding-es2015-in-depth-part-1-block-scope-with-let-and-const/" target="_blank" rel="noopener">http://javascriptissexy.com/understanding-es2015-in-depth-part-1-block-scope-with-let-and-const/</a></li>
+<li>原文作者：<a href="http://javascriptissexy.com/author/dan_wellman/" target="_blank" rel="noopener">Dan Wellman</a></li>
+<li>Markdown 地址：<a href="https://github.com/Yangfan2016/learn-translate/blob/master/2-Understanding-ES2015-In-Depth-Part-1.md" target="_blank" rel="noopener">https://github.com/Yangfan2016/learn-translate/blob/master/2-Understanding-ES2015-In-Depth-Part-1.md</a></li>
+<li>译者：<a href="https://github.com/Yangfan2016" target="_blank" rel="noopener">Yangfan2016</a></li>
+</ul>
+</blockquote>
+<hr>
+<p>ES2015 最大的特性之一就是有了一个全新的作用域。在这个章节里，我们将开始学习什么是作用域。我们将继续学习如何创建新的作用域类型，以及给我们代码带来的好处</p>
+<h3 id="快速了解作用域"><a href="#快速了解作用域" class="headerlink" title="快速了解作用域"></a>快速了解作用域</h3><p>作用域描述为一个变量，函数，标识符可以被访问的区域。JavaScript 传统上有两种作用域类型：全局作用域和函数作用域，你定义变量的位置会影响其他代码是否可以访问。让我们来看一个简单的例子来阐述作用域的概念。想象一下，你的 JavaScript 文件只包含以下代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> globalVariable = <span class="string">'This is global'</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">globalFunction1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> innerVariable1 = <span class="string">'Non-global variable 1'</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">globalFunction2</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> innerVariable2 = <span class="string">'Non-global variable 2'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在上面的代码中，我们首先声明了一个变量 <code>globalVariable</code>。这个语句不在函数内部，所以会自动存到全局作用域中。浏览器用 <code>window</code> 对象创建了一个全局作用域，除了可以用 <code>globalVariable</code> 访问，我们还可以通过挂在 <code>window</code> 对象上的 <code>window.globalVariable</code> 访问。我们可以在文件的任何地方访问这个变量，这两个函数的之前或之后，甚至是在函数的内部（这就是为什么我们说全局变量是 “隐藏的”，我们可以在任何地方正确的访问他们），甚至是在附在同一页面的其他 JavaScript 文件</p>
+<p>在全局作用域里，我们定义了两个函数，<code>globalFunction1</code> 和 <code>globalFunction2</code>，就像全局变量一样，他们是 “可见的” 并且可以在这个文件的任何地方调用，也可以被同一页面的其他 JavaScript 文件调用。然而，当 JavaScript 引擎解析这些函数时，会分别创建他们自己的作用域。因吹斯听，这两个新的函数作用域被嵌套在全局作用域下，成为子作用域。这也就意味着函数内的代码可以访问全局变量，就像是和在函数 “内部的” 定义变量一样</p>
+<p>当我们试图访问 JavaScript 里的标识符时，浏览器会首先在当前作用域中查找。如果没有找到，浏览器会在当前作用域的父作用域中查找，并且继续向上查找，直到找到这个变量，或者到达全局作用域为止。如果这个变量在全局作用域里依旧没有找到的话，那么浏览器会抛出一个 <code>ReferenceError</code> 错误。这种嵌套的作用域被称作作用域链，而这个检查当前作用域和父作用域的过程被称作变量查找。这种查找只会向上查找作用域链，它永远不会在它的子作用域里查找 </p>
+<p>在上面的作用域链查找方向我们得知，例子中的 <code>innerVariable1</code> 变量只能在 <code>globalFunction1</code> 函数内部被访问，<code>innerVariable2</code> 变量只能在 <code>globalFunction2</code> 函数内部被访问。<code>innerVariable1</code> 变量不能在 <code>globalFunction2</code> 函数内部或全局作用域内被访问，<code>innerVariable2</code> 变量也不能在 <code>globalFunction1</code> 函数内部或全局作用域内被访问</p>
+<p>下面的图片是上面代码中作用域的抽象表示：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://user-gold-cdn.xitu.io/2019/1/14/1684c6ca914e0347?w=780&h=505&f=png&s=32363" alt="js-scopes" title="">
+                </div>
+                <div class="image-caption">js-scopes</div>
+            </figure>
+<blockquote>
+<h4 id="全局作用域包含了-globalVariable-以及两个内嵌的函数作用域。每个内嵌的函数作用域又包含自己的变量，但是这些变量不能被全局作用域访问。虚线表示的是作用域链的查找方向"><a href="#全局作用域包含了-globalVariable-以及两个内嵌的函数作用域。每个内嵌的函数作用域又包含自己的变量，但是这些变量不能被全局作用域访问。虚线表示的是作用域链的查找方向" class="headerlink" title="全局作用域包含了 globalVariable 以及两个内嵌的函数作用域。每个内嵌的函数作用域又包含自己的变量，但是这些变量不能被全局作用域访问。虚线表示的是作用域链的查找方向"></a>全局作用域包含了 <code>globalVariable</code> 以及两个内嵌的函数作用域。每个内嵌的函数作用域又包含自己的变量，但是这些变量不能被全局作用域访问。虚线表示的是作用域链的查找方向</h4></blockquote>
+<p>让我们来看下另一个简短的代码示例，彻底的了解下到目前为止我们所介绍到的作用域概念。假设 JavaScript 文件只包含如下代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">outer</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> variable1;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">inner</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> variable2;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在这段代码里，我们在全局作用域里声明了一个叫 <code>outer</code> 的函数。因为它是一个函数，所以它创建了一个函数作用域，嵌套在全局作用域下。在这个作用域下，我们又声明了一个叫 <code>variable1</code> 的变量和 一个叫 <code>inner</code> 的函数。因为 <code>inner</code> 也是一个函数，所以一个新的作用域又被创建了，嵌套在 <code>outer</code> 函数的作用域下</p>
+<p>在 <code>inner</code> 函数中，我们既可以访问 <code>variable2</code> 也可以访问 <code>variable1</code>。当我们在 <code>inner</code> 函数中访问 <code>variable1</code> 时，浏览器首先会在它的作用域里查找这个变量；当这个变量没有被找到时，会继续向上在父作用域里查找（也就是 <code>outer</code> 函数的作用域）。代码里作用域如下图所示：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://user-gold-cdn.xitu.io/2019/1/14/1684c6ca800aacd1?w=635&h=505&f=png&s=31601" alt="js-scopes2" title="">
+                </div>
+                <div class="image-caption">js-scopes2</div>
+            </figure>
+<blockquote>
+<h4 id="函数作用域可以嵌套在其他的函数作用域里，但是作用域链查找规则是一样的，因此在-inner-作用域下可以访问到-variable1-和-variable2，但是在-outer-作用域下只能访问-variable1"><a href="#函数作用域可以嵌套在其他的函数作用域里，但是作用域链查找规则是一样的，因此在-inner-作用域下可以访问到-variable1-和-variable2，但是在-outer-作用域下只能访问-variable1" class="headerlink" title="函数作用域可以嵌套在其他的函数作用域里，但是作用域链查找规则是一样的，因此在 inner 作用域下可以访问到  variable1 和 variable2，但是在 outer 作用域下只能访问 variable1"></a>函数作用域可以嵌套在其他的函数作用域里，但是作用域链查找规则是一样的，因此在 <code>inner</code> 作用域下可以访问到  <code>variable1</code> 和 <code>variable2</code>，但是在 <code>outer</code> 作用域下只能访问 <code>variable1</code></h4></blockquote>
+<p>这个示例中的作用域链比较长，从 <code>inner</code> 函数延伸到 <code>outer</code> 函数，直到全局对象 <code>window</code></p>
+<h3 id="JavaScript-的新作用域"><a href="#JavaScript-的新作用域" class="headerlink" title="JavaScript 的新作用域"></a>JavaScript 的新作用域</h3><p>在 JavaScript 中，一个块是由一个或多个语句用大括号包裹起来的。诸如 <code>if</code>，<code>for</code>，<code>while</code> 的条件表达式，都是用块基于特定的条件来执行块语句</p>
+<p>其他流行的常见的编程语言都有块作用域，JavaScript 作用域中，直到如今却只有全局作用域和函数作用域，因此使我们变得很困惑。ES2015 在 JavaScript 新增了块作用域，对于我们的代码来说有很大的影响，并且对于那些熟悉其他编程语言的开发者来说变得更直观</p>
+<p>块作用域意味着一个块可以创建它自己的作用域，而不是简单的存在于它最近到父级函数作用域或全局作用域下。让我们在认识块作用域是如何工作的之前，先来了解下传统上块里的 JavaScript 是如何工作的：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> x = <span class="string">'function scope'</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> y = <span class="string">'not block scope'</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">innerFn</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(x, y); <span class="comment">// function scope not block scope</span></span><br><span class="line">  &#125;</span><br><span class="line">  innerFn();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>var</code> 语句是不能够创建块作用域的，即使是在块里，因此 <code>console.log</code> 语句可以访问到 <code>x</code> 和 <code>y</code> 变量。 <code>fn</code> 函数创建了一个函数作用域而且 <code>x</code> 和 <code>y</code> 变量都是可以通过作用域内的作用域链访问到 </p>
+<h3 id="声明提升"><a href="#声明提升" class="headerlink" title="声明提升"></a>声明提升</h3><p>理解提升的概念是理解 JavaScript 如何工作的基础。JavaScript 有两个阶段：解析阶段（JavaScript 引擎读取所有的代码）、执行阶段（执行已解析的代码）。大多数的事情都发生在第二阶段；例如，当你使用 <code>console.log</code> 语句时，实际的日志消息会在执行阶段打印到控制台</p>
+<p>然而，一些重要的事情也会在解析阶段发生，包括变量的内存分配、作用域创建。提升这个术语指的是 JavaScript 引擎在遇到标识符，如变量、函数声明时所发生到事情；当发生声明提升时，它的行为就像是把它定义的字面量提升到当前作用域的顶部。鉴于此，上面到代码示例实际会变成如下情况：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> x;</span><br><span class="line">  <span class="keyword">var</span> y;</span><br><span class="line"></span><br><span class="line">  x = <span class="string">'function scope'</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    y = <span class="string">'not block scope'</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">innerFn</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(x, y); <span class="comment">// function scope not block scope</span></span><br><span class="line">  &#125;</span><br><span class="line">  innerFn();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>只有变量到声明会提升到它的作用域的顶部；在这个例子的 <code>if</code> 语句中，变量赋值依然发生在我们所赋值的地方。当然，我们到变量并不会移动，而是引擎行为表现如此，因此这样可以更好的帮助我们理解代码</p>
+<p>除了变量，函数声明也会被提升。结果就是，从 JavaScript 引擎到角度来看，代码实际上看起来是这样的：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> x;</span><br><span class="line">  <span class="keyword">var</span> y;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">innerFn</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(x, y); <span class="comment">// function scope not block scope</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  x = <span class="string">'function scope'</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    y = <span class="string">'not block scope'</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  innerFn();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>innerFn</code> 的声明也被提升到了它的作用域的顶部。但是，记住它仅仅是函数声明被提升了，函数调用没有被提升。上面的代码并不会报任何错，因为 <code>innerFn</code> 在 <code>x</code> 和 <code>y</code> 赋值之前并没有被调用   </p>
+<h3 id="使用-let"><a href="#使用-let" class="headerlink" title="使用 let"></a>使用 <code>let</code></h3><p>即使使用了 ES2015，<code>var</code> 声明也不会创建块作用域。为了创建块作用域，我们需要在块里使用 <code>let</code> 或 <code>const</code> 声明。我们一会再看 <code>const</code>，首先来看下 <code>let</code></p>
+<p>表面上，<code>let</code> 和 <code>var</code>（我们用它来声明变量）的行为很相似：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> variable1;</span><br><span class="line">  <span class="keyword">let</span> variable2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在这个简单的例子中，<code>var</code> 和 <code>let</code> 声明都做了相同的事情（在 <code>fn</code> 创建的作用域下初始化了一个新的变量）。为了创建一个新的块作用域，我们需要在块里使用 <code>let</code>：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> variable1 = <span class="string">'function scope'</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> variable2 = <span class="string">'block scope'</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">console</span>.log(variable1, variable2); <span class="comment">// Uncaught ReferenceError: variable2 is not defined</span></span><br><span class="line">&#125;</span><br><span class="line">fn();</span><br></pre></td></tr></table></figure>
+<p>在这个代码示例中，抛出了一个引用错误（reference error）；让我们来探索下为什么会这样。<code>fn</code> 函数创建了一个新作用域，里面声明了变量 <code>variable1</code>。然后我们在 <code>if</code> 语句的块里，声明了变量 <code>variable2</code>。然而，因为我们在块里使用了 <code>let</code> 声明，因此一个新的块作用域在 <code>fn</code> 的作用域下被创建了</p>
+<p>如果 <code>console.log</code> 语句也在 <code>if</code> 块中的话，那么它就和 <code>variable2</code> 在相同的作用域下了，也能够通过作用域链找到 <code>variable1</code>。但是因为 <code>console.log</code> 在外头，因此它不能访问 <code>variable2</code>，所以会抛出一个引用错误</p>
+<p>块作用域和函数作用域的行为相同，但是他们是为块创建的，而不是函数</p>
+<h3 id="暂时性死区"><a href="#暂时性死区" class="headerlink" title="暂时性死区"></a>暂时性死区</h3><p>当一个用 <code>var</code> 声明的常规变量被创建时，会被提升到它的作用域的顶部，然后并初始化一个 <code>undefined</code> 值，这样就允许我们能够在它赋值之前引用一个常规变量</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(x); <span class="comment">// undefined</span></span><br><span class="line"><span class="keyword">var</span> x = <span class="number">10</span>;</span><br></pre></td></tr></table></figure>
+<p>记住，由于存在声明提升，代码实际看起来是这样的：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="literal">undefined</span>;</span><br><span class="line"><span class="built_in">console</span>.log(x); <span class="comment">// undefined</span></span><br><span class="line">x = <span class="number">10</span>;</span><br></pre></td></tr></table></figure>
+<p>这个行为会阻止抛出引用错误 <code>ReferenceError</code></p>
+<p>用 <code>let</code> 声明的变量也被提升了，但重要的是，他们并不会自动初始化值 <code>undefined</code>，因此意味着下面的代码会产生一个错误：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(x); <span class="comment">// Uncaught ReferenceError: x is not defined</span></span><br><span class="line"><span class="keyword">let</span> x = <span class="number">10</span>;</span><br></pre></td></tr></table></figure>
+<p>这个错误是由暂时性死区（TDZ）引起的。TDZ 存在于作用域初始化到变量声明期间。为了修复这个错误（<code>ReferenceError</code>），我们需要在访问它前声明它：</p>
+<blockquote>
+<p>译者注：<a href="https://gist.github.com/rwaldron/ca35924d59ddc60a6aa165e1e4a3acda" target="_blank" rel="noopener">TDZ</a></p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> x;</span><br><span class="line"><span class="built_in">console</span>.log(x); <span class="comment">// undefined</span></span><br><span class="line">x = <span class="number">10</span>;</span><br></pre></td></tr></table></figure>
+<p>TDZ 这样设计是为了使开发更容易（试图引用一个还没声明的变量通常视为一个错误，而不是故意为之），因此这个错误可以立即提醒我们</p>
+<h3 id="使用-const"><a href="#使用-const" class="headerlink" title="使用 const"></a>使用 <code>const</code></h3><p>新的 <code>const</code> 被用来声明一个不可再次赋值的变量。它和 <code>let</code> 的在 TDZ 的行为非常相似，但是，<code>const</code> 变量必须初始化一个值</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> VAR1 = <span class="string">'constant'</span>;</span><br></pre></td></tr></table></figure>
+<p>从现在开始， 变量 <code>VAR1</code> 的值将永远是 “constant” 这个字符串。如果我们试图再次对它赋值，我们会得到一个错误：</p>
+<blockquote>
+<p>TypeError: Assignment to <code>constant</code> variable</p>
+</blockquote>
+<p>如果我们试图创建一个没有初始化的 <code>const</code> 变量，我们将看到一个语法错误：</p>
+<blockquote>
+<p>SyntaxError: Missing initializer in <code>const</code> declaration</p>
+</blockquote>
+<p>相似地，一个 <code>const</code> 变量不能被再次声明。如果我们试图再次用 <code>const</code> 声明一个相同变量时，我们将得到一个不同类型的语法错误</p>
+<blockquote>
+<p>SyntaxError: Identifier ‘VAR1′ has already been declared</p>
+</blockquote>
+<p>和其他编程语言一样，常量是被用来保存我们的程序在生命周期里不希望改变的值</p>
+<p>记住 <code>let</code> 和 <code>const</code> 都是 JavaScript 的保留词，因此在严格模式下，是不能被用作标识符名称的（变量名，函数名等）。随着 ES2015 越来越普遍，<code>let</code> 和 <code>const</code> 优于 <code>var</code> 已形成一个共识，因为变量创建的作用域更与其他现代编程语言看齐，并且代码的行为也更好预测。<br>因此，在大多数情况下尽可能的避免使用 <code>var</code></p>
+<h3 id="不可变性"><a href="#不可变性" class="headerlink" title="不可变性"></a>不可变性</h3><p>用 <code>const</code> 声明的变量不能被再次赋值的，但是 <code>const</code> 声明的变量并不是完全不可变的。如果我们用对象或数组初始化了一个 <code>const</code> 变量，我们依然可以修改对象的属性和增加删除数组的元素 </p>
+<h3 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h3><ol>
+<li>在 <code>for</code> 循环里用 <code>let</code> 来初始化计数器变量  </li>
+<li>修复下面 <code>const</code> 的错误：</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> VAR1 = <span class="string">'constant'</span>;</span><br><span class="line"><span class="keyword">const</span> VAR1 = <span class="string">'constant2'</span>;</span><br><span class="line"><span class="keyword">const</span> VAR2;</span><br><span class="line">VAR2 = <span class="string">'constant'</span>;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h4 id="成功是通过不断的练习和知识的积累，而非智力"><a href="#成功是通过不断的练习和知识的积累，而非智力" class="headerlink" title="成功是通过不断的练习和知识的积累，而非智力"></a>成功是通过不断的练习和知识的积累，而非智力</h4></blockquote>
+<hr>
+<blockquote>
+<ul>
+<li>本文仅代表原作者个人观点，译者不发表任何观点</li>
+<li>Markdown 文件由译者手动整理，如有勘误，欢迎指正</li>
+<li>译文和原文采用一样协议，侵删</li>
+</ul>
+</blockquote>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2019-04-25T08:24:11.877Z" itemprop="dateUpdated">2019-04-25 16:24:11</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="http://yangfan.site">
+            <img src="/uploads/me.jpg" alt="yangfan">
+            yangfan
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/翻译计划/">翻译计划</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yangfan.site/2019/01/15/【译】深入理解-ES2015，第一趴：块作用域-let-和-const/&title=《【译】深入理解 ES2015，第一趴：块作用域 let 和 const》 — Yangfan's blog&pic=http://yangfan.site/uploads/me.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yangfan.site/2019/01/15/【译】深入理解-ES2015，第一趴：块作用域-let-和-const/&title=《【译】深入理解 ES2015，第一趴：块作用域 let 和 const》 — Yangfan's blog&source=html css js 前端 小程序" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yangfan.site/2019/01/15/【译】深入理解-ES2015，第一趴：块作用域-let-和-const/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【译】深入理解 ES2015，第一趴：块作用域 let 和 const》 — Yangfan's blog&url=http://yangfan.site/2019/01/15/【译】深入理解-ES2015，第一趴：块作用域-let-和-const/&via=http://yangfan.site" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yangfan.site/2019/01/15/【译】深入理解-ES2015，第一趴：块作用域-let-和-const/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/01/23/下载-Github-仓库的指定文件夹/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">下载 Github 仓库的指定文件夹</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/01/10/快速构建一个-vue-插件/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">快速构建一个 vue 插件</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "N85dVznr0Vh9jlIIvVLlxPxc-gzGzoHsz",
+            appKey: "ID0DznFMscpigUQk6S2RviUn",
+            avatar: "mm",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>yangfan &copy; 2018 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yangfan.site/2019/01/15/【译】深入理解-ES2015，第一趴：块作用域-let-和-const/&title=《【译】深入理解 ES2015，第一趴：块作用域 let 和 const》 — Yangfan's blog&pic=http://yangfan.site/uploads/me.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yangfan.site/2019/01/15/【译】深入理解-ES2015，第一趴：块作用域-let-和-const/&title=《【译】深入理解 ES2015，第一趴：块作用域 let 和 const》 — Yangfan's blog&source=html css js 前端 小程序" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yangfan.site/2019/01/15/【译】深入理解-ES2015，第一趴：块作用域-let-和-const/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【译】深入理解 ES2015，第一趴：块作用域 let 和 const》 — Yangfan's blog&url=http://yangfan.site/2019/01/15/【译】深入理解-ES2015，第一趴：块作用域-let-和-const/&via=http://yangfan.site" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yangfan.site/2019/01/15/【译】深入理解-ES2015，第一趴：块作用域-let-和-const/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yangfan.site/2019/01/15/【译】深入理解-ES2015，第一趴：块作用域-let-和-const/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '又好了！';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>浅析js中的位运算及应用 | Yangfan&#39;s blog | The site of the Yangfan2016</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="浅析js中的位运算及应用Example12345678910111213141516171819// 关于2的倍数的乘法除法4&amp;gt;&amp;gt;1 // 4/Math.pow(2,1) === 22&amp;lt;&amp;lt;2 // 2*Math.pow(2,2) === 8// 取整3.14|0 // 33.14^0 // 33.14&amp;amp;3 // 3~~3.14 // 33.14&amp;gt;&amp;gt;0 /">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅析js中的位运算及应用">
+<meta property="og:url" content="http://yangfan.site/2018/09/23/浅析js中的位运算及应用/index.html">
+<meta property="og:site_name" content="Yangfan&#39;s blog">
+<meta property="og:description" content="浅析js中的位运算及应用Example12345678910111213141516171819// 关于2的倍数的乘法除法4&amp;gt;&amp;gt;1 // 4/Math.pow(2,1) === 22&amp;lt;&amp;lt;2 // 2*Math.pow(2,2) === 8// 取整3.14|0 // 33.14^0 // 33.14&amp;amp;3 // 3~~3.14 // 33.14&amp;gt;&amp;gt;0 /">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://gss0.bdstatic.com/94o3dSag_xI4khGkpoWK1HF6hhy/baike/s%3D220/sign=5db6d89b81cb39dbc5c06054e01709a7/728da9773912b31b302371588618367adab4e170.jpg">
+<meta property="og:updated_time" content="2019-04-25T09:01:02.777Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="浅析js中的位运算及应用">
+<meta name="twitter:description" content="浅析js中的位运算及应用Example12345678910111213141516171819// 关于2的倍数的乘法除法4&amp;gt;&amp;gt;1 // 4/Math.pow(2,1) === 22&amp;lt;&amp;lt;2 // 2*Math.pow(2,2) === 8// 取整3.14|0 // 33.14^0 // 33.14&amp;amp;3 // 3~~3.14 // 33.14&amp;gt;&amp;gt;0 /">
+<meta name="twitter:image" content="https://gss0.bdstatic.com/94o3dSag_xI4khGkpoWK1HF6hhy/baike/s%3D220/sign=5db6d89b81cb39dbc5c06054e01709a7/728da9773912b31b302371588618367adab4e170.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="Yangfan&#39;s blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/uploads/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/uploads/me.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">yangfan</h5>
+          <a href="mailto:zhangh201601@gmail.com" title="zhangh201601@gmail.com" class="mail">zhangh201601@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Yangfan2016" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">浅析js中的位运算及应用</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">浅析js中的位运算及应用</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-09-23T12:47:47.000Z" itemprop="datePublished" class="page-time">
+  2018-09-23
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#浅析js中的位运算及应用"><span class="post-toc-number">1.</span> <span class="post-toc-text">浅析js中的位运算及应用</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Example"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">Example</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Concept"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">Concept</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#位运算符"><span class="post-toc-number">1.2.1.</span> <span class="post-toc-text">位运算符</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Convert"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">Convert</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-浅析js中的位运算及应用"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">浅析js中的位运算及应用</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-09-23 20:47:47" datetime="2018-09-23T12:47:47.000Z"  itemprop="datePublished">2018-09-23</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="浅析js中的位运算及应用"><a href="#浅析js中的位运算及应用" class="headerlink" title="浅析js中的位运算及应用"></a>浅析js中的位运算及应用</h1><h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 关于2的倍数的乘法除法</span></span><br><span class="line"><span class="number">4</span>&gt;&gt;<span class="number">1</span> <span class="comment">// 4/Math.pow(2,1) === 2</span></span><br><span class="line"><span class="number">2</span>&lt;&lt;<span class="number">2</span> <span class="comment">// 2*Math.pow(2,2) === 8</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 取整</span></span><br><span class="line"><span class="number">3.14</span>|<span class="number">0</span> <span class="comment">// 3</span></span><br><span class="line"><span class="number">3.14</span>^<span class="number">0</span> <span class="comment">// 3</span></span><br><span class="line"><span class="number">3.14</span>&amp;<span class="number">3</span> <span class="comment">// 3</span></span><br><span class="line">~~<span class="number">3.14</span> <span class="comment">// 3</span></span><br><span class="line"><span class="number">3.14</span>&gt;&gt;<span class="number">0</span> <span class="comment">// Math.floor(3/Math.pow(2,0)) === 3</span></span><br><span class="line"><span class="number">3.14</span>&lt;&lt;<span class="number">0</span> <span class="comment">// Math.floor(3*Math.pow(2,0)) === 3</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 不借助第三个变量下交换两数</span></span><br><span class="line"><span class="keyword">let</span> a=<span class="number">1</span>,</span><br><span class="line">    b=<span class="number">2</span>;</span><br><span class="line">a^=b;</span><br><span class="line">b^=a;</span><br><span class="line">a^=b;</span><br><span class="line"><span class="comment">// a === 2,b === 1</span></span><br></pre></td></tr></table></figure>
+<h2 id="Concept"><a href="#Concept" class="headerlink" title="Concept"></a>Concept</h2><h3 id="位运算符"><a href="#位运算符" class="headerlink" title="位运算符"></a>位运算符</h3><p><code>|</code> 或 只要有一个为1，就为1<br><code>&amp;</code> 与  只有都是1的情况，才为1<br><code>^</code> 异或  相同为0，不同为1<br><code>~</code> 否  取反<br><code>&lt;&lt;</code> 左移 向左移动指定位数，尾部补0<br><code>&gt;&gt;</code> 右移 向右移动指定位数，首部补0<br><code>&gt;&gt;&gt;</code> 带符号右移</p>
+<h2 id="Convert"><a href="#Convert" class="headerlink" title="Convert"></a>Convert</h2><p>Demical</p>
+<p>规则 逢十进一<br>基数 10<br>数码 0-9<br>位权 10^n-1</p>
+<p>举例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 转10进制</span></span><br><span class="line"><span class="number">100</span>D === <span class="number">1</span>*<span class="number">10</span>^<span class="number">2</span>+<span class="number">0</span>*<span class="number">10</span>^<span class="number">1</span>+<span class="number">0</span>*<span class="number">10</span>^<span class="number">0</span></span><br></pre></td></tr></table></figure>
+<hr>
+<p>Binary</p>
+<p>规则 逢二进一<br>基数 2<br>数码 0-1<br>位权 2^n-1</p>
+<p>举例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 转10进制</span></span><br><span class="line"><span class="number">100</span>B === <span class="number">1</span>*<span class="number">2</span>^<span class="number">2</span>+<span class="number">0</span>*<span class="number">2</span>^<span class="number">1</span>+<span class="number">0</span>*<span class="number">2</span>^<span class="number">0</span></span><br></pre></td></tr></table></figure>
+<hr>
+<p>Octal</p>
+<p>规则 逢八进一<br>基数 8<br>数码 0-7<br>位权 8^n-1</p>
+<p>举例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 转10进制</span></span><br><span class="line"><span class="number">100</span>O === <span class="number">1</span>*<span class="number">8</span>^<span class="number">2</span>+<span class="number">0</span>*<span class="number">8</span>^<span class="number">1</span>+<span class="number">0</span>*<span class="number">8</span>^<span class="number">0</span></span><br></pre></td></tr></table></figure>
+<hr>
+<p>Hex</p>
+<p>规则 逢十六进一<br>基数 16<br>数码 0-9,a-f<br>位权 16^n-1</p>
+<p>举例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 转10进制</span></span><br><span class="line"><span class="number">100</span>H === <span class="number">1</span>*<span class="number">16</span>^<span class="number">2</span>+<span class="number">0</span>*<span class="number">16</span>^<span class="number">1</span>+<span class="number">0</span>*<span class="number">16</span>^<span class="number">0</span></span><br></pre></td></tr></table></figure>
+<hr>
+<p>Decaimal convert to others</p>
+<p>短除法</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://gss0.bdstatic.com/94o3dSag_xI4khGkpoWK1HF6hhy/baike/s%3D220/sign=5db6d89b81cb39dbc5c06054e01709a7/728da9773912b31b302371588618367adab4e170.jpg" alt="短除法" title="">
+                </div>
+                <div class="image-caption">短除法</div>
+            </figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">6D -&gt; 110B</span><br><span class="line">9D -&gt; 11O</span><br><span class="line">17D -&gt; 11H</span><br></pre></td></tr></table></figure>
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2019-04-25T09:01:02.777Z" itemprop="dateUpdated">2019-04-25 17:01:02</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="http://yangfan.site">
+            <img src="/uploads/me.jpg" alt="yangfan">
+            yangfan
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yangfan.site/2018/09/23/浅析js中的位运算及应用/&title=《浅析js中的位运算及应用》 — Yangfan's blog&pic=http://yangfan.site/uploads/me.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yangfan.site/2018/09/23/浅析js中的位运算及应用/&title=《浅析js中的位运算及应用》 — Yangfan's blog&source=html css js 前端 小程序" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yangfan.site/2018/09/23/浅析js中的位运算及应用/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《浅析js中的位运算及应用》 — Yangfan's blog&url=http://yangfan.site/2018/09/23/浅析js中的位运算及应用/&via=http://yangfan.site" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yangfan.site/2018/09/23/浅析js中的位运算及应用/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/10/14/一个简单前端工具集/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">一个简单前端工具集-yanjs</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/09/06/Javascript-类与继承/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Javascript 继承</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "N85dVznr0Vh9jlIIvVLlxPxc-gzGzoHsz",
+            appKey: "ID0DznFMscpigUQk6S2RviUn",
+            avatar: "mm",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>yangfan &copy; 2018 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yangfan.site/2018/09/23/浅析js中的位运算及应用/&title=《浅析js中的位运算及应用》 — Yangfan's blog&pic=http://yangfan.site/uploads/me.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yangfan.site/2018/09/23/浅析js中的位运算及应用/&title=《浅析js中的位运算及应用》 — Yangfan's blog&source=html css js 前端 小程序" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yangfan.site/2018/09/23/浅析js中的位运算及应用/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《浅析js中的位运算及应用》 — Yangfan's blog&url=http://yangfan.site/2018/09/23/浅析js中的位运算及应用/&via=http://yangfan.site" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yangfan.site/2018/09/23/浅析js中的位运算及应用/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yangfan.site/2018/09/23/浅析js中的位运算及应用/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '又好了！';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

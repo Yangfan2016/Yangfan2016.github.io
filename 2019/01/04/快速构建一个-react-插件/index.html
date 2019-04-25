@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>快速构建一个 react 插件 | Yangfan&#39;s blog | The site of the Yangfan2016</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="前言一般情况下，我们写 React 项目，用 create-react-app 脚手架开发比较方便，但是如果要写一个插件的话，用三方脚手架就显得有点臃肿了，我们可以自己配置一个符合我们开发的简单工具，本文教你如何一步一步开发一个React 插件 ，let’s start  😊 准备工作工欲善其事，必先利其器，我们来选型  Typescript    为了方便开发，我们选用 Typescript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="快速构建一个 react 插件">
+<meta property="og:url" content="http://yangfan.site/2019/01/04/快速构建一个-react-插件/index.html">
+<meta property="og:site_name" content="Yangfan&#39;s blog">
+<meta property="og:description" content="前言一般情况下，我们写 React 项目，用 create-react-app 脚手架开发比较方便，但是如果要写一个插件的话，用三方脚手架就显得有点臃肿了，我们可以自己配置一个符合我们开发的简单工具，本文教你如何一步一步开发一个React 插件 ，let’s start  😊 准备工作工欲善其事，必先利其器，我们来选型  Typescript    为了方便开发，我们选用 Typescript">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/1/8/1682db589e80f715?w=90&h=20&f=svg&s=724">
+<meta property="og:updated_time" content="2019-04-25T08:24:11.877Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="快速构建一个 react 插件">
+<meta name="twitter:description" content="前言一般情况下，我们写 React 项目，用 create-react-app 脚手架开发比较方便，但是如果要写一个插件的话，用三方脚手架就显得有点臃肿了，我们可以自己配置一个符合我们开发的简单工具，本文教你如何一步一步开发一个React 插件 ，let’s start  😊 准备工作工欲善其事，必先利其器，我们来选型  Typescript    为了方便开发，我们选用 Typescript">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2019/1/8/1682db589e80f715?w=90&h=20&f=svg&s=724">
+    
+        <link rel="alternate" type="application/atom+xml" title="Yangfan&#39;s blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/uploads/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/uploads/me.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">yangfan</h5>
+          <a href="mailto:zhangh201601@gmail.com" title="zhangh201601@gmail.com" class="mail">zhangh201601@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Yangfan2016" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">快速构建一个 react 插件</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">快速构建一个 react 插件</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-01-04T07:21:36.000Z" itemprop="datePublished" class="page-time">
+  2019-01-04
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#准备工作"><span class="post-toc-number">2.</span> <span class="post-toc-text">准备工作</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#目录结构"><span class="post-toc-number">3.</span> <span class="post-toc-text">目录结构</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#开发者选项"><span class="post-toc-number">4.</span> <span class="post-toc-text">开发者选项</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#webpack-配置"><span class="post-toc-number">5.</span> <span class="post-toc-text">webpack 配置</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#【选读】Typescript-配置"><span class="post-toc-number">6.</span> <span class="post-toc-text">【选读】Typescript 配置</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#开始编写插件"><span class="post-toc-number">7.</span> <span class="post-toc-text">开始编写插件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装依赖及代码压缩打包"><span class="post-toc-number">8.</span> <span class="post-toc-text">安装依赖及代码压缩打包</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#代码测试"><span class="post-toc-number">9.</span> <span class="post-toc-text">代码测试</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#持续集成"><span class="post-toc-number">10.</span> <span class="post-toc-text">持续集成</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#发布-npm-包"><span class="post-toc-number">11.</span> <span class="post-toc-text">发布 npm 包</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#开源贡献"><span class="post-toc-number">12.</span> <span class="post-toc-text">开源贡献</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#完结撒花🎉"><span class="post-toc-number">13.</span> <span class="post-toc-text">完结撒花🎉</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-快速构建一个-react-插件"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">快速构建一个 react 插件</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-01-04 15:21:36" datetime="2019-01-04T07:21:36.000Z"  itemprop="datePublished">2019-01-04</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>一般情况下，我们写 React 项目，用 create-react-app 脚手架开发比较方便，但是如果要写一个插件的话，用三方脚手架就显得有点臃肿了，我们可以自己配置一个符合我们开发的简单工具，本文教你如何一步一步开发一个<br>React 插件 ，let’s start  😊</p>
+<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>工欲善其事，必先利其器，我们来选型</p>
+<ul>
+<li>Typescript  </li>
+</ul>
+<p>为了方便开发，我们选用 Typescript 作为开发语言，可以即时类型检查，顺便还能装逼（巨硬大法好），</p>
+<blockquote>
+<p>注：<br>Typescript 可选的，你也可以选择 js 刀耕火种，不过最好还是用 Typescript 写吧，毕竟9102年了，骚年 😄</p>
+</blockquote>
+<ul>
+<li>webpack + babel</li>
+</ul>
+<p>这里先用我们熟悉的 webpack 作为打包工具（之后会尝试改成 rollup 作为打包工具）</p>
+<ul>
+<li>jest + travis + coveralls</li>
+</ul>
+<p>jest 作为我们代码测试的工具,这里选用 travis ，一个在线持续集成的工具（帮助你打包、构建、运行scripts命令、代码测试等）<br>选用 coveralls 可以根据 travis 代码测试后生成的代码覆盖率生成 badge（Github 好多项目都有的）<br><img src="https://user-gold-cdn.xitu.io/2019/1/8/1682db589e80f715?w=90&amp;h=20&amp;f=svg&amp;s=724" alt="Build Status"></p>
+<h3 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h3><p>下面我们来大体组织下目录结构<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">react-yan-progress</span><br><span class="line">├── build                                 // 打包目录</span><br><span class="line">│   └── YanProgress.min.js</span><br><span class="line">├── src                                   // 源码</span><br><span class="line">│   ├── index.css</span><br><span class="line">│   └── index.tsx</span><br><span class="line">├── test                                  // 测试文件</span><br><span class="line">│   └── YanProgress.test.js</span><br><span class="line">├── index.d.ts                            // 声明文件（ts）</span><br><span class="line">├── jest.config.js                        // jest 测试配置文件</span><br><span class="line">├── webpack.config.js                     // webpack 配置文件</span><br><span class="line">├── tsconfig.json                         // ts 配置文件</span><br><span class="line">├── package.json</span><br><span class="line">├── .travis.yml                           // travis 配置文件</span><br><span class="line">├── LICENSE </span><br><span class="line">└── README.md</span><br></pre></td></tr></table></figure></p>
+<h3 id="开发者选项"><a href="#开发者选项" class="headerlink" title="开发者选项"></a>开发者选项</h3><p>所有的依赖的包如下</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"devDependencies"</span>: &#123;</span><br><span class="line">        <span class="string">"@babel/core"</span>: <span class="string">"^7.1.6"</span>,</span><br><span class="line">        <span class="string">"@babel/preset-env"</span>: <span class="string">"^7.1.6"</span>, </span><br><span class="line">        <span class="string">"@babel/preset-react"</span>: <span class="string">"^7.0.0"</span>, <span class="comment">// for react</span></span><br><span class="line">        <span class="string">"@types/react"</span>: <span class="string">"^16.7.18"</span>, <span class="comment">// 声明文件</span></span><br><span class="line">        <span class="string">"@types/react-dom"</span>: <span class="string">"^16.0.11"</span>, <span class="comment">// 声明文件</span></span><br><span class="line">        <span class="string">"babel-loader"</span>: <span class="string">"^8.0.4"</span>,</span><br><span class="line">        <span class="string">"chai"</span>: <span class="string">"^4.2.0"</span>, <span class="comment">// 测试断言库</span></span><br><span class="line">        <span class="string">"coveralls"</span>: <span class="string">"^3.0.2"</span>, <span class="comment">// 代码覆盖率</span></span><br><span class="line">        <span class="string">"css-loader"</span>: <span class="string">"^1.0.1"</span>, </span><br><span class="line">        <span class="string">"jest"</span>: <span class="string">"^23.6.0"</span>, <span class="comment">// 测试工具</span></span><br><span class="line">        <span class="string">"react"</span>: <span class="string">"^16.7.0"</span>,</span><br><span class="line">        <span class="string">"react-dom"</span>: <span class="string">"^16.7.0"</span>,</span><br><span class="line">        <span class="string">"style-loader"</span>: <span class="string">"^0.23.1"</span>,</span><br><span class="line">        <span class="string">"ts-loader"</span>: <span class="string">"^5.3.2"</span>, <span class="comment">// 解析 ts </span></span><br><span class="line">        <span class="string">"typescript"</span>: <span class="string">"^3.2.2"</span>, <span class="comment">// 解析 ts</span></span><br><span class="line">        <span class="string">"webpack"</span>: <span class="string">"^4.25.1"</span>,</span><br><span class="line">        <span class="string">"webpack-cli"</span>: <span class="string">"^3.1.2"</span></span><br><span class="line">    &#125;      </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>命令配置如下，详情 <code>package.json</code><br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"scripts"</span>: &#123;</span><br><span class="line">        <span class="attr">"build"</span>: <span class="string">"webpack --config webpack.config.js --progress --colors"</span>,</span><br><span class="line">        <span class="attr">"test"</span>: <span class="string">"jest ./test/YanProgress.test.js"</span>,</span><br><span class="line">        <span class="attr">"coveralls"</span>: <span class="string">"cat ./coverage/lcov.info | coveralls"</span></span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="webpack-配置"><a href="#webpack-配置" class="headerlink" title="webpack 配置"></a>webpack 配置</h3><p>我们采用 webpack4 ,具体配置请看官网，<a href="https://webpack.js.org/concepts/" target="_blank" rel="noopener">传送门</a><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">	mode: <span class="string">"production"</span>, <span class="comment">// 生产模式</span></span><br><span class="line">	entry: &#123; <span class="comment">// 入口</span></span><br><span class="line">		<span class="string">"YanProgress"</span>: path.resolve(__dirname, <span class="string">'./src/index.tsx'</span>)</span><br><span class="line">	&#125;,</span><br><span class="line">	output: &#123; <span class="comment">// 出口</span></span><br><span class="line">		path: path.resolve(__dirname, <span class="string">'./build'</span>),</span><br><span class="line">		filename: <span class="string">'[name].min.js'</span>,</span><br><span class="line">		publicPath: <span class="string">"./build/"</span>,</span><br><span class="line">		libraryTarget: <span class="string">'commonjs2'</span>, <span class="comment">// 注意这里按 commonjs2 模块规范打包</span></span><br><span class="line">	&#125;,</span><br><span class="line">	<span class="built_in">module</span>: &#123;</span><br><span class="line">		rules: [</span><br><span class="line">			&#123;</span><br><span class="line">				test: <span class="regexp">/\.tsx?$/</span>,</span><br><span class="line">				use: [</span><br><span class="line">					&#123;</span><br><span class="line">						loader: <span class="string">'babel-loader'</span>,</span><br><span class="line">						options: &#123;</span><br><span class="line">							presets: [<span class="string">'@babel/preset-env'</span>, <span class="string">"@babel/preset-react"</span>]</span><br><span class="line">						&#125;</span><br><span class="line">					&#125;,</span><br><span class="line">					&#123;</span><br><span class="line">						loader: <span class="string">'ts-loader'</span>, <span class="comment">// 解析 ts</span></span><br><span class="line">					&#125;</span><br><span class="line">				],</span><br><span class="line">				include: path.resolve(__dirname, <span class="string">"./src/"</span>), <span class="comment">// 只解析 src 目录下的文件</span></span><br><span class="line">			&#125;,</span><br><span class="line">			&#123;</span><br><span class="line"></span><br><span class="line">				test: <span class="regexp">/\.css$/</span>,</span><br><span class="line">				loader: <span class="string">"style-loader!css-loader?modules&amp;localIdentName=[hash:8]"</span>, <span class="comment">// css_modules 配置详情  http://www.ruanyifeng.com/blog/2016/06/css_modules.html</span></span><br><span class="line">				include: path.resolve(__dirname, <span class="string">"./src/"</span>),</span><br><span class="line">			&#125;</span><br><span class="line">		]</span><br><span class="line">	&#125;,</span><br><span class="line">	resolve: &#123; <span class="comment">// 省略文件后缀时，默认按下面的配置取</span></span><br><span class="line">		extensions: [<span class="string">'.ts'</span>, <span class="string">'.tsx'</span>, <span class="string">'.js'</span>],</span><br><span class="line">	&#125;,</span><br><span class="line">	externals: &#123; <span class="comment">// 不把 react 打包进去</span></span><br><span class="line">		react: <span class="string">'react'</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<h3 id="【选读】Typescript-配置"><a href="#【选读】Typescript-配置" class="headerlink" title="【选读】Typescript 配置"></a>【选读】Typescript 配置</h3><p>由于我们要在 ts 文件中 引入 css 模块，但是 ts 不认识，所以我们需要进行如下配置</p>
+<p>在项目的根目录下新建一个 <code>index.d.ts</code> ts 声明文件</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">declare</span> <span class="keyword">module</span> '*.css';</span><br></pre></td></tr></table></figure>
+<h3 id="开始编写插件"><a href="#开始编写插件" class="headerlink" title="开始编写插件"></a>开始编写插件</h3><p>这里就是与平常的开发组件一样，举个例子</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// jsx</span></span><br><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">YanProgress</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</span><br><span class="line">	render() &#123;</span><br><span class="line">		<span class="keyword">return</span> (</span><br><span class="line">			&lt;div&gt;</span><br><span class="line">				骚年，写代码快乐吗，看我干嘛 😄，赶快滚去写代码啊，别忘了点个 star 😂</span><br><span class="line">			&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">		);</span></span><br><span class="line"><span class="regexp">	&#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">export default YanProgress; /</span><span class="regexp">/ 记得导出啊，骚年</span></span><br></pre></td></tr></table></figure>
+<p>你可以直接看我写好的代码（然后 ctrl+c,ctrl+v），源码在这里，<a href="https://github.com/Yangfan2016/react-yan-progress/tree/master" target="_blank" rel="noopener">点我</a></p>
+<h3 id="安装依赖及代码压缩打包"><a href="#安装依赖及代码压缩打包" class="headerlink" title="安装依赖及代码压缩打包"></a>安装依赖及代码压缩打包</h3><p>webpack4 默认会压缩代码，so 我们直接执行刚才 package.json 配置好的 scripts 的命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ yarn</span><br><span class="line">$ yarn run build</span><br></pre></td></tr></table></figure>
+<h3 id="代码测试"><a href="#代码测试" class="headerlink" title="代码测试"></a>代码测试</h3><ul>
+<li><p>单元测试<br>  可以在 <code>test</code> 目录下新建一个 <code>xxx.test.js</code> 的测试文件，写好测试用例（这里使用的是 chai 断言库的 expect 风格），执行如下命令</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yarn run <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>包测试<br>  如果你也想以 npm 包的形式引入（<code>import YanProgress from &#39;react-yan-progress&#39;</code>），测试的话，可以执行如下命令  </p>
+<p>  在你的项目根目录下，打开终端运行如下命令，建立链接</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yarn link</span><br></pre></td></tr></table></figure>
+<p>  在你要测试的 demo 项目根目录下，执行如下，然后你就可以这样使用了 <code>import YanProgress from &#39;react-yan-progress&#39;</code></p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yarn link react-yan-progress</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="持续集成"><a href="#持续集成" class="headerlink" title="持续集成"></a>持续集成</h3><p>这里用到比较方便简单的 travis 在线测试工具，和测试代码覆盖率工具 coveralls，网址如下：<br>持续集成 <a href="https://travis-ci.org" target="_blank" rel="noopener">https://travis-ci.org</a><br>代码覆盖率  <a href="https://coveralls.io" target="_blank" rel="noopener">https://coveralls.io</a>  </p>
+<p>注册使用过程就略过了，毕竟已经有很多教程了（面向谷歌编程 😂）</p>
+<p>在项目根目录下新建一个 <code>.travis.yml</code> 文件，配置如下</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">language:</span> <span class="string">node_js</span> <span class="comment"># 运行环境</span></span><br><span class="line"><span class="attr">node_js:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">"10.6.0"</span> <span class="comment"># 版本</span></span><br><span class="line"><span class="attr">branches:</span></span><br><span class="line"><span class="attr">  only:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">master</span> <span class="comment"># 只有主支可以</span></span><br><span class="line"><span class="attr">before_install:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">export</span> <span class="string">TZ='Asia/Shanghai'</span> <span class="comment"># 如果你的项目里涉及到时间处理，这里需要设置时区</span></span><br><span class="line"><span class="attr">install:</span> <span class="string">yarn</span> <span class="string">install</span> <span class="comment"># 安装 npm 包</span></span><br><span class="line"><span class="attr">script:</span> <span class="comment"># 执行命令</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">yarn</span> <span class="string">run</span> <span class="string">build</span> <span class="comment"># 打包</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">yarn</span> <span class="string">run</span> <span class="string">test</span> <span class="comment"># 测试</span></span><br><span class="line"><span class="attr">after_success:</span> <span class="comment"># 成功之后执行如下命令</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">yarn</span> <span class="string">run</span> <span class="string">coveralls</span> <span class="comment"># 测试代码覆盖率</span></span><br></pre></td></tr></table></figure>
+<h3 id="发布-npm-包"><a href="#发布-npm-包" class="headerlink" title="发布 npm 包"></a>发布 npm 包</h3><p>注册 npm 账号，注册过程略  </p>
+<blockquote>
+<p>注意之前，先去 npm 官网找一下，你的包名有木有被抢先占用了</p>
+</blockquote>
+<p>执行如下命令进行发布<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm publish</span><br></pre></td></tr></table></figure></p>
+<p>升级包<br>执行如下命令（x.x.x  -&gt; major.minor.patch）<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm version patch</span><br></pre></td></tr></table></figure></p>
+<h3 id="开源贡献"><a href="#开源贡献" class="headerlink" title="开源贡献"></a>开源贡献</h3><p>拥抱开源，这样才能让社区，乃至行业发展更有动力</p>
+<blockquote>
+<p>注：例如，你的 star 是对我最大的鼓励，是支持我继续开源的动力</p>
+</blockquote>
+<ul>
+<li>React-componets 社区 <a href="https://github.com/brillout/awesome-react-components" target="_blank" rel="noopener">awesome-react-components</a></li>
+<li>其他社区，可以到 <code>Github</code> 探索</li>
+</ul>
+<h3 id="完结撒花🎉"><a href="#完结撒花🎉" class="headerlink" title="完结撒花🎉"></a>完结撒花🎉</h3><p>👏 欢迎大家一起和我搞 ji（<a href="https://github.com/Yangfan2016" target="_blank" rel="noopener">Github</a>）😊 </p>
+<ul>
+<li>项目地址 <a href="https://github.com/Yangfan2016/react-yan-progress#react-yan-progress" target="_blank" rel="noopener">https://github.com/Yangfan2016/react-yan-progress#react-yan-progress</a>  </li>
+<li>博客原文 <a href="https://yangfan2016.github.io" target="_blank" rel="noopener">https://yangfan2016.github.io</a></li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2019-04-25T08:24:11.877Z" itemprop="dateUpdated">2019-04-25 16:24:11</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="http://yangfan.site">
+            <img src="/uploads/me.jpg" alt="yangfan">
+            yangfan
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yangfan.site/2019/01/04/快速构建一个-react-插件/&title=《快速构建一个 react 插件》 — Yangfan's blog&pic=http://yangfan.site/uploads/me.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yangfan.site/2019/01/04/快速构建一个-react-插件/&title=《快速构建一个 react 插件》 — Yangfan's blog&source=html css js 前端 小程序" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yangfan.site/2019/01/04/快速构建一个-react-插件/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《快速构建一个 react 插件》 — Yangfan's blog&url=http://yangfan.site/2019/01/04/快速构建一个-react-插件/&via=http://yangfan.site" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yangfan.site/2019/01/04/快速构建一个-react-插件/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/01/10/快速构建一个-vue-插件/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">快速构建一个 vue 插件</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/11/19/You-don't-know-cross-origin/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">You don&#39;t know cross-origin</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "N85dVznr0Vh9jlIIvVLlxPxc-gzGzoHsz",
+            appKey: "ID0DznFMscpigUQk6S2RviUn",
+            avatar: "mm",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>yangfan &copy; 2018 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yangfan.site/2019/01/04/快速构建一个-react-插件/&title=《快速构建一个 react 插件》 — Yangfan's blog&pic=http://yangfan.site/uploads/me.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yangfan.site/2019/01/04/快速构建一个-react-插件/&title=《快速构建一个 react 插件》 — Yangfan's blog&source=html css js 前端 小程序" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yangfan.site/2019/01/04/快速构建一个-react-插件/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《快速构建一个 react 插件》 — Yangfan's blog&url=http://yangfan.site/2019/01/04/快速构建一个-react-插件/&via=http://yangfan.site" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yangfan.site/2019/01/04/快速构建一个-react-插件/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yangfan.site/2019/01/04/快速构建一个-react-插件/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '又好了！';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

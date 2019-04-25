@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>【译】React 函数式组件和 React 类有何不同 | Yangfan&#39;s blog | The site of the Yangfan2016</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="翻译计划">
+    <meta name="description" content="React 函数式组件和 React 类有何不同？  原文地址：https://overreacted.io/how-are-function-components-different-from-classes/ 原文作者：Dan Abramov Markdown 地址：https://github.com/gaearon/overreacted.io/edit/master/src/pages/">
+<meta name="keywords" content="翻译计划">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【译】React 函数式组件和 React 类有何不同">
+<meta property="og:url" content="http://yangfan.site/2019/04/07/【译】React-函数式组件和-React-类有何不同/index.html">
+<meta property="og:site_name" content="Yangfan&#39;s blog">
+<meta property="og:description" content="React 函数式组件和 React 类有何不同？  原文地址：https://overreacted.io/how-are-function-components-different-from-classes/ 原文作者：Dan Abramov Markdown 地址：https://github.com/gaearon/overreacted.io/edit/master/src/pages/">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://overreacted.io/wtf-1d3c7a341ee3fcadc79df00e7d872e4b.gif">
+<meta property="og:image" content="https://overreacted.io/bug-386a449110202d5140d67336a0ade5a0.gif">
+<meta property="og:image" content="https://overreacted.io/pokemon-fa483dd5699aac1350c57591770a49be.gif">
+<meta property="og:image" content="https://overreacted.io/fix-84396c4b3982827bead96912a947904e.gif">
+<meta property="og:image" content="https://overreacted.io/pikachu-fc3bddf6d4ca14bc77917ac0cfad3608.gif">
+<meta property="og:updated_time" content="2019-04-25T08:24:11.877Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【译】React 函数式组件和 React 类有何不同">
+<meta name="twitter:description" content="React 函数式组件和 React 类有何不同？  原文地址：https://overreacted.io/how-are-function-components-different-from-classes/ 原文作者：Dan Abramov Markdown 地址：https://github.com/gaearon/overreacted.io/edit/master/src/pages/">
+<meta name="twitter:image" content="https://overreacted.io/wtf-1d3c7a341ee3fcadc79df00e7d872e4b.gif">
+    
+        <link rel="alternate" type="application/atom+xml" title="Yangfan&#39;s blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/uploads/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/uploads/me.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">yangfan</h5>
+          <a href="mailto:zhangh201601@gmail.com" title="zhangh201601@gmail.com" class="mail">zhangh201601@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Yangfan2016" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">【译】React 函数式组件和 React 类有何不同</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">【译】React 函数式组件和 React 类有何不同</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-04-07T06:16:44.000Z" itemprop="datePublished" class="page-time">
+  2019-04-07
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#React-函数式组件和-React-类有何不同？"><span class="post-toc-number">1.</span> <span class="post-toc-text">React 函数式组件和 React 类有何不同？</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-【译】React-函数式组件和-React-类有何不同"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">【译】React 函数式组件和 React 类有何不同</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-04-07 14:16:44" datetime="2019-04-07T06:16:44.000Z"  itemprop="datePublished">2019-04-07</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="React-函数式组件和-React-类有何不同？"><a href="#React-函数式组件和-React-类有何不同？" class="headerlink" title="React 函数式组件和 React 类有何不同？"></a>React 函数式组件和 React 类有何不同？</h2><blockquote>
+<ul>
+<li>原文地址：<a href="https://overreacted.io/how-are-function-components-different-from-classes/" target="_blank" rel="noopener">https://overreacted.io/how-are-function-components-different-from-classes/</a></li>
+<li>原文作者：<a href="https://github.com/gaearon" target="_blank" rel="noopener">Dan Abramov</a></li>
+<li>Markdown 地址：<a href="https://github.com/gaearon/overreacted.io/edit/master/src/pages/how-are-function-components-different-from-classes/index.md" target="_blank" rel="noopener">https://github.com/gaearon/overreacted.io/edit/master/src/pages/how-are-function-components-different-from-classes/index.md</a></li>
+<li>译者：<a href="https://github.com/Yangfan2016" target="_blank" rel="noopener">Yangfan2016</a></li>
+<li>英文版权所有：<a href="https://github.com/gaearon/overreacted.io/blob/master/LICENSE-posts" target="_blank" rel="noopener">Dan Abramov</a></li>
+</ul>
+</blockquote>
+<p>一段时间内，权威的答案是 “类” 可以提供更多的特性的访问（比如，<code>state</code>）。而 <a href="https://reactjs.org/docs/hooks-intro.html" target="_blank" rel="noopener">Hooks</a> 就不一样了</p>
+<p>或许你已了解到一种最佳实践。哪一种内？大多数基准测试都<a href="https://medium.com/@dan_abramov/this-benchmark-is-indeed-flawed-c3d6b5b6f97f?source=your_stories_page---------------------------" target="_blank" rel="noopener">不完美</a>，因此我得小心谨慎从它们中得出结论。性能本质上取决于代码做了什么而不是你选择函数还是类。我们观察到，它们的性能差别微不足道，尽管优化策略有些<a href="https://reactjs.org/docs/hooks-faq.html#are-hooks-slow-because-of-creating-functions-in-render" target="_blank" rel="noopener">不同</a></p>
+<p>无论哪种情况下，我们都<a href="https://reactjs.org/docs/hooks-faq.html#should-i-use-hooks-classes-or-a-mix-of-both" target="_blank" rel="noopener">不推荐</a>重写你已存在的组件，除非你有其他原因，和不介意做第一个 “吃螃蟹” 的人。<code>Hooks</code> 仍然是新概念（就像 2014 年的 React），并且那些 “最佳实践” 至今都没有在教程里找到</p>
+<p>那么给我们留下了什么内？React 函数和类有本质的区别吗？当然，它们有（在心智模型层面上）。<strong>这篇文章，我将找到它们之间的最大的不同。</strong> 它自从 2015 的函数式组件被<a href="https://reactjs.org/blog/2015/09/10/react-v0.14-rc1.html#stateless-function-components" target="_blank" rel="noopener">引入</a>就存在了，但是它经常被忽视：</p>
+<blockquote>
+<p><strong>函数式组件捕获已渲染的值</strong></p>
+</blockquote>
+<p>让我们拆开这个概念来理解</p>
+<hr>
+<p><strong>注意：这篇文章并不做类或函数的价值评判。我只是描述下这两种编程模式在 React 中的不同。更多采用函数式的问题，请查阅 <a href="https://reactjs.org/docs/hooks-faq.html#adoption-strategy" target="_blank" rel="noopener">Hooks FAQ</a></strong></p>
+<hr>
+<p>仔细看看这个组件：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ProfilePage</span>(<span class="params">props</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> showMessage = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    alert(<span class="string">'Followed '</span> + props.user);</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> handleClick = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    setTimeout(showMessage, <span class="number">3000</span>);</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;button onClick=&#123;handleClick&#125;&gt;Follow&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">  );</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>它会显示一个用 <code>setTimeout</code> 模拟网络请求的按钮，并且之后会显示一个确认框。例如，如果 <code>props.user</code> 的值是 <code>&#39;Dan&#39;</code>，那么在 3 秒之后会显示 <code>&#39;Followed Dan&#39;</code>。足够简单</p>
+<p><em>（注意，在这个例子中，不论我使用箭头函数还是声明式函数都没有关系。<code>function handleClick()</code> 都会以相同的方式正确执行）</em></p>
+<p>我们如何用 “类” 重写内？原生翻译看起来可能是这样的：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ProfilePage</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  showMessage = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    alert(<span class="string">'Followed '</span> + <span class="keyword">this</span>.props.user);</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  handleClick = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    setTimeout(<span class="keyword">this</span>.showMessage, <span class="number">3000</span>);</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;this.handleClick&#125;</span>&gt;</span>Follow<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通常认为这两个代码片段是等价的。人们总是在这些模式进行自由的重构，而从来没有注意到它们的意义：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://overreacted.io/wtf-1d3c7a341ee3fcadc79df00e7d872e4b.gif" alt="找出两个版本的不同" title="">
+                </div>
+                <div class="image-caption">找出两个版本的不同</div>
+            </figure>
+<p><strong>然而，这两个代码片段只有细微的差别。</strong> 仔细看看它们，你发现不同了吗？就我个人而言，我花了一些时间才找到</p>
+<p><strong>前方剧透，如果你要自己弄明白的话，请看这个<a href="https://codesandbox.io/s/pjqnl16lm7" target="_blank" rel="noopener">在线 demo</a></strong> ，文章的剩下的部分都在解释它们的差别和为何它如此重要</p>
+<hr>
+<p>在继续之前，我想强调下这篇文章描述的区别和 React Hooks 半毛钱关系都没有。甚至上面的例子里都没有提及 Hooks！</p>
+<p>文章都是关于 React 中所有函数和 “类” 的差异。如果你计划在 React app 中更频繁的使用函数，你可能更想理解它</p>
+<hr>
+<p><strong>我们将用一个 React 应用中常见的 “类” bug 来图解这个区别</strong></p>
+<p>打来这个 <strong><a href="https://codesandbox.io/s/pjqnl16lm7" target="_blank" rel="noopener">sandbox 例子</a></strong>，有一个简介选择器和两个 <code>信息页面</code>（每个都有一个关注按钮） </p>
+<p>试着按下面的顺序触发这两个按钮：</p>
+<ol>
+<li><strong>单击</strong> 其中一个关注按钮  </li>
+<li>在 3 秒过去之前 <strong>改变</strong> 已选的简介  </li>
+<li><strong>读取</strong> 警告框的内容  </li>
+</ol>
+<p>你会发现一个奇怪的差异：</p>
+<ul>
+<li><p>使用上面的 <strong>function</strong> <code>信息页面</code> ，点击关注 Dan 的简介后，然后导航到 Sophie 的简介依然弹框显示 <code>&#39;Followed Dan&#39;</code></p>
+</li>
+<li><p>使用上面的 <strong>class</strong> <code>信息页面</code> ，它会弹框显示 <code>&#39;Followed Sophie&#39;</code>：</p>
+</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://overreacted.io/bug-386a449110202d5140d67336a0ade5a0.gif" alt="步骤示范" title="">
+                </div>
+                <div class="image-caption">步骤示范</div>
+            </figure>
+<hr>
+<p>在这个例子中，第一个行为是正确的。<strong>如果我关注了一个人，然后导航到另一个人的简介页面，我的组件不应该困惑我到底关注了谁。</strong> 这个  “类” 实现明显是个 bug </p>
+<p><em>（虽然你完全可以这样关注 <a href="https://mobile.twitter.com/sophiebits" target="_blank" rel="noopener">Sophie</a>）</em></p>
+<hr>
+<p>那么为何我们的 “类” 例子会如此表现内？</p>
+<p>让我们仔细看看我们 “类” 方法 <code>showMessage</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">class ProfilePage extends React.Component &#123;</span><br><span class="line">  showMessage = () =&gt; &#123;</span><br><span class="line">    alert(&apos;Followed &apos; + this.props.user);</span><br><span class="line">  &#125;;</span><br></pre></td></tr></table></figure>
+<p>这个 “类” 方法从 <code>this.props.user</code> 读取。Props 在 React 里是不可变的，因此它们永远也不会改变。<strong>然而，<code>this</code> <em>是</em>，总是多变的</strong> </p>
+<p>事实上，这就是 “类” 里 <code>this</code> 的全部目的。React 自己会随着时间改变，以至于你可以在 <code>render</code> 和生命周期方法获取到最新的版本</p>
+<p>因此如果我们在请求期间重新渲染我们的组件，<code>this.props</code> 会改变。<code>showMessage</code> 方法获取到 <code>user</code> 将是 “更新的” <code>props</code></p>
+<p>这个例子揭露出一个关于用户界面本质的有趣的观察。如果我们说 UI 概念上是当前应用状态的函数，<strong>那么事件处理器就是渲染结果的一部分（就像可视化输出一样）</strong>。我们事件处理器 “属于” 一个拥有特定 props 和 state 的特定渲染</p>
+<p>然而，这些回调读取 <code>this.props</code> 超时会断开这个联系。我们的 <code>showMessage</code> 回调不能 “绑” 到任何特定的渲染，那么它就会 “丢失” 正确的 props。读取 <code>this</code> 的链接就会被切断  </p>
+<hr>
+<p><strong>我们假设函数式组件不存在。</strong> 我们该如何解决这个问题内？</p>
+<p>我们想以某种方式 “修复” 带着正确的 props 的 <code>render</code> 和 <code>showMessage</code> 回调读取它们的联系。在某个地方，<code>props</code> 可能会丢失</p>
+<p>一种方式是在事件处理更早读取 <code>this.props</code>，并且显示通过超时完成处理器传递进去：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">class ProfilePage extends React.Component &#123;</span><br><span class="line">  showMessage = (user) =&gt; &#123;</span><br><span class="line">    alert(&apos;Followed &apos; + user);</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  handleClick = () =&gt; &#123;</span><br><span class="line">    const &#123;user&#125; = this.props;</span><br><span class="line">    setTimeout(() =&gt; this.showMessage(user), 3000);</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    return &lt;button onClick=&#123;this.handleClick&#125;&gt;Follow&lt;/button&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>起<a href="https://codesandbox.io/s/3q737pw8lq" target="_blank" rel="noopener">作用</a>了。然而，这种方式随着时间变化显著造成代码更冗余和容易出错。如果我们需要不止一个 prop？如果我们也需要访问这个 state？<strong>如果 <code>showMessage</code> 调用其他方法，而且这个方法也需要读取 <code>this.props.something</code> 或 <code>this.state.something</code>，我们又遇到了同样的问题。</strong> 因此我们把 <code>this.props</code> 和 <code>this.state</code> 作为参数从 <code>showMessage</code> 传递给每个它调用的方法</p>
+<p>这么做会破坏 “类” 正常提供的工程学。它也难以记住和执行，这就是为何人们常常满足于 bug 的原因</p>
+<p>同样，在 <code>handleClick</code> 里内嵌 <code>alert</code> 代码并不能解决更大的问题。我们想用一种方式结构化代码允许被更多方法拆分，<em>但是</em> 还是要读取调用相应渲染的 props 和 state。<strong>这个问题甚至都不是 React 独有的（你可以把这个可变对象如 <code>this</code>，放到任何一个 UI 库里都可以重现）</strong></p>
+<p>或许，我们可以在构造器中 <em>绑定</em> 这个方法？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class ProfilePage extends React.Component &#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    super(props);</span><br><span class="line">    this.showMessage = this.showMessage.bind(this);</span><br><span class="line">    this.handleClick = this.handleClick.bind(this);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  showMessage() &#123;</span><br><span class="line">    alert(&apos;Followed &apos; + this.props.user);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  handleClick() &#123;</span><br><span class="line">    setTimeout(this.showMessage, 3000);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    return &lt;button onClick=&#123;this.handleClick&#125;&gt;Follow&lt;/button&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>不，它不会解决任何问题。记住，问题所在是我们读取 <code>this.props</code> 太迟了（不是我们使用的语法有错！）<strong>然而，如果我们完全依赖 JavaScript 闭包可以解决这个问题</strong> </p>
+<p>闭包总是被回避，因为它<a href="https://wsvincent.com/javascript-closure-settimeout-for-loop/" target="_blank" rel="noopener">难</a>以理解，值会随着时间变化。但是在 React 中，props 和 state 是不可变的！（或者至少，它是强烈推荐）消除了<br>闭包的主要阻碍</p>
+<p>这意味着如果你在一个特别的渲染遮蔽了 props 或 state，你总是可以指望它们完全相同：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">class ProfilePage extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    // 捕获这个 props！</span><br><span class="line">    const props = this.props;</span><br><span class="line"></span><br><span class="line">    // 注意：我们在 *render 内部*。</span><br><span class="line">    // 这些不是类方法</span><br><span class="line">    const showMessage = () =&gt; &#123;</span><br><span class="line">      alert(&apos;Followed &apos; + props.user);</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    const handleClick = () =&gt; &#123;</span><br><span class="line">      setTimeout(showMessage, 3000);</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    return &lt;button onClick=&#123;handleClick&#125;&gt;Follow&lt;/button&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>你已经捕获了渲染时的 props：</strong></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://overreacted.io/pokemon-fa483dd5699aac1350c57591770a49be.gif" alt="捕捉口袋妖怪" title="">
+                </div>
+                <div class="image-caption">捕捉口袋妖怪</div>
+            </figure>
+<p>这种方法，任何代码内置在它里面（包含在 <code>showMessage</code> 里），保证看到特定渲染的 props。React 不再 “移动我们的奶酪”</p>
+<p><strong>我们可以在里面添加我们想要的任何数量的辅助函数，并且它们都将使用捕获的 prop 和 state。</strong> 闭包营救了我们！</p>
+<hr>
+<p><a href="https://codesandbox.io/s/oqxy9m7om5" target="_blank" rel="noopener">上面这个例子</a>是对的，但是看起来有点怪，如果你在 <code>render</code> 里定义了函数而不是使用 “类” 方法，那么在 “类” 里这么做有什么意义内？</p>
+<p>事实上，我们可以通过移除它周围的 “壳” 来简化代码：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ProfilePage</span>(<span class="params">props</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> showMessage = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    alert(<span class="string">'Followed '</span> + props.user);</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> handleClick = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    setTimeout(showMessage, <span class="number">3000</span>);</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;button onClick=&#123;handleClick&#125;&gt;Follow&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">  );</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>就像上面这样，<code>props</code> 依然可以被捕获（React 把它们作为参数传递进去）。<strong>不像 <code>this</code>，<code>props</code> 对象永远不可能因 React 而发生改变</strong></p>
+<p>如果你把函数定义里的 <code>props</code> 解构的话，会更清晰：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function ProfilePage(&#123; user &#125;) &#123;</span><br><span class="line">  const showMessage = () =&gt; &#123;</span><br><span class="line">    alert(&apos;Followed &apos; + user);</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  const handleClick = () =&gt; &#123;</span><br><span class="line">    setTimeout(showMessage, 3000);</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  return (</span><br><span class="line">    &lt;button onClick=&#123;handleClick&#125;&gt;Follow&lt;/button&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当父组件携带不同的 props 渲染 <code>ProfilePage</code> 时，React 会再次调用 <code>ProfilePage</code> 函数。但是我们已经点击 “属于” 前一次渲染它自己的 <code>user</code> 的值和读取 <code>showMessage</code> 回调的那个事件处理程序。它们都原封不动</p>
+<p>这就是为何在这个版本的 <a href="https://codesandbox.io/s/pjqnl16lm7" target="_blank" rel="noopener">demo</a> 函数中，点击关注 Sophie 的简介和改变选项到 Sunil 依然弹出 <code>&#39;Followed Sophie&#39;</code>：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://overreacted.io/fix-84396c4b3982827bead96912a947904e.gif" alt="正确行为的 demo" title="">
+                </div>
+                <div class="image-caption">正确行为的 demo</div>
+            </figure>
+<p>这个行为是对的。<em>（尽管你可能也想关注 <a href="https://mobile.twitter.com/threepointone" target="_blank" rel="noopener">Sunil</a>）</em></p>
+<hr>
+<p>现在我们就理解了 React 中 “类” 和函数的最大差别：</p>
+<blockquote>
+<p><strong>函数式组件捕获已渲染的值</strong></p>
+</blockquote>
+<p><strong>对于 Hooks，同样的原则也适用于 state。</strong> 仔细看看下面这个例子：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">MessageThread</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> [message, setMessage] = useState(<span class="string">''</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> showMessage = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    alert(<span class="string">'You said: '</span> + message);</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> handleSendClick = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    setTimeout(showMessage, <span class="number">3000</span>);</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> handleMessageChange = <span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</span><br><span class="line">    setMessage(e.target.value);</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;&gt;</span><br><span class="line">      &lt;input value=&#123;message&#125; onChange=&#123;handleMessageChange&#125; /&gt;</span><br><span class="line">      &lt;button onClick=&#123;handleSendClick&#125;&gt;Send&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>（这里有一个<a href="https://codesandbox.io/s/93m5mz9w24" target="_blank" rel="noopener">在线 demo</a>）</p>
+<p>虽然这个消息 app UI 并不是很好，但它阐述了相同的原理：如果我发送了一个特别的消息，那么组件不应该困惑发送出去的消息实际是什么。这个函数组件的 <code>message</code> 捕获了 “属于” 返回浏览器调用的点击处理程序的渲染的 state。因此，<code>message</code> 被设置为我点击 “发送” 那一时刻的输入框的值</p>
+<hr>
+<p>因此我们了解到 React 的函数默认捕获 props 和 state。<strong>但是如果 <em>想</em> 读取到最新的不是属于这个特定渲染的 props 或 state？</strong> 假如我们想<a href="https://dev.to/scastiel/react-hooks-get-the-current-state-back-to-the-future-3op2" target="_blank" rel="noopener">从未来读取它们</a>？</p>
+<p>在 “类” 中，你可以通过 <code>this.props</code> 或 <code>this.state</code> 读取到，因为 <code>this</code> 本身是可变的。React 改变了它。在函数式组件里，你也可以拥有一个可变值，该值由所有组件渲染器共享。它称为 “ref”：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">MyComponent</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> ref = useRef(<span class="literal">null</span>);</span><br><span class="line">  <span class="comment">// 你可以读取或设置 `ref.current`</span></span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然而，你需要自己管理它</p>
+<p>一个 ref 扮演者和一个实例字段<a href="https://reactjs.org/docs/hooks-faq.html#is-there-something-like-instance-variables" target="_blank" rel="noopener">相同的角色</a>。它是进入可变命令式世界的转义口。你或许对 “DOM refs” 很熟悉，但是这个概念更宽泛。它就像你放东西的盒子一样</p>
+<p>即使在视觉上，<code>this.something</code> 看起来像是 <code>something.current</code> 的镜像。它们代表相同的概念</p>
+<p>默认情况下，React 不会为了在函数式组件的最新 props 或 state 创建 refs。大多数情况下你不需要它们，而且给它们赋值会浪费工作。然而，如果你喜欢的话，可以手动跟踪这个值：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function MessageThread() &#123;</span><br><span class="line">  const [message, setMessage] = useState(&apos;&apos;);</span><br><span class="line">  const latestMessage = useRef(&apos;&apos;);</span><br><span class="line"></span><br><span class="line">  const showMessage = () =&gt; &#123;</span><br><span class="line">    alert(&apos;You said: &apos; + latestMessage.current);</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  const handleSendClick = () =&gt; &#123;</span><br><span class="line">    setTimeout(showMessage, 3000);</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  const handleMessageChange = (e) =&gt; &#123;</span><br><span class="line">    setMessage(e.target.value);</span><br><span class="line">    latestMessage.current = e.target.value;</span><br><span class="line">  &#125;;</span><br></pre></td></tr></table></figure>
+<p>如果我们在 <code>showMessage</code> 读取 <code>message</code>，我们会看到我们按下发送按钮时的那个消息。但是当我们读取 <code>latestMessage.current</code> 时，我们得到了最新的值（即使我们在发送按钮按下之后，仍然在打字输入）</p>
+<p>你可以比较这<a href="https://codesandbox.io/s/93m5mz9w24" target="_blank" rel="noopener">两个</a><a href="https://codesandbox.io/s/ox200vw8k9" target="_blank" rel="noopener">例子</a>的区别。ref 是一种渲染一致性的 “选择性退出” 方法，而且在某些情况下很方便</p>
+<p>通常，你应该避免在渲染 <em>期间</em> 读取或设置 refs，因为它们是可变的。我们想要保持渲染的可预测性。<strong>然而，如果想要得到一个特别的 prop 或 state 的最新值，手动更新 ref 可能会非常恼火。</strong> 我们可以用这个效果实现自动化：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function MessageThread() &#123;</span><br><span class="line">  const [message, setMessage] = useState(&apos;&apos;);</span><br><span class="line"></span><br><span class="line">  // 持续跟踪最新值</span><br><span class="line">  const latestMessage = useRef(&apos;&apos;);</span><br><span class="line">  useEffect(() =&gt; &#123;</span><br><span class="line">    latestMessage.current = message;</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  const showMessage = () =&gt; &#123;</span><br><span class="line">    alert(&apos;You said: &apos; + latestMessage.current);</span><br><span class="line">  &#125;;</span><br></pre></td></tr></table></figure>
+<p>（这有一个<a href="https://codesandbox.io/s/yqmnz7xy8x" target="_blank" rel="noopener">demo</a>）</p>
+<p>我们在这个效果 <em>内部</em> 进行赋值，以致于 ref 值只有在 DOM 更新之后改变。这就确保了我们的改变不会打破像 [Time Slicing and Suspense] (<a href="https://reactjs.org/blog/2018/03/01/sneak-peek-beyond-react-16.html)特性，它们依赖渲染中断" target="_blank" rel="noopener">https://reactjs.org/blog/2018/03/01/sneak-peek-beyond-react-16.html)特性，它们依赖渲染中断</a></p>
+<p>这样使用 ref  并不是经常必须的。<strong>捕获 props 或 state 还是使用默认最好。</strong> 然而，它可以方便处理像时间间隔和订阅类<a href="/making-setinterval-declarative-with-react-hooks/">命令式 API</a>。记住你可以像 this 一样跟踪 <em>任何</em> 值（prop，state 变量，整个 props 对象，或甚至一个函数）</p>
+<p>这个模式也方便优化（例如，当 <code>useCallback</code> id 改变太频繁）。然而，<a href="https://reactjs.org/docs/hooks-faq.html#how-to-avoid-passing-callbacks-down" target="_blank" rel="noopener">使用 reducer</a>通常是一个<a href="https://github.com/ryardley/hooks-perf-issues/pull/3" target="_blank" rel="noopener">更好的解决方案</a>。（后面的文章会提及到这个主题！）</p>
+<hr>
+<p>在这篇文章中，我们已经看到了 “类” 的常见的破坏模式，而且闭包如何帮助我们修复它。然而，你可能注意到当你试图指定的依赖数组优化 Hooks 时，你可能遇到陈旧的闭包的 bug。这么说是闭包的 “锅” 喽？我不这么认为</p>
+<p>正如我们上面看到的那样，闭包确实帮助我们 <em>修复</em> 了很难察觉的细微问题。同样，它们也使得在<a href="https://reactjs.org/blog/2018/03/01/sneak-peek-beyond-react-16.html" target="_blank" rel="noopener">并发模式</a>正常工作的代码更容易编写。它是有可能的，因为在组件内的逻辑遮蔽了已经渲染的正确的 props 和 state</p>
+<p>在我目前所遇到的所有情况里，<strong>“陈旧的闭包” 的问题发生是由于假设 “函数不会发生改变” 或 ”props 总是相同的“</strong> 造成的。事实并非如此，我希望通过这篇文章有助于澄清这一点</p>
+<p>函数遮蔽了它们的 props 和 state（而且因此它们的 id 是如此重要）。这不是 bug，而是函数式组件的一个特性。对于 <code>useEffect</code> 或 <code>useCallback</code> 函数不应该把 “依赖数组” 排除。（正确的修复是通常用 <code>useReducer</code> 或 <code>useRef</code> 来解决上面的问题 - 我们会尽快出如何在它们之间进行选择的文档）</p>
+<p>当我们在 React 写大多数函数时，我们需要调整我们关于<a href="https://github.com/ryardley/hooks-perf-issues/pull/3" target="_blank" rel="noopener">优化代码</a> 和 <a href="https://github.com/facebook/react/issues/14920" target="_blank" rel="noopener">什么值会随着时间改变</a>的直觉</p>
+<p>正如 <a href="https://mobile.twitter.com/EphemeralCircle/status/1099095063223812096" target="_blank" rel="noopener">Fredrik</a> 所说：</p>
+<blockquote>
+<p>我目前在 hooks 发现的最好的心理规律就是 “代码就像任何值，任何时候都可能改变”</p>
+</blockquote>
+<p>函数也不例外。它需要花费一定的时间来了解 React 学习材料的常识。它需要从 “类” 中调整一些心态。但是我希望这篇文章可以帮助你刷新你的眼光</p>
+<p>React 函数总是会捕获它们的值（现在我们知道原因了）</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://overreacted.io/pikachu-fc3bddf6d4ca14bc77917ac0cfad3608.gif" alt="微笑的皮卡丘" title="">
+                </div>
+                <div class="image-caption">微笑的皮卡丘</div>
+            </figure>
+<p>它们是完全不同的口袋妖怪</p>
+<blockquote>
+<ul>
+<li>本文仅代表原作者个人观点，译者不发表任何观点</li>
+<li>版权由原作者所有<br>Copyright (c) Dan Abramov and the contributors.<br>All rights reserved.</li>
+</ul>
+</blockquote>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2019-04-25T08:24:11.877Z" itemprop="dateUpdated">2019-04-25 16:24:11</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="http://yangfan.site">
+            <img src="/uploads/me.jpg" alt="yangfan">
+            yangfan
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/翻译计划/">翻译计划</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yangfan.site/2019/04/07/【译】React-函数式组件和-React-类有何不同/&title=《【译】React 函数式组件和 React 类有何不同》 — Yangfan's blog&pic=http://yangfan.site/uploads/me.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yangfan.site/2019/04/07/【译】React-函数式组件和-React-类有何不同/&title=《【译】React 函数式组件和 React 类有何不同》 — Yangfan's blog&source=html css js 前端 小程序" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yangfan.site/2019/04/07/【译】React-函数式组件和-React-类有何不同/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【译】React 函数式组件和 React 类有何不同》 — Yangfan's blog&url=http://yangfan.site/2019/04/07/【译】React-函数式组件和-React-类有何不同/&via=http://yangfan.site" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yangfan.site/2019/04/07/【译】React-函数式组件和-React-类有何不同/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/04/17/一次-bug-的寻找之旅/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">一次 bug 的寻找之旅</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/03/05/Element-UI-组件-el-scrollbar-的文档/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Element-UI  组件 el-scrollbar 的文档</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "N85dVznr0Vh9jlIIvVLlxPxc-gzGzoHsz",
+            appKey: "ID0DznFMscpigUQk6S2RviUn",
+            avatar: "mm",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>yangfan &copy; 2018 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yangfan.site/2019/04/07/【译】React-函数式组件和-React-类有何不同/&title=《【译】React 函数式组件和 React 类有何不同》 — Yangfan's blog&pic=http://yangfan.site/uploads/me.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yangfan.site/2019/04/07/【译】React-函数式组件和-React-类有何不同/&title=《【译】React 函数式组件和 React 类有何不同》 — Yangfan's blog&source=html css js 前端 小程序" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yangfan.site/2019/04/07/【译】React-函数式组件和-React-类有何不同/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【译】React 函数式组件和 React 类有何不同》 — Yangfan's blog&url=http://yangfan.site/2019/04/07/【译】React-函数式组件和-React-类有何不同/&via=http://yangfan.site" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yangfan.site/2019/04/07/【译】React-函数式组件和-React-类有何不同/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yangfan.site/2019/04/07/【译】React-函数式组件和-React-类有何不同/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '又好了！';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

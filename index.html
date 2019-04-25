@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Yangfan&#39;s blog | The site of the Yangfan2016</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="html css js 前端 小程序">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Yangfan&#39;s blog">
+<meta property="og:url" content="http://yangfan.site/index.html">
+<meta property="og:site_name" content="Yangfan&#39;s blog">
+<meta property="og:description" content="html css js 前端 小程序">
+<meta property="og:locale" content="zh-Hans">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Yangfan&#39;s blog">
+<meta name="twitter:description" content="html css js 前端 小程序">
+    
+        <link rel="alternate" type="application/atom+xml" title="Yangfan&#39;s blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/uploads/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/uploads/me.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">yangfan</h5>
+          <a href="mailto:zhangh201601@gmail.com" title="zhangh201601@gmail.com" class="mail">zhangh201601@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect active">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Yangfan2016" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Yangfan&#39;s blog</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header index-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Yangfan&#39;s blog</h1>
+        <h5 class="subtitle">
+            
+                The site of the Yangfan2016
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+<div class="container body-wrap">
+
+    <ul class="post-list">
+    
+        <li class="post-list-item fade">
+            <article id="post-一次-bug-的寻找之旅"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2019-04-17 14:17:36" datetime="2019-04-17T06:17:36.000Z"  itemprop="datePublished">2019-04-17</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/04/17/一次-bug-的寻找之旅/">一次 bug 的寻找之旅</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        一次 bug 的寻找之旅前言在最近的一个项目中，用到了 ant-design 的 轮播图组件 Carousel，发现无法按照预期给每个 slide 加样式（内联样式），后来发现是 ant-design 的轮播图组件引用的三方库 react-slick，通过源码查找，终于发现是代码把内联样式重写了
+情景再现按照 ant-design 的官方示例，把demo拷贝过来
+12345678910111...
+    
+
+        <a href="/2019/04/17/一次-bug-的寻找之旅/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-【译】React-函数式组件和-React-类有何不同"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2019-04-07 14:16:44" datetime="2019-04-07T06:16:44.000Z"  itemprop="datePublished">2019-04-07</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/04/07/【译】React-函数式组件和-React-类有何不同/">【译】React 函数式组件和 React 类有何不同</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        React 函数式组件和 React 类有何不同？
+
+原文地址：https://overreacted.io/how-are-function-components-different-from-classes/
+原文作者：Dan Abramov
+Markdown 地址：https://github.com/gaearon/overreacted.io/edit/master/src/pag...
+    
+
+        <a href="/2019/04/07/【译】React-函数式组件和-React-类有何不同/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/翻译计划/">翻译计划</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-Element-UI-组件-el-scrollbar-的文档"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2019-03-05 17:09:53" datetime="2019-03-05T09:09:53.000Z"  itemprop="datePublished">2019-03-05</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/03/05/Element-UI-组件-el-scrollbar-的文档/">Element-UI  组件 el-scrollbar 的文档</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        Element-UI  组件 el-scrollbar 的文档前言我们在 Element-UI 的其他组件里发现，有使用这个组件，并且还不错，由于 Element-UI 官方文档并没有写到关于 el-scrollbar 的文档，所以稳定性上可能是有些问题，这里只是爬了源码，翻译了一些属性的使用，仅供参考
+快速使用1234&lt;el-scrollbar&gt;    &lt;li v-for...
+    
+
+        <a href="/2019/03/05/Element-UI-组件-el-scrollbar-的文档/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-你所不知道的-chrome-控制台"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2019-02-19 15:21:25" datetime="2019-02-19T07:21:25.000Z"  itemprop="datePublished">2019-02-19</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/02/19/你所不知道的-chrome-控制台/">你所不知道的 Chrome 控制台</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        你所不知道的 Chrome 控制台调试技巧前言收集了一些工作中常用到的 Chrome 调试技巧，其他大部分 Chrome 调试功能工具介绍已经在其他的很多文章中介绍到了，这里就不 DRY 了
+Request blocking 阻塞请求使用这个功能可以拦截请求  
+大部分情况是页面执行完某个操作后，页面就重定向了（比如登录），这时就不方便调试了，下面这个工具很好的解决了这个问题
+比如你想了解在...
+    
+
+        <a href="/2019/02/19/你所不知道的-chrome-控制台/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-下载-Github-仓库的指定文件夹"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2019-01-23 14:44:47" datetime="2019-01-23T06:44:47.000Z"  itemprop="datePublished">2019-01-23</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/01/23/下载-Github-仓库的指定文件夹/">下载 Github 仓库的指定文件夹</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        下载整个仓库1$ git clone https://github.com/Yangfan2016/PersonalWorks.git
+下载仓库内的指定文件1234567$ git init$ git config core.sparseCheckout true # 配置$ git remote add -f origin https://github.com/Yangfan2016/Pe...
+    
+
+        <a href="/2019/01/23/下载-Github-仓库的指定文件夹/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-【译】深入理解-ES2015，第一趴：块作用域-let-和-const"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2019-01-15 17:23:17" datetime="2019-01-15T09:23:17.000Z"  itemprop="datePublished">2019-01-15</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/01/15/【译】深入理解-ES2015，第一趴：块作用域-let-和-const/">【译】深入理解 ES2015，第一趴：块作用域 let 和 const</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        【译】深入理解 ES2015，第一趴：块作用域 let 和 const
+
+原文地址：http://javascriptissexy.com/understanding-es2015-in-depth-part-1-block-scope-with-let-and-const/
+原文作者：Dan Wellman
+Markdown 地址：https://github.com/Yangfan201...
+    
+
+        <a href="/2019/01/15/【译】深入理解-ES2015，第一趴：块作用域-let-和-const/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/翻译计划/">翻译计划</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-快速构建一个-vue-插件"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2019-01-10 17:05:29" datetime="2019-01-10T09:05:29.000Z"  itemprop="datePublished">2019-01-10</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/01/10/快速构建一个-vue-插件/">快速构建一个 vue 插件</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        碎碎念上一篇文章，我们介绍了如何构建一个 react 插件，今天我们说说如何构建 vue 插件
+准备工作由于与上一篇 react 插件文章使用的是相同的结构，代码测试、持续集成及发布 npm 包也都是一个套路，这里就不再敖述。下面主要说下不同的地方，let’s start  😊
+
+开发依赖包
+
+123456789101112131415161718&#123;    "devDepende...
+    
+
+        <a href="/2019/01/10/快速构建一个-vue-插件/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-快速构建一个-react-插件"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2019-01-04 15:21:36" datetime="2019-01-04T07:21:36.000Z"  itemprop="datePublished">2019-01-04</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/01/04/快速构建一个-react-插件/">快速构建一个 react 插件</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        前言一般情况下，我们写 React 项目，用 create-react-app 脚手架开发比较方便，但是如果要写一个插件的话，用三方脚手架就显得有点臃肿了，我们可以自己配置一个符合我们开发的简单工具，本文教你如何一步一步开发一个React 插件 ，let’s start  😊
+准备工作工欲善其事，必先利其器，我们来选型
+
+Typescript  
+
+为了方便开发，我们选用 Typescri...
+    
+
+        <a href="/2019/01/04/快速构建一个-react-插件/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-You-don&#39;t-know-cross-origin"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2018-11-19 20:19:05" datetime="2018-11-19T12:19:05.000Z"  itemprop="datePublished">2018-11-19</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2018/11/19/You-don't-know-cross-origin/">You don&#39;t know cross-origin</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        
+                
+                    
+                    
+                
+                cross-origin
+            
+Why
+为什么会存在跨域问题
+
+
+同源策略由于出于安全考虑，浏览器规定JavaScript不能操作其他域下的页面DOM，不能接受其他域下的xhr请求（不只是...
+    
+
+        <a href="/2018/11/19/You-don't-know-cross-origin/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-Canvas-实现一个简单的贪吃蛇"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2018-11-15 13:46:49" datetime="2018-11-15T05:46:49.000Z"  itemprop="datePublished">2018-11-15</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2018/11/15/Canvas-实现一个简单的贪吃蛇/">Canvas 实现一个简单的贪吃蛇</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        Intro点击预览在之前的代码风格，和样式上做了大调整，如下图，主要是美化了移动端
+
+Before
+
+
+                
+                    
+                    
+                
+                before-pc
+            
+
+After
+
+
+                
+    ...
+    
+
+        <a href="/2018/11/15/Canvas-实现一个简单的贪吃蛇/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+</article>
+
+        </li>
+    
+    </ul>
+
+    
+<nav id="page-nav">
+    <div class="inner">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
+    </div>
+</nav>
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>yangfan &copy; 2018 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yangfan.site/&title=Yangfan's blog&pic=http://yangfan.site/uploads/me.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yangfan.site/&title=Yangfan's blog&source=html css js 前端 小程序" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yangfan.site/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=Yangfan's blog&url=http://yangfan.site/&via=http://yangfan.site" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yangfan.site/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yangfan.site/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '又好了！';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

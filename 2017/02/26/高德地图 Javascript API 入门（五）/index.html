@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>高德地图 Javascript API 入门（五） | Yangfan&#39;s blog | The site of the Yangfan2016</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="JS,GIS,API">
+    <meta name="description" content="高德地图 Javascript API 入门（五）搜索服务搜索服务名称说明是否插件AMap.Autocomplete输入提示，根据输入关键字提示匹配信息是AMap.PlaceSearch地点搜索服务插件，提供某一特定地区的位置查询服务是AMap.PlaceSearchLayer麻点图插件，提供海量搜索结果的辅助显示功能是AMap.DistrictSearch行政区查询服务，提供行政区相关信息是AM">
+<meta name="keywords" content="JS,GIS,API">
+<meta property="og:type" content="article">
+<meta property="og:title" content="高德地图 Javascript API 入门（五）">
+<meta property="og:url" content="http://yangfan.site/2017/02/26/高德地图 Javascript API 入门（五）/index.html">
+<meta property="og:site_name" content="Yangfan&#39;s blog">
+<meta property="og:description" content="高德地图 Javascript API 入门（五）搜索服务搜索服务名称说明是否插件AMap.Autocomplete输入提示，根据输入关键字提示匹配信息是AMap.PlaceSearch地点搜索服务插件，提供某一特定地区的位置查询服务是AMap.PlaceSearchLayer麻点图插件，提供海量搜索结果的辅助显示功能是AMap.DistrictSearch行政区查询服务，提供行政区相关信息是AM">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yangfan2016/PicBed/master/AMap/amap501.JPG">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yangfan2016/PicBed/master/AMap/amap502.JPG">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yangfan2016/PicBed/master/AMap/amap503.JPG">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yangfan2016/PicBed/master/AMap/amap504.JPG">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yangfan2016/PicBed/master/AMap/amap505.JPG">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yangfan2016/PicBed/master/AMap/amap506.JPG">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yangfan2016/PicBed/master/AMap/amap507.JPG">
+<meta property="og:updated_time" content="2019-04-25T09:00:24.437Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="高德地图 Javascript API 入门（五）">
+<meta name="twitter:description" content="高德地图 Javascript API 入门（五）搜索服务搜索服务名称说明是否插件AMap.Autocomplete输入提示，根据输入关键字提示匹配信息是AMap.PlaceSearch地点搜索服务插件，提供某一特定地区的位置查询服务是AMap.PlaceSearchLayer麻点图插件，提供海量搜索结果的辅助显示功能是AMap.DistrictSearch行政区查询服务，提供行政区相关信息是AM">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Yangfan2016/PicBed/master/AMap/amap501.JPG">
+    
+        <link rel="alternate" type="application/atom+xml" title="Yangfan&#39;s blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/uploads/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/uploads/me.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">yangfan</h5>
+          <a href="mailto:zhangh201601@gmail.com" title="zhangh201601@gmail.com" class="mail">zhangh201601@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Yangfan2016" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">高德地图 Javascript API 入门（五）</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">高德地图 Javascript API 入门（五）</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-02-26T14:03:02.000Z" itemprop="datePublished" class="page-time">
+  2017-02-26
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#高德地图-Javascript-API-入门（五）"><span class="post-toc-number">1.</span> <span class="post-toc-text">高德地图 Javascript API 入门（五）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#搜索服务"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">搜索服务</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#搜索服务-1"><span class="post-toc-number">1.1.0.1.</span> <span class="post-toc-text">搜索服务</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#地点搜索插件-AMap-PlaceSearch"><span class="post-toc-number">1.1.0.2.</span> <span class="post-toc-text">地点搜索插件 AMap.PlaceSearch</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#公交线路搜索插件-AMap-LineSearch"><span class="post-toc-number">1.1.0.3.</span> <span class="post-toc-text">公交线路搜索插件 AMap.LineSearch</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#LineInfo-对象"><span class="post-toc-number">1.1.0.4.</span> <span class="post-toc-text">LineInfo 对象</span></a></li></ol></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-高德地图 Javascript API 入门（五）"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">高德地图 Javascript API 入门（五）</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-02-26 22:03:02" datetime="2017-02-26T14:03:02.000Z"  itemprop="datePublished">2017-02-26</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="高德地图-Javascript-API-入门（五）"><a href="#高德地图-Javascript-API-入门（五）" class="headerlink" title="高德地图 Javascript API 入门（五）"></a>高德地图 Javascript API 入门（五）</h1><h2 id="搜索服务"><a href="#搜索服务" class="headerlink" title="搜索服务"></a>搜索服务</h2><h4 id="搜索服务-1"><a href="#搜索服务-1" class="headerlink" title="搜索服务"></a>搜索服务</h4><table style="width:100%;border-collapse:collapse;"><tbody><tr><th>名称</th><th>说明</th><th>是否插件</th></tr><tr><td><a href="#m_AMap.Autocomplete" class="" target="">AMap.Autocomplete</a></td><td>输入提示，根据输入关键字提示匹配信息</td><td>是</td></tr><tr><td><a href="#m_AMap.PlaceSearch" class="" target="">AMap.PlaceSearch</a></td><td>地点搜索服务插件，提供某一特定地区的位置查询服务</td><td>是</td></tr><tr><td><a href="#m_AMap.PlaceSearchLayer" class="" target="">AMap.PlaceSearchLayer</a></td><td>麻点图插件，提供海量搜索结果的辅助显示功能</td><td>是</td></tr><tr><td><a href="#m_AMap.DistrictSearch" class="" target="">AMap.DistrictSearch</a></td><td>行政区查询服务，提供行政区相关信息</td><td>是</td></tr><tr><td><a href="#m_AMap.LineSearch" class="" target="">AMap.LineSearch</a></td><td>公交路线服务，提供公交路线相关信息查询服务</td><td>是</td></tr><tr><td><a href="#m_AMap.StationSearch" class="" target="">AMap.StationSearch</a></td><td>公交站点查询服务，提供途经公交线路、站点经纬度等信息</td><td>是</td></tr></tbody></table>
+
+
+<h4 id="地点搜索插件-AMap-PlaceSearch"><a href="#地点搜索插件-AMap-PlaceSearch" class="headerlink" title="地点搜索插件 AMap.PlaceSearch"></a>地点搜索插件 AMap.PlaceSearch</h4><ul>
+<li>创建地点查询类的实例</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建地点查询类的实例</span></span><br><span class="line">AMap.service(<span class="string">"AMap.PlaceSearch"</span>,<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> s1=<span class="keyword">new</span> AMap.PlaceSearch(&#123;</span><br><span class="line">		city:<span class="string">"北京市"</span>, <span class="comment">// 搜索范围的城市</span></span><br><span class="line">		type:<span class="string">"风景名胜"</span>, <span class="comment">// 搜索类型</span></span><br><span class="line">		map:map, <span class="comment">// 可选，AMap示例</span></span><br><span class="line">		panel:<span class="string">"result"</span>, <span class="comment">// 可选，结果列表的HTML容器id或容器元素</span></span><br><span class="line">		pageSize:<span class="number">5</span>, <span class="comment">// 结果，单页展示结果数</span></span><br><span class="line">		pageIndex:<span class="number">2</span>, <span class="comment">// 结果，页码</span></span><br><span class="line">		extensions:<span class="string">"all"</span> <span class="comment">// 信息，默认值 "base", 详细信息 "all"</span></span><br><span class="line">	&#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>根据关键字搜索</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 关键字搜索</span></span><br><span class="line">s1.search(<span class="string">"八达岭"</span>,<span class="function"><span class="keyword">function</span> (<span class="params">status,result</span>) </span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(result);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>预览</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/Yangfan2016/PicBed/master/AMap/amap501.JPG" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
+<div style="margin:30px 0;border-bottom:3px dotted #9c3"></div>
+
+<ul>
+<li>根据中心点经纬度、半径以及关键字进行周边查询（周边搜索）</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 周边搜索</span></span><br><span class="line">s1.searchNearBy(<span class="string">"餐饮"</span>,[<span class="number">116.403322</span>, <span class="number">39.920255</span>],<span class="number">1000</span>,<span class="function"><span class="keyword">function</span> (<span class="params">status,result</span>) </span>&#123;</span><br><span class="line">   	<span class="built_in">console</span>.log(result);</span><br><span class="line">   &#125;);</span><br></pre></td></tr></table></figure>
+<p>预览</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/Yangfan2016/PicBed/master/AMap/amap502.JPG" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
+<div style="margin:30px 0;border-bottom:3px dotted #9c3"></div>
+
+
+<ul>
+<li>根据范围和关键词进行范围查询</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> lnglat1=<span class="keyword">new</span> AMap.LngLat( <span class="number">116.403322</span>, <span class="number">39.920255</span>);</span><br><span class="line"><span class="keyword">var</span> lnglat2=<span class="keyword">new</span> AMap.LngLat( <span class="number">116.389846</span>, <span class="number">39.891365</span>);</span><br><span class="line">s1.searchInBounds(<span class="string">'酒店'</span>,<span class="keyword">new</span> AMap.Bounds(lnglat1,lnglat2));</span><br></pre></td></tr></table></figure>
+<p>预览</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/Yangfan2016/PicBed/master/AMap/amap503.JPG" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
+<div style="margin:30px 0;border-bottom:3px dotted #9c3"></div>
+
+<ul>
+<li>根据POIID 查询POI详细信息</li>
+</ul>
+<p>POIID是返回数据（JSON）的一个 id 值</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/Yangfan2016/PicBed/master/AMap/amap504.JPG" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
+<div style="margin:30px 0;border-bottom:3px dotted #9c3"></div>
+
+<p>获取POI的详细信息</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">s1.getDetails(<span class="string">"B000A82RP2"</span>,<span class="function"><span class="keyword">function</span> (<span class="params">status,result</span>) </span>&#123;</span><br><span class="line">   	<span class="built_in">console</span>.log(result.poiList.pois[<span class="number">0</span>].name);</span><br><span class="line">  		<span class="built_in">window</span>.top.data=result.poiList.pois[<span class="number">0</span>];</span><br><span class="line">   &#125;);</span><br></pre></td></tr></table></figure>
+<p>预览</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/Yangfan2016/PicBed/master/AMap/amap505.JPG" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
+<div style="margin:30px 0;border-bottom:3px dotted #9c3"></div>
+
+<h4 id="公交线路搜索插件-AMap-LineSearch"><a href="#公交线路搜索插件-AMap-LineSearch" class="headerlink" title="公交线路搜索插件 AMap.LineSearch"></a>公交线路搜索插件 AMap.LineSearch</h4><ul>
+<li>创建公交线路查询类的实例</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">AMap.service(<span class="string">"AMap.LineSearch"</span>,<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"> 		<span class="keyword">var</span> lineSearch=<span class="keyword">new</span> AMap.LineSearch(&#123;</span><br><span class="line">     		city:<span class="string">"太原"</span>,</span><br><span class="line">   		extensions:<span class="string">"all"</span>         </span><br><span class="line">   	&#125;);</span><br><span class="line"> 	&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>按关键字查询公交线路</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">lineSearch.search(<span class="string">"901"</span>,<span class="function"><span class="keyword">function</span> (<span class="params">status,result</span>) </span>&#123;	</span><br><span class="line">   	<span class="keyword">if</span> (status===<span class="string">"complete"</span> &amp;&amp; result.info===<span class="string">"OK"</span>) &#123;</span><br><span class="line">       	<span class="built_in">console</span>.log(result);</span><br><span class="line">       	<span class="built_in">window</span>.top.data=result;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;);</span><br></pre></td></tr></table></figure>
+<p>预览</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/Yangfan2016/PicBed/master/AMap/amap506.JPG" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
+<div style="margin:30px 0;border-bottom:3px dotted #9c3"></div>
+
+
+<ul>
+<li>按id查询公交线路</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">lineSearch.searchById(<span class="string">"140100010458"</span>,<span class="function"><span class="keyword">function</span> (<span class="params">status,result</span>) </span>&#123;	</span><br><span class="line">   	<span class="keyword">if</span> (status===<span class="string">"complete"</span> &amp;&amp; result.info===<span class="string">"OK"</span>) &#123;</span><br><span class="line">       	<span class="built_in">console</span>.log(result);</span><br><span class="line">       	<span class="built_in">window</span>.top.data=result;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;);</span><br></pre></td></tr></table></figure>
+<p>预览</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/Yangfan2016/PicBed/master/AMap/amap507.JPG" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
+<div style="margin:30px 0;border-bottom:3px dotted #9c3"></div>
+
+
+<h4 id="LineInfo-对象"><a href="#LineInfo-对象" class="headerlink" title="LineInfo 对象"></a>LineInfo 对象</h4><ul>
+<li>基本信息</li>
+</ul>
+<table style="width:100%;border-collapse:collapse;"><tbody><tr><th>属性</th><th>类型</th><th>说明</th></tr><tr><td style="white-space: nowrap;"><code class="inline-code">id</code></td><td><code class="inline-code">String</code></td><td>公交线路id，该id是唯一标识</td></tr><tr><td style="white-space: nowrap;"><code class="inline-code">name</code></td><td><code class="inline-code">String</code></td><td>公交线路名称</td></tr><tr><td style="white-space: nowrap;"><code class="inline-code">path</code></td><td><code class="inline-code">Array.&lt;</code><a href="/api/javascript-api/reference/core#LngLat" class="" target=""><code class="inline-code">LngLat</code></a><code class="inline-code">&gt;</code></td><td>公交线路经纬度</td></tr><tr><td style="white-space: nowrap;"><code class="inline-code">citycode</code></td><td><code class="inline-code">String</code></td><td>公交线路所在城市的城市编码</td></tr><tr><td style="white-space: nowrap;"><code class="inline-code">type</code></td><td><code class="inline-code">String</code></td><td>公交类型列表</td></tr><tr><td style="white-space: nowrap;"><code class="inline-code">type</code></td><td><code class="inline-code">String</code></td><td>公交类型列表</td></tr><tr><td style="white-space: nowrap;"><code class="inline-code">start_stop</code></td><td><code class="inline-code">String</code></td><td>首发站</td></tr><tr><td style="white-space: nowrap;"><code class="inline-code">end_stop</code></td><td><code class="inline-code">String</code></td><td>终点站</td></tr></tbody></table>
+
+<ul>
+<li>详细信息</li>
+</ul>
+<table style="width:100%;border-collapse:collapse;"><tbody><tr><th>属性</th><th>类型</th><th>说明</th></tr><tr><td style="white-space: nowrap;"><code class="inline-code">stime</code></td><td><code class="inline-code">String</code></td><td>首班车时间</td></tr><tr><td style="white-space: nowrap;"><code class="inline-code">etime</code></td><td><code class="inline-code">String</code></td><td>末班车时间</td></tr><tr><td style="white-space: nowrap;"><code class="inline-code">basic_price</code></td><td><code class="inline-code">String</code></td><td>起步票价，单位：元</td></tr><tr><td style="white-space: nowrap;"><code class="inline-code">total_price</code></td><td><code class="inline-code">String</code></td><td>全程票价，单位：元</td></tr><tr><td style="white-space: nowrap;"><code class="inline-code">via_stops</code></td><td><code class="inline-code">String</code></td><td>途径站，包括首发站和终点站</td></tr><tr><td style="white-space: nowrap;"><code class="inline-code">distance</code></td><td><code class="inline-code">Number</code></td><td>全程距离，单位：千米</td></tr><tr><td style="white-space: nowrap;"><code class="inline-code">bounds</code></td><td><a href="http://lbs.amap.com/api/javascript-api/reference/core/#Bounds" class="" target="_blank" rel="noopener"><code class="inline-code">Bounds</code></a></td><td>此公交路线的地理范围</td></tr><tr><td style="white-space: nowrap;"><code class="inline-code">company</code></td><td><code class="inline-code">String</code></td><td>所属公交公司</td></tr></tbody></table>
+
+
+
+
+<hr>
+<p>参考来源：<a href="http://lbs.amap.com/" title="高德地图开放平台" target="_blank" rel="noopener">http://lbs.amap.com/</a><br>作者：<a href="http://yangfan.ga" title="http://yangfan.ga" target="_blank" rel="noopener">Yangfan</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2019-04-25T09:00:24.437Z" itemprop="dateUpdated">2019-04-25 17:00:24</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="http://yangfan.site">
+            <img src="/uploads/me.jpg" alt="yangfan">
+            yangfan
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/API/">API</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GIS/">GIS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yangfan.site/2017/02/26/高德地图 Javascript API 入门（五）/&title=《高德地图 Javascript API 入门（五）》 — Yangfan's blog&pic=http://yangfan.site/uploads/me.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yangfan.site/2017/02/26/高德地图 Javascript API 入门（五）/&title=《高德地图 Javascript API 入门（五）》 — Yangfan's blog&source=html css js 前端 小程序" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yangfan.site/2017/02/26/高德地图 Javascript API 入门（五）/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《高德地图 Javascript API 入门（五）》 — Yangfan's blog&url=http://yangfan.site/2017/02/26/高德地图 Javascript API 入门（五）/&via=http://yangfan.site" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yangfan.site/2017/02/26/高德地图 Javascript API 入门（五）/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/02/28/高德地图 Javascript API 入门（六）/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">高德地图 Javascript API 入门（六）</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/02/22/高德地图 Javascript API 入门（四）/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">高德地图 Javascript API 入门（四）</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "N85dVznr0Vh9jlIIvVLlxPxc-gzGzoHsz",
+            appKey: "ID0DznFMscpigUQk6S2RviUn",
+            avatar: "mm",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>yangfan &copy; 2018 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yangfan.site/2017/02/26/高德地图 Javascript API 入门（五）/&title=《高德地图 Javascript API 入门（五）》 — Yangfan's blog&pic=http://yangfan.site/uploads/me.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yangfan.site/2017/02/26/高德地图 Javascript API 入门（五）/&title=《高德地图 Javascript API 入门（五）》 — Yangfan's blog&source=html css js 前端 小程序" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yangfan.site/2017/02/26/高德地图 Javascript API 入门（五）/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《高德地图 Javascript API 入门（五）》 — Yangfan's blog&url=http://yangfan.site/2017/02/26/高德地图 Javascript API 入门（五）/&via=http://yangfan.site" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yangfan.site/2017/02/26/高德地图 Javascript API 入门（五）/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yangfan.site/2017/02/26/高德地图 Javascript API 入门（五）/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '又好了！';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

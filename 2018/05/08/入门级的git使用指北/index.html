@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>入门级的git使用指北 | Yangfan&#39;s blog | The site of the Yangfan2016</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="博客,Git">
+    <meta name="description" content="Git 一种免费的开源分布式版本控制系统  Config12345678910111213# 全局配置 加 --global 标识$ git config --global user.name &quot;your name&quot; $ git config --global user.email &quot;xxx@xxx.xxx&quot;# 本地配置$ git config user.name &quot;your name&quot;# 查看">
+<meta name="keywords" content="博客,Git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="入门级的git使用指北">
+<meta property="og:url" content="http://yangfan.site/2018/05/08/入门级的git使用指北/index.html">
+<meta property="og:site_name" content="Yangfan&#39;s blog">
+<meta property="og:description" content="Git 一种免费的开源分布式版本控制系统  Config12345678910111213# 全局配置 加 --global 标识$ git config --global user.name &quot;your name&quot; $ git config --global user.email &quot;xxx@xxx.xxx&quot;# 本地配置$ git config user.name &quot;your name&quot;# 查看">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/10/28/166b9e70067850da?w=570&h=184&f=png&s=60462">
+<meta property="og:updated_time" content="2019-04-25T09:06:08.151Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="入门级的git使用指北">
+<meta name="twitter:description" content="Git 一种免费的开源分布式版本控制系统  Config12345678910111213# 全局配置 加 --global 标识$ git config --global user.name &quot;your name&quot; $ git config --global user.email &quot;xxx@xxx.xxx&quot;# 本地配置$ git config user.name &quot;your name&quot;# 查看">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2018/10/28/166b9e70067850da?w=570&h=184&f=png&s=60462">
+    
+        <link rel="alternate" type="application/atom+xml" title="Yangfan&#39;s blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/uploads/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/uploads/me.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">yangfan</h5>
+          <a href="mailto:zhangh201601@gmail.com" title="zhangh201601@gmail.com" class="mail">zhangh201601@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Yangfan2016" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">入门级的git使用指北</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">入门级的git使用指北</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-05-08T04:08:03.000Z" itemprop="datePublished" class="page-time">
+  2018-05-08
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Config"><span class="post-toc-number">1.</span> <span class="post-toc-text">Config</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Basic"><span class="post-toc-number">2.</span> <span class="post-toc-text">Basic</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Diff"><span class="post-toc-number">3.</span> <span class="post-toc-text">Diff</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Branch"><span class="post-toc-number">4.</span> <span class="post-toc-text">Branch</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Merge"><span class="post-toc-number">5.</span> <span class="post-toc-text">Merge</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Clone"><span class="post-toc-number">6.</span> <span class="post-toc-text">Clone</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#View"><span class="post-toc-number">7.</span> <span class="post-toc-text">View</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Undo"><span class="post-toc-number">8.</span> <span class="post-toc-text">Undo</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Editor-amp-amp-Git-Config"><span class="post-toc-number">9.</span> <span class="post-toc-text">Editor &amp;&amp; Git Config</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Reset"><span class="post-toc-number">10.</span> <span class="post-toc-text">Reset</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Relationship"><span class="post-toc-number">11.</span> <span class="post-toc-text">Relationship</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Refs"><span class="post-toc-number">12.</span> <span class="post-toc-text">Refs</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-入门级的git使用指北"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">入门级的git使用指北</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-05-08 12:08:03" datetime="2018-05-08T04:08:03.000Z"  itemprop="datePublished">2018-05-08</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <blockquote>
+<p>Git 一种免费的开源分布式版本控制系统</p>
+</blockquote>
+<h2 id="Config"><a href="#Config" class="headerlink" title="Config"></a>Config</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 全局配置 加 --global 标识</span></span><br><span class="line">$ git config --global user.name <span class="string">"your name"</span> </span><br><span class="line">$ git config --global user.email <span class="string">"xxx@xxx.xxx"</span></span><br><span class="line"><span class="comment"># 本地配置</span></span><br><span class="line">$ git config user.name <span class="string">"your name"</span></span><br><span class="line"><span class="comment"># 查看配置 --list,-l</span></span><br><span class="line">$ git config --list</span><br><span class="line"><span class="comment"># 查看指定项</span></span><br><span class="line">$ git config user.name</span><br><span class="line"><span class="comment"># 修改指定项</span></span><br><span class="line">$ git config core.eol lf <span class="comment"># git config &lt;key&gt; &lt;value&gt;</span></span><br><span class="line"><span class="comment"># 删除指定项</span></span><br><span class="line">$ git config --<span class="built_in">unset</span> core.eol <span class="comment"># git config --unset &lt;key&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="Basic"><a href="#Basic" class="headerlink" title="Basic"></a>Basic</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># init</span></span><br><span class="line">$ git init <span class="comment"># 创建一个空的Git仓库或重新初始化一个现有仓库</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># add remote origin</span></span><br><span class="line">$ git remote add origin https://github.com/username/xxxx.git <span class="comment"># 添加一个远程仓库 git remote add &lt;shortname&gt; &lt;远程版本库&gt;</span></span><br><span class="line">$ git remote <span class="comment"># 查看已经存在的远程分支</span></span><br><span class="line">$ git remote -v <span class="comment"># 查看已经存在的远程分支的详细信息 git remote -v | --verbose</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># pull</span></span><br><span class="line">$ git pull https://github.com/username/xxxx.git master <span class="comment"># 拉取数据</span></span><br><span class="line">$ git pull origin master <span class="comment"># origin 为你之前添加一个远程仓库的名字</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># add</span></span><br><span class="line">$ git add readme.txt <span class="comment"># 添加单个文件到本地暂存区</span></span><br><span class="line">$ git add . <span class="comment"># 添加所有修改、新增的文件到本地暂存区</span></span><br><span class="line">$ git add -u <span class="comment"># 添加所有修改、删除的文件到本地暂存区</span></span><br><span class="line">$ git add -A <span class="comment"># 添加所有修改、删除、新增文件到本地暂存区</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># commit</span></span><br><span class="line">git commit -m <span class="string">"注释"</span> <span class="comment"># 此次提交的备注</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># push</span></span><br><span class="line">git push -u origin master <span class="comment"># 将本地的master分支同步到origin所在主机的master分支</span></span><br></pre></td></tr></table></figure>
+<h2 id="Diff"><a href="#Diff" class="headerlink" title="Diff"></a>Diff</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git diff <span class="comment"># 查看冲突</span></span><br></pre></td></tr></table></figure>
+<h2 id="Branch"><a href="#Branch" class="headerlink" title="Branch"></a>Branch</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ git branch <span class="comment"># 查看所有分支（当前分支有星号标记 e.g. *master）</span></span><br><span class="line">$ git branch -a <span class="comment"># 查看所有分支（包括远程分支）</span></span><br><span class="line">$ git branch dev <span class="comment"># 创建分支</span></span><br><span class="line">$ git checkout dev  <span class="comment"># 切换到 dev 分支</span></span><br><span class="line">$ git checkout -b feature <span class="comment"># 新建并切换到 feature 分支 </span></span><br><span class="line">$ git branch -m feature <span class="built_in">test</span> <span class="comment"># 重命名   git branch -m &lt;旧名字&gt; &lt;新名字&gt;</span></span><br><span class="line">$ git branch -D <span class="built_in">test</span> <span class="comment"># 删除分支</span></span><br></pre></td></tr></table></figure>
+<h2 id="Merge"><a href="#Merge" class="headerlink" title="Merge"></a>Merge</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout master <span class="comment"># 切换到 mastet 分支</span></span><br><span class="line">$ git merge dev <span class="comment"># 将 dev 合并到 当前分支（这里是 master）</span></span><br></pre></td></tr></table></figure>
+<h2 id="Clone"><a href="#Clone" class="headerlink" title="Clone"></a>Clone</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> http://xxx.xxx/xxx.git <span class="comment"># git clone &lt;版本库的网址&gt; &lt;本地目录名&gt;</span></span><br><span class="line">$ git <span class="built_in">clone</span> http://xxx.xxx/xxx.git mydir <span class="comment"># git clone &lt;版本库的网址&gt; &lt;本地目录名&gt;</span></span><br><span class="line">$ git <span class="built_in">clone</span> -b dev http://xxx.xxx/xxx.git <span class="comment">#git clone -b &lt;分支名称&gt; &lt;版本库的网址&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="View"><a href="#View" class="headerlink" title="View"></a>View</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git status <span class="comment"># 查看当前工作区提交状态</span></span><br><span class="line">$ git <span class="built_in">log</span> <span class="comment"># 查看提交历史记录</span></span><br></pre></td></tr></table></figure>
+<h2 id="Undo"><a href="#Undo" class="headerlink" title="Undo"></a>Undo</h2><p>git add 之前<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout -- a.js <span class="comment"># 撤销某个/某些文件的更改</span></span><br></pre></td></tr></table></figure></p>
+<p>git add 之后，git commit 之前<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git reset HEAD a.js <span class="comment"># 撤销某个/某些文件的添加</span></span><br></pre></td></tr></table></figure></p>
+<p>git commit 之后<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git reset HEAD^ --hard <span class="comment"># 撤销本次提交（commit）</span></span><br><span class="line">$ git reset &lt;commit_id&gt; --hard <span class="comment"># 撤回到指定的 commit</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="Editor-amp-amp-Git-Config"><a href="#Editor-amp-amp-Git-Config" class="headerlink" title="Editor &amp;&amp; Git Config"></a>Editor &amp;&amp; Git Config</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git config core.autocrlf <span class="literal">false</span> <span class="comment"># 禁止自动转换换行符</span></span><br><span class="line">$ git config core.safecrlf <span class="literal">true</span> <span class="comment"># 禁止换行符混用</span></span><br><span class="line">$ git config core.eol lf <span class="comment"># 设置换行符为 LF</span></span><br></pre></td></tr></table></figure>
+<h2 id="Reset"><a href="#Reset" class="headerlink" title="Reset"></a>Reset</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git reset HEAD^</span><br><span class="line">$ git reset HEAD~2</span><br></pre></td></tr></table></figure>
+<h2 id="Relationship"><a href="#Relationship" class="headerlink" title="Relationship"></a>Relationship</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://user-gold-cdn.xitu.io/2018/10/28/166b9e70067850da?w=570&h=184&f=png&s=60462" alt="git-relationship" title="">
+                </div>
+                <div class="image-caption">git-relationship</div>
+            </figure>
+<h2 id="Refs"><a href="#Refs" class="headerlink" title="Refs"></a>Refs</h2><ol>
+<li><a href="https://git-scm.com/docs" target="_blank" rel="noopener">git-scm</a></li>
+<li><a href="https://www.yiibai.com/git/" target="_blank" rel="noopener">Git教程</a></li>
+</ol>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2019-04-25T09:06:08.151Z" itemprop="dateUpdated">2019-04-25 17:06:08</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="http://yangfan.site">
+            <img src="/uploads/me.jpg" alt="yangfan">
+            yangfan
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/博客/">博客</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yangfan.site/2018/05/08/入门级的git使用指北/&title=《入门级的git使用指北》 — Yangfan's blog&pic=http://yangfan.site/uploads/me.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yangfan.site/2018/05/08/入门级的git使用指北/&title=《入门级的git使用指北》 — Yangfan's blog&source=html css js 前端 小程序" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yangfan.site/2018/05/08/入门级的git使用指北/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《入门级的git使用指北》 — Yangfan's blog&url=http://yangfan.site/2018/05/08/入门级的git使用指北/&via=http://yangfan.site" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yangfan.site/2018/05/08/入门级的git使用指北/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/05/14/浏览器兼容性问题Q-A/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">浏览器兼容性问题Q&amp;A</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/01/12/Vue工程化开发（一）/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Vue工程化开发（一）</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "N85dVznr0Vh9jlIIvVLlxPxc-gzGzoHsz",
+            appKey: "ID0DznFMscpigUQk6S2RviUn",
+            avatar: "mm",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>yangfan &copy; 2018 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yangfan.site/2018/05/08/入门级的git使用指北/&title=《入门级的git使用指北》 — Yangfan's blog&pic=http://yangfan.site/uploads/me.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yangfan.site/2018/05/08/入门级的git使用指北/&title=《入门级的git使用指北》 — Yangfan's blog&source=html css js 前端 小程序" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yangfan.site/2018/05/08/入门级的git使用指北/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《入门级的git使用指北》 — Yangfan's blog&url=http://yangfan.site/2018/05/08/入门级的git使用指北/&via=http://yangfan.site" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yangfan.site/2018/05/08/入门级的git使用指北/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yangfan.site/2018/05/08/入门级的git使用指北/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '又好了！';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

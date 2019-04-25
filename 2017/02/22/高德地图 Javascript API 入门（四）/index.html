@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>高德地图 Javascript API 入门（四） | Yangfan&#39;s blog | The site of the Yangfan2016</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="JS,GIS,API">
+    <meta name="description" content="高德地图 Javascript API 入门（四）地图覆盖物覆盖物类名说明是否插件AMap.Marker点标记否AMap.Icon覆盖物&amp;gt;点标记&amp;gt;复杂点标记对象，对普通点标记Marker 的扩展否AMap.Polyline覆盖物&amp;gt;折线否AMap.Polygon覆盖物&amp;gt;多边形否AMap.Circle覆盖物&amp;gt;圆否AMap.GroundImage图片覆盖物否AMap.Con">
+<meta name="keywords" content="JS,GIS,API">
+<meta property="og:type" content="article">
+<meta property="og:title" content="高德地图 Javascript API 入门（四）">
+<meta property="og:url" content="http://yangfan.site/2017/02/22/高德地图 Javascript API 入门（四）/index.html">
+<meta property="og:site_name" content="Yangfan&#39;s blog">
+<meta property="og:description" content="高德地图 Javascript API 入门（四）地图覆盖物覆盖物类名说明是否插件AMap.Marker点标记否AMap.Icon覆盖物&amp;gt;点标记&amp;gt;复杂点标记对象，对普通点标记Marker 的扩展否AMap.Polyline覆盖物&amp;gt;折线否AMap.Polygon覆盖物&amp;gt;多边形否AMap.Circle覆盖物&amp;gt;圆否AMap.GroundImage图片覆盖物否AMap.Con">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yangfan2016/PicBed/master/AMap/amap401.JPG">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yangfan2016/PicBed/master/AMap/amap402.JPG">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yangfan2016/PicBed/master/AMap/amap404.JPG">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yangfan2016/PicBed/master/AMap/amap405.JPG">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yangfan2016/PicBed/master/AMap/amap406.JPG">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yangfan2016/PicBed/master/AMap/amap407.JPG">
+<meta property="og:updated_time" content="2019-04-25T09:00:11.915Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="高德地图 Javascript API 入门（四）">
+<meta name="twitter:description" content="高德地图 Javascript API 入门（四）地图覆盖物覆盖物类名说明是否插件AMap.Marker点标记否AMap.Icon覆盖物&amp;gt;点标记&amp;gt;复杂点标记对象，对普通点标记Marker 的扩展否AMap.Polyline覆盖物&amp;gt;折线否AMap.Polygon覆盖物&amp;gt;多边形否AMap.Circle覆盖物&amp;gt;圆否AMap.GroundImage图片覆盖物否AMap.Con">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Yangfan2016/PicBed/master/AMap/amap401.JPG">
+    
+        <link rel="alternate" type="application/atom+xml" title="Yangfan&#39;s blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/uploads/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/uploads/me.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">yangfan</h5>
+          <a href="mailto:zhangh201601@gmail.com" title="zhangh201601@gmail.com" class="mail">zhangh201601@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Yangfan2016" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">高德地图 Javascript API 入门（四）</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">高德地图 Javascript API 入门（四）</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-02-22T11:03:02.000Z" itemprop="datePublished" class="page-time">
+  2017-02-22
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#高德地图-Javascript-API-入门（四）"><span class="post-toc-number">1.</span> <span class="post-toc-text">高德地图 Javascript API 入门（四）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#地图覆盖物"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">地图覆盖物</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#覆盖物"><span class="post-toc-number">1.1.0.1.</span> <span class="post-toc-text">覆盖物</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#点标记"><span class="post-toc-number">1.1.0.2.</span> <span class="post-toc-text">点标记</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#多边形"><span class="post-toc-number">1.1.0.2.1.</span> <span class="post-toc-text">多边形</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#右键菜单"><span class="post-toc-number">1.1.0.3.</span> <span class="post-toc-text">右键菜单</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#信息窗体"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">信息窗体</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#信息窗体-1"><span class="post-toc-number">1.2.0.1.</span> <span class="post-toc-text">信息窗体</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#小练习"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">小练习</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#鼠标划过山西大剧院时，弹出信息窗体"><span class="post-toc-number">1.3.0.1.</span> <span class="post-toc-text">鼠标划过山西大剧院时，弹出信息窗体</span></a></li></ol></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-高德地图 Javascript API 入门（四）"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">高德地图 Javascript API 入门（四）</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-02-22 19:03:02" datetime="2017-02-22T11:03:02.000Z"  itemprop="datePublished">2017-02-22</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="高德地图-Javascript-API-入门（四）"><a href="#高德地图-Javascript-API-入门（四）" class="headerlink" title="高德地图 Javascript API 入门（四）"></a>高德地图 Javascript API 入门（四）</h1><h2 id="地图覆盖物"><a href="#地图覆盖物" class="headerlink" title="地图覆盖物"></a>地图覆盖物</h2><h4 id="覆盖物"><a href="#覆盖物" class="headerlink" title="覆盖物"></a>覆盖物</h4><table style="width:100%;border-collapse:collapse;"><thead><tr><th class="">类名</th><th class="">说明</th><th>是否插件</th></tr></thead><tbody><tr><td><a href="#Marker">AMap.Marker</a></td><td><p style="margin-top:10px">点标记</p></td><td><p style="margin-top:10px">否</p></td></tr><tr><td><a href="#Icon">AMap.Icon</a></td><td><p style="margin-top:10px">覆盖物&gt;点标记&gt;复杂点标记对象，对普通点标记Marker 的扩展</p></td><td><p style="margin-top:10px">否</p></td></tr><tr><td><a href="#Polyline">AMap.Polyline</a></td><td><p style="margin-top:10px">覆盖物&gt;折线</p></td><td><p style="margin-top:10px">否</p></td></tr><tr><td><a href="#Polygon">AMap.Polygon</a></td><td><p style="margin-top:10px">覆盖物&gt;多边形</p></td><td><p style="margin-top:10px">否</p></td></tr><tr><td><a href="#Circle">AMap.Circle</a></td><td><p style="margin-top:10px">覆盖物&gt;圆</p></td><td><p style="margin-top:10px">否</p></td></tr><tr><td><a href="#GroundImage">AMap.GroundImage</a></td><td><p style="margin-top:10px">图片覆盖物</p></td><td><p style="margin-top:10px">否</p></td></tr><tr><td><a href="#ContextMenu">AMap.ContextMenu</a></td><td><p style="margin-top:10px">地图右键菜单</p></td><td><p style="margin-top:10px">否</p></td></tr></tbody></table>
+
+
+
+<h4 id="点标记"><a href="#点标记" class="headerlink" title="点标记"></a>点标记</h4><p>JS</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> marker=<span class="keyword">new</span> AMap.Marker(&#123;</span><br><span class="line">	map:map,</span><br><span class="line">	position:<span class="keyword">new</span> AMap.LngLat(<span class="number">112.736465</span>,<span class="number">37.696495</span>)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>预览</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/Yangfan2016/PicBed/master/AMap/amap401.JPG" alt="iamge" title="">
+                </div>
+                <div class="image-caption">iamge</div>
+            </figure>
+<p>自定义点标记</p>
+<p>JS</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> marker=<span class="keyword">new</span> AMap.Marker(&#123;</span><br><span class="line">	map:map,</span><br><span class="line">	position:<span class="keyword">new</span> AMap.LngLat(<span class="number">112.736465</span>,<span class="number">37.696495</span>),</span><br><span class="line">	icon:<span class="keyword">new</span> AMap.Icon(&#123;</span><br><span class="line">		image:<span class="string">"https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2803620233,1906638381&amp;fm=23&amp;gp=0.jpg"</span>,</span><br><span class="line">		size:[<span class="number">72</span>,<span class="number">72</span>],</span><br><span class="line">		imageSize:[<span class="number">36</span>,<span class="number">36</span>]</span><br><span class="line">	&#125;),</span><br><span class="line">	draggable:<span class="literal">true</span>,</span><br><span class="line">	raiseOnDrag:<span class="literal">true</span>,</span><br><span class="line">	shape:<span class="keyword">new</span> AMap.MarkerShape(&#123;</span><br><span class="line">		type:<span class="string">"circle"</span>,</span><br><span class="line">		coords:[<span class="number">112.736465</span>,<span class="number">37.696495</span>,<span class="number">100</span>]</span><br><span class="line">	&#125;),</span><br><span class="line">	label:&#123;</span><br><span class="line">		content:<span class="string">"label"</span>,</span><br><span class="line">		offset:<span class="keyword">new</span> AMap.Pixel(<span class="number">0</span>,<span class="number">-36</span>)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>预览</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/Yangfan2016/PicBed/master/AMap/amap402.JPG" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
+<h5 id="多边形"><a href="#多边形" class="headerlink" title="多边形"></a>多边形</h5><p>JS</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> lineArr=[</span><br><span class="line">	[<span class="number">112.49157</span>,<span class="number">37.897392</span>],</span><br><span class="line">	[<span class="number">112.602806</span>,<span class="number">37.898747</span>],</span><br><span class="line">	[<span class="number">112.608643</span>,<span class="number">37.797355</span>],</span><br><span class="line">	[<span class="number">112.49775</span>,<span class="number">37.79627</span>]</span><br><span class="line">];</span><br><span class="line"><span class="keyword">var</span> polygon=<span class="keyword">new</span> AMap.Polygon(&#123;</span><br><span class="line">	map:map,</span><br><span class="line">	path:lineArr</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>预览</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/Yangfan2016/PicBed/master/AMap/amap404.JPG" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
+<h4 id="右键菜单"><a href="#右键菜单" class="headerlink" title="右键菜单"></a>右键菜单</h4><p>JS</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> contextmenu=<span class="keyword">new</span> AMap.ContextMenu();</span><br><span class="line"><span class="keyword">var</span> pos=[];</span><br><span class="line"><span class="comment">// 添加右键菜单内容项</span></span><br><span class="line">contextmenu.addItem(<span class="string">"放大"</span>,<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">	map.zoomIn();</span><br><span class="line">&#125;,<span class="number">0</span>);</span><br><span class="line">contextmenu.addItem(<span class="string">"缩小"</span>,<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">	map.zoomOut();</span><br><span class="line">&#125;,<span class="number">1</span>);</span><br><span class="line">contextmenu.addItem(<span class="string">"添加点标记"</span>,<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> marker=<span class="keyword">new</span> AMap.Marker(&#123;</span><br><span class="line">		map:map,</span><br><span class="line">		position:pos</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;,<span class="number">2</span>);</span><br><span class="line"><span class="comment">// 监听鼠标右击事件</span></span><br><span class="line">map.on(<span class="string">"rightclick"</span>,<span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">	contextmenu.open(map,e.lnglat);</span><br><span class="line">	pos=e.lnglat;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>预览</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/Yangfan2016/PicBed/master/AMap/amap405.JPG" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
+<h2 id="信息窗体"><a href="#信息窗体" class="headerlink" title="信息窗体"></a>信息窗体</h2><h4 id="信息窗体-1"><a href="#信息窗体-1" class="headerlink" title="信息窗体"></a>信息窗体</h4><p>JS</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> infowindow=<span class="keyword">new</span> AMap.InfoWindow(&#123;</span><br><span class="line">	isCustom:<span class="literal">false</span>,</span><br><span class="line">	content:<span class="string">"&lt;h3&gt;Hello,Yuanping&lt;/h3&gt;"</span>,</span><br><span class="line">	offset:<span class="keyword">new</span> AMap.Pixel(<span class="number">0</span>,<span class="number">-36</span>),</span><br><span class="line">	showShadow:<span class="literal">true</span>,</span><br><span class="line">	closeWhenClickMap:<span class="literal">true</span>,</span><br><span class="line">	autoMove:<span class="literal">true</span></span><br><span class="line">&#125;);</span><br><span class="line">infowindow.open(map,<span class="keyword">new</span> AMap.LngLat(<span class="number">112.736465</span>,<span class="number">38.696495</span>));</span><br></pre></td></tr></table></figure>
+<p>预览</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/Yangfan2016/PicBed/master/AMap/amap406.JPG" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
+<h2 id="小练习"><a href="#小练习" class="headerlink" title="小练习"></a>小练习</h2><h4 id="鼠标划过山西大剧院时，弹出信息窗体"><a href="#鼠标划过山西大剧院时，弹出信息窗体" class="headerlink" title="鼠标划过山西大剧院时，弹出信息窗体"></a>鼠标划过山西大剧院时，弹出信息窗体</h4><p>JS</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 坐标</span></span><br><span class="line"><span class="keyword">var</span> lineArr=[</span><br><span class="line">	[<span class="number">112.532802</span>,<span class="number">37.808395</span>],</span><br><span class="line">	[<span class="number">112.533049</span>,<span class="number">37.808395</span>],</span><br><span class="line">	[<span class="number">112.533124</span>,<span class="number">37.808476</span>],</span><br><span class="line">	[<span class="number">112.533521</span>,<span class="number">37.808459</span>],</span><br><span class="line">	[<span class="number">112.533558</span>,<span class="number">37.808391</span>],</span><br><span class="line">	[<span class="number">112.533832</span>,<span class="number">37.808391</span>],</span><br><span class="line">	[<span class="number">112.533848</span>,<span class="number">37.80792</span>],</span><br><span class="line">	[<span class="number">112.534159</span>,<span class="number">37.807959</span>],</span><br><span class="line">	[<span class="number">112.534159</span>,<span class="number">37.80748</span>],</span><br><span class="line">	[<span class="number">112.533826</span>,<span class="number">37.807514</span>],</span><br><span class="line">	[<span class="number">112.533832</span>,<span class="number">37.807179</span>],</span><br><span class="line">	[<span class="number">112.533966</span>,<span class="number">37.806848</span>],</span><br><span class="line">	[<span class="number">112.533376</span>,<span class="number">37.806683</span>],</span><br><span class="line">	[<span class="number">112.533054</span>,<span class="number">37.806687</span>],</span><br><span class="line">	[<span class="number">112.532684</span>,<span class="number">37.806878</span>],</span><br><span class="line">	[<span class="number">112.53278</span>,<span class="number">37.807191</span>],</span><br><span class="line">	[<span class="number">112.532796</span>,<span class="number">37.80745</span>],</span><br><span class="line">	[<span class="number">112.532013</span>,<span class="number">37.807285</span>],</span><br><span class="line">	[<span class="number">112.532019</span>,<span class="number">37.808213</span>],</span><br><span class="line">	[<span class="number">112.532796</span>,<span class="number">37.808018</span>],</span><br><span class="line">	[<span class="number">112.532818</span>,<span class="number">37.808412</span>]</span><br><span class="line">];</span><br><span class="line"><span class="comment">// 实例化Polygon类</span></span><br><span class="line"><span class="keyword">var</span> polygon=<span class="keyword">new</span> AMap.Polygon(&#123;</span><br><span class="line">	map:map,</span><br><span class="line">	path:lineArr</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 适应窗口</span></span><br><span class="line">map.setFitView();</span><br><span class="line"><span class="comment">// 实例化信息窗体类</span></span><br><span class="line"><span class="keyword">var</span> infowindow=<span class="keyword">new</span> AMap.InfoWindow(&#123;</span><br><span class="line">	content:<span class="string">"&lt;h3&gt;太原市&lt;/h3&gt;&lt;p&gt;山西大剧院&lt;/p&gt;"</span>,</span><br><span class="line">	closeWhenClickMap:<span class="literal">true</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 监听鼠标移入、移除事件</span></span><br><span class="line">polygon.on(<span class="string">"mouseover"</span>,<span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">	infowindow.open(map,map.getCenter());</span><br><span class="line">&#125;).on(<span class="string">"mouseout"</span>,<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">	infowindow.close();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>预览</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/Yangfan2016/PicBed/master/AMap/amap407.JPG" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
+<hr>
+<p>参考来源：<a href="http://lbs.amap.com/" title="高德地图开放平台" target="_blank" rel="noopener">http://lbs.amap.com/</a><br>作者：<a href="http://yangfan.ga" title="http://yangfan.ga" target="_blank" rel="noopener">Yangfan</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2019-04-25T09:00:11.915Z" itemprop="dateUpdated">2019-04-25 17:00:11</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="http://yangfan.site">
+            <img src="/uploads/me.jpg" alt="yangfan">
+            yangfan
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/API/">API</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GIS/">GIS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yangfan.site/2017/02/22/高德地图 Javascript API 入门（四）/&title=《高德地图 Javascript API 入门（四）》 — Yangfan's blog&pic=http://yangfan.site/uploads/me.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yangfan.site/2017/02/22/高德地图 Javascript API 入门（四）/&title=《高德地图 Javascript API 入门（四）》 — Yangfan's blog&source=html css js 前端 小程序" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yangfan.site/2017/02/22/高德地图 Javascript API 入门（四）/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《高德地图 Javascript API 入门（四）》 — Yangfan's blog&url=http://yangfan.site/2017/02/22/高德地图 Javascript API 入门（四）/&via=http://yangfan.site" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yangfan.site/2017/02/22/高德地图 Javascript API 入门（四）/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/02/26/高德地图 Javascript API 入门（五）/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">高德地图 Javascript API 入门（五）</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/02/22/高德地图 Javascript API 入门（三）/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">高德地图 Javascript API 入门（三）</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "N85dVznr0Vh9jlIIvVLlxPxc-gzGzoHsz",
+            appKey: "ID0DznFMscpigUQk6S2RviUn",
+            avatar: "mm",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>yangfan &copy; 2018 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yangfan.site/2017/02/22/高德地图 Javascript API 入门（四）/&title=《高德地图 Javascript API 入门（四）》 — Yangfan's blog&pic=http://yangfan.site/uploads/me.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yangfan.site/2017/02/22/高德地图 Javascript API 入门（四）/&title=《高德地图 Javascript API 入门（四）》 — Yangfan's blog&source=html css js 前端 小程序" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yangfan.site/2017/02/22/高德地图 Javascript API 入门（四）/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《高德地图 Javascript API 入门（四）》 — Yangfan's blog&url=http://yangfan.site/2017/02/22/高德地图 Javascript API 入门（四）/&via=http://yangfan.site" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yangfan.site/2017/02/22/高德地图 Javascript API 入门（四）/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yangfan.site/2017/02/22/高德地图 Javascript API 入门（四）/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '又好了！';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

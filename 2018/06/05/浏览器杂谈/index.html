@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>浏览器杂谈 | Yangfan&#39;s blog | The site of the Yangfan2016</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="浏览器缓存（协议层的缓存） 主要分为强缓存和协商缓存，详情 https://segmentfault.com/a/1190000011212929   强缓存 浏览器会先获取该资源缓存的header信息，根据其中的Expires和Cahe-control判断是否命中强缓存，若命中则直接从缓存中获取资源  协商缓存 如果没有命中强缓存，浏览器会发送请求到服务器，该请求会携带第一次请求返回的有关缓存的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浏览器杂谈">
+<meta property="og:url" content="http://yangfan.site/2018/06/05/浏览器杂谈/index.html">
+<meta property="og:site_name" content="Yangfan&#39;s blog">
+<meta property="og:description" content="浏览器缓存（协议层的缓存） 主要分为强缓存和协商缓存，详情 https://segmentfault.com/a/1190000011212929   强缓存 浏览器会先获取该资源缓存的header信息，根据其中的Expires和Cahe-control判断是否命中强缓存，若命中则直接从缓存中获取资源  协商缓存 如果没有命中强缓存，浏览器会发送请求到服务器，该请求会携带第一次请求返回的有关缓存的">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-04-25T09:00:54.754Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="浏览器杂谈">
+<meta name="twitter:description" content="浏览器缓存（协议层的缓存） 主要分为强缓存和协商缓存，详情 https://segmentfault.com/a/1190000011212929   强缓存 浏览器会先获取该资源缓存的header信息，根据其中的Expires和Cahe-control判断是否命中强缓存，若命中则直接从缓存中获取资源  协商缓存 如果没有命中强缓存，浏览器会发送请求到服务器，该请求会携带第一次请求返回的有关缓存的">
+    
+        <link rel="alternate" type="application/atom+xml" title="Yangfan&#39;s blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/uploads/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/uploads/me.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">yangfan</h5>
+          <a href="mailto:zhangh201601@gmail.com" title="zhangh201601@gmail.com" class="mail">zhangh201601@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Yangfan2016" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">浏览器杂谈</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">浏览器杂谈</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-06-05T02:56:31.000Z" itemprop="datePublished" class="page-time">
+  2018-06-05
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#浏览器缓存（协议层的缓存）"><span class="post-toc-number">1.</span> <span class="post-toc-text">浏览器缓存（协议层的缓存）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#reflow-重排-和repaint-重绘"><span class="post-toc-number">2.</span> <span class="post-toc-text">reflow(重排)和repaint(重绘)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#浏览器解析网页的过程"><span class="post-toc-number">2.0.1.</span> <span class="post-toc-text">浏览器解析网页的过程</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#重排与重绘"><span class="post-toc-number">2.0.2.</span> <span class="post-toc-text">重排与重绘</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#AST（抽象语法树）"><span class="post-toc-number">3.</span> <span class="post-toc-text">AST（抽象语法树）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#定义"><span class="post-toc-number">3.0.1.</span> <span class="post-toc-text">定义</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#应用"><span class="post-toc-number">3.0.2.</span> <span class="post-toc-text">应用</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-浏览器杂谈"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">浏览器杂谈</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-06-05 10:56:31" datetime="2018-06-05T02:56:31.000Z"  itemprop="datePublished">2018-06-05</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="浏览器缓存（协议层的缓存）"><a href="#浏览器缓存（协议层的缓存）" class="headerlink" title="浏览器缓存（协议层的缓存）"></a>浏览器缓存（协议层的缓存）</h2><blockquote>
+<p>主要分为强缓存和协商缓存，详情 <a href="https://segmentfault.com/a/1190000011212929" target="_blank" rel="noopener">https://segmentfault.com/a/1190000011212929</a></p>
+</blockquote>
+<ol>
+<li><p>强缓存<br> 浏览器会先获取该资源缓存的header信息，根据其中的<code>Expires</code>和<code>Cahe-control</code>判断是否命中强缓存，若命中则直接从缓存中获取资源</p>
+</li>
+<li><p>协商缓存<br> 如果没有命中强缓存，浏览器会发送请求到服务器，该请求会携带第一次请求返回的有关缓存的header字段信息（<code>Last-Modified</code>/<code>IF-Modified-Since</code>、<code>Etag</code>/<code>IF-None-Match</code>）,由服务器根据请求中的相关header信息来对比结果是否命中协商缓存，若命中，则服务器返回新的响应header信息更新缓存中的对应header信息，但是并不返回资源内容，它会告知浏览器可以直接从缓存获取；否则返回最新的资源内容</p>
+</li>
+</ol>
+<h2 id="reflow-重排-和repaint-重绘"><a href="#reflow-重排-和repaint-重绘" class="headerlink" title="reflow(重排)和repaint(重绘)"></a>reflow(重排)和repaint(重绘)</h2><blockquote>
+<p>reflow &amp; repaint<br><a href="https://www.jianshu.com/p/40c6fc1d4800" target="_blank" rel="noopener">https://www.jianshu.com/p/40c6fc1d4800</a><br><a href="http://www.ruanyifeng.com/blog/2015/09/web-page-performance-in-depth.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2015/09/web-page-performance-in-depth.html</a></p>
+</blockquote>
+<h4 id="浏览器解析网页的过程"><a href="#浏览器解析网页的过程" class="headerlink" title="浏览器解析网页的过程"></a>浏览器解析网页的过程</h4><ol>
+<li>HTML代码转化成DOM</li>
+<li>CSS代码转化成CSSOM（CSS Object Model）</li>
+<li>结合DOM和CSSOM，生成一棵渲染树（包含每个节点的视觉信息）</li>
+<li>生成布局（layout），即将所有渲染树的所有节点进行平面合成</li>
+<li>将布局绘制（paint）在屏幕上</li>
+</ol>
+<h4 id="重排与重绘"><a href="#重排与重绘" class="headerlink" title="重排与重绘"></a>重排与重绘</h4><ul>
+<li><p>重排：渲染树的结点发生了结构性变化，例如宽度、高度或者位置上的变化时，那么会触发reflow(重排)的逻辑。第一次进入一个页面时便会至少触发一次重排。</p>
+</li>
+<li><p>重绘：渲染树结点发生了非结构性变化，例如背景色等的变化时，那么会触发repaint(重绘)。</p>
+</li>
+</ul>
+<h2 id="AST（抽象语法树）"><a href="#AST（抽象语法树）" class="headerlink" title="AST（抽象语法树）"></a>AST（抽象语法树）</h2><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>抽象语法树（<a href="http://www.iteye.com/news/30731" target="_blank" rel="noopener">Abstract Syntax Tree</a>）也称为AST语法树，指的是源代码语法所对应的树状结构。也就是说，对于一种具体编程语言下的源代码，通过构建语法树的形式将源代码中的语句映射到树中的每一个节点上</p>
+<h4 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h4><p>抽象语法树的作用非常的多，比如编译器、IDE、压缩优化代码等。在JavaScript中，虽然我们并不会常常与AST直接打交道，但却也会经常的涉及到它。例如使用UglifyJS来压缩代码，实际这背后就是在对JavaScript的抽象语法树进行操作，例如 <a href="https://www.cnblogs.com/tugenhua0707/p/7863616.html" target="_blank" rel="noopener">Babel编译ES6的代码</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2019-04-25T09:00:54.754Z" itemprop="dateUpdated">2019-04-25 17:00:54</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="http://yangfan.site">
+            <img src="/uploads/me.jpg" alt="yangfan">
+            yangfan
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yangfan.site/2018/06/05/浏览器杂谈/&title=《浏览器杂谈》 — Yangfan's blog&pic=http://yangfan.site/uploads/me.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yangfan.site/2018/06/05/浏览器杂谈/&title=《浏览器杂谈》 — Yangfan's blog&source=html css js 前端 小程序" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yangfan.site/2018/06/05/浏览器杂谈/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《浏览器杂谈》 — Yangfan's blog&url=http://yangfan.site/2018/06/05/浏览器杂谈/&via=http://yangfan.site" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yangfan.site/2018/06/05/浏览器杂谈/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/06/22/Debounce-and-Throttle/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Debounce and Throttle</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/05/14/浏览器兼容性问题Q-A/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">浏览器兼容性问题Q&amp;A</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "N85dVznr0Vh9jlIIvVLlxPxc-gzGzoHsz",
+            appKey: "ID0DznFMscpigUQk6S2RviUn",
+            avatar: "mm",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>yangfan &copy; 2018 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yangfan.site/2018/06/05/浏览器杂谈/&title=《浏览器杂谈》 — Yangfan's blog&pic=http://yangfan.site/uploads/me.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yangfan.site/2018/06/05/浏览器杂谈/&title=《浏览器杂谈》 — Yangfan's blog&source=html css js 前端 小程序" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yangfan.site/2018/06/05/浏览器杂谈/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《浏览器杂谈》 — Yangfan's blog&url=http://yangfan.site/2018/06/05/浏览器杂谈/&via=http://yangfan.site" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yangfan.site/2018/06/05/浏览器杂谈/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yangfan.site/2018/06/05/浏览器杂谈/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '又好了！';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

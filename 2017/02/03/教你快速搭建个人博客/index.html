@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>教你快速搭建个人博客 | Yangfan&#39;s blog | The site of the Yangfan2016</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="博客,建站,Hexo">
+    <meta name="description" content="基于HEXO博客框架和Github搭建个人博客简单教程Author: YangfanTime: 2017-02-03     准备工作 配置环境 安装Node.js安装Git注册GitHub      Hexo 部分  Hexo简介Hexo 是一个轻量的静态博客框架。通过Hexo可以快速生成一个静态博客框架,仅需要几条命令就可以完成,相当方便。而架设Hexo的环境更简单了 不需要 lnmp/lam">
+<meta name="keywords" content="博客,建站,Hexo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="教你快速搭建个人博客">
+<meta property="og:url" content="http://yangfan.site/2017/02/03/教你快速搭建个人博客/index.html">
+<meta property="og:site_name" content="Yangfan&#39;s blog">
+<meta property="og:description" content="基于HEXO博客框架和Github搭建个人博客简单教程Author: YangfanTime: 2017-02-03     准备工作 配置环境 安装Node.js安装Git注册GitHub      Hexo 部分  Hexo简介Hexo 是一个轻量的静态博客框架。通过Hexo可以快速生成一个静态博客框架,仅需要几条命令就可以完成,相当方便。而架设Hexo的环境更简单了 不需要 lnmp/lam">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1400844-40d8b2e5a0a5c036?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload.chinaz.com/2016/0105/1451965733809.jpg">
+<meta property="og:updated_time" content="2019-04-25T09:01:06.601Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="教你快速搭建个人博客">
+<meta name="twitter:description" content="基于HEXO博客框架和Github搭建个人博客简单教程Author: YangfanTime: 2017-02-03     准备工作 配置环境 安装Node.js安装Git注册GitHub      Hexo 部分  Hexo简介Hexo 是一个轻量的静态博客框架。通过Hexo可以快速生成一个静态博客框架,仅需要几条命令就可以完成,相当方便。而架设Hexo的环境更简单了 不需要 lnmp/lam">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1400844-40d8b2e5a0a5c036?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+    
+        <link rel="alternate" type="application/atom+xml" title="Yangfan&#39;s blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/uploads/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/uploads/me.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">yangfan</h5>
+          <a href="mailto:zhangh201601@gmail.com" title="zhangh201601@gmail.com" class="mail">zhangh201601@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Yangfan2016" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">教你快速搭建个人博客</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">教你快速搭建个人博客</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-02-03T12:15:55.000Z" itemprop="datePublished" class="page-time">
+  2017-02-03
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#基于HEXO博客框架和Github搭建个人博客简单教程"><span class="post-toc-number">1.</span> <span class="post-toc-text">基于HEXO博客框架和Github搭建个人博客简单教程</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#准备工作"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">准备工作</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Hexo-部分"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">Hexo 部分</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Github-部分"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">Github 部分</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#部署"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">部署</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#发文章"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">发文章</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-教你快速搭建个人博客"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">教你快速搭建个人博客</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-02-03 20:15:55" datetime="2017-02-03T12:15:55.000Z"  itemprop="datePublished">2017-02-03</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h3 id="基于HEXO博客框架和Github搭建个人博客简单教程"><a href="#基于HEXO博客框架和Github搭建个人博客简单教程" class="headerlink" title="基于HEXO博客框架和Github搭建个人博客简单教程"></a>基于HEXO博客框架和Github搭建个人博客简单教程</h3><p>Author: <a href="https://github.com/Yangfan2016" target="_blank" rel="noopener">Yangfan</a><br>Time: 2017-02-03  </p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1400844-40d8b2e5a0a5c036?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="poster"></p>
+<blockquote>
+<h4 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h4></blockquote>
+<p>配置环境</p>
+<p>安装<a href="https://nodejs.org/en/" target="_blank" rel="noopener">Node.js</a><br>安装<a href="https://git-scm.com/" target="_blank" rel="noopener">Git</a><br>注册<a href="https://github.com" target="_blank" rel="noopener">GitHub</a>    </p>
+<blockquote>
+<h4 id="Hexo-部分"><a href="#Hexo-部分" class="headerlink" title="Hexo 部分"></a>Hexo 部分</h4></blockquote>
+<ol>
+<li><p>Hexo简介<br>Hexo 是一个轻量的静态博客框架。通过Hexo可以快速生成一个静态博客框架,仅需要几条命令就可以完成,相当方便。<br>而架设Hexo的环境更简单了 不需要 lnmp/lamp/XAMPP 这些繁琐复杂的环境 仅仅需要一个简单的http服务器即可使用 或者使用互联网上免费的页面托管服务</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload.chinaz.com/2016/0105/1451965733809.jpg" alt="hexo" title="">
+                </div>
+                <div class="image-caption">hexo</div>
+            </figure>
+</li>
+<li><p>Hexo安装方法<br>参考<a href="https://hexo.io" target="_blank" rel="noopener">官网</a>中文文档,只需要一条命令即可自动安装hexo框架。<br><code>$ npm install -g hexo-cli #使用 npm 安装 Hexo</code></p>
+</li>
+</ol>
+<ol>
+<li>初始化<br>创建一个文件夹，如：Blog，cd到Blog里执行hexo init的。命令：<br><code>hexo init</code></li>
+<li><p>生成静态页面<br>继续再Blog目录下执行如下命令，生成静态页面<br><code>hexo generate （或者 hexo g）</code> </p>
+</li>
+<li><p>本地启动<br>启动本地服务，进行文章预览调试，命令：<br><code>hexo server</code> </p>
+</li>
+<li>本地测试<br>浏览器输入 <a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a></li>
+</ol>
+<blockquote>
+<h4 id="Github-部分"><a href="#Github-部分" class="headerlink" title="Github 部分"></a>Github 部分</h4></blockquote>
+<ol>
+<li>注册github<br><a href="https://github.com" target="_blank" rel="noopener">Github</a></li>
+<li>新建仓库<br>建立与你用户名对应的仓库，仓库名必须为【your_user_name.github.io】， <strong>固定写法</strong>  !!!</li>
+<li>本地_config.yml文配置件，建立关联<br>我们需要_config.yml文件，来建立关联(注意冒号后面要有空格)</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">deploy:  </span><br><span class="line">   type: git   </span><br><span class="line">   repository: https://github.com/leopardpan/  leopardpan.github.io.git  </span><br><span class="line">   branch: master</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h4 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h4></blockquote>
+<p>执行如下命令才能使用git部署<br><code>npm install hexo-deployer-git --save</code><br>(我没用SSH Keys如果你用了SSH Keys的话直接在github里复制SSH的就行了，总共就两种协议，相信你懂的。)<br> 执行配置命令：<br><code>hexo deploy</code><br>然后再浏览器中输入<a href="http://username.github.io/就行了，把" target="_blank" rel="noopener">http://username.github.io/就行了，把</a> username ,改成你 github 的账户名就行了</p>
+<blockquote>
+<h4 id="发文章"><a href="#发文章" class="headerlink" title="发文章"></a>发文章</h4></blockquote>
+<p>每次部署的步骤，可按以下三步来进行。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">hexo clean  </span><br><span class="line">hexo generate  </span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
+<p>一些常用命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">hexo new &quot;postName&quot; #新建文章  </span><br><span class="line">hexo new page &quot;pageName&quot; #新建页面  </span><br><span class="line">hexo generate #生成静态页面至public目录  </span><br><span class="line">hexo server #开启预览访问端口（默认端口4000，&apos;ctrl + c&apos;关闭server）  </span><br><span class="line">hexo deploy #将.deploy目录部署到GitHub  </span><br><span class="line">hexo help  #查看帮助  </span><br><span class="line">hexo version  #查看Hexo的版本</span><br></pre></td></tr></table></figure>
+<hr>
+<p>参考：  </p>
+<ol>
+<li><a href="http://www.jianshu.com/p/465830080ea9" target="_blank" rel="noopener">http://www.jianshu.com/p/465830080ea9</a>  </li>
+<li><a href="http://www.chinaz.com/web/2016/0105/491998.shtml" target="_blank" rel="noopener">http://www.chinaz.com/web/2016/0105/491998.shtml</a></li>
+</ol>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2019-04-25T09:01:06.601Z" itemprop="dateUpdated">2019-04-25 17:01:06</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="http://yangfan.site">
+            <img src="/uploads/me.jpg" alt="yangfan">
+            yangfan
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/博客/">博客</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/建站/">建站</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yangfan.site/2017/02/03/教你快速搭建个人博客/&title=《教你快速搭建个人博客》 — Yangfan's blog&pic=http://yangfan.site/uploads/me.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yangfan.site/2017/02/03/教你快速搭建个人博客/&title=《教你快速搭建个人博客》 — Yangfan's blog&source=html css js 前端 小程序" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yangfan.site/2017/02/03/教你快速搭建个人博客/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《教你快速搭建个人博客》 — Yangfan's blog&url=http://yangfan.site/2017/02/03/教你快速搭建个人博客/&via=http://yangfan.site" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yangfan.site/2017/02/03/教你快速搭建个人博客/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/02/18/网易云音乐播放器/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">HTML+CSS+JAVASCRIPT 网易云音乐播放器</h4>
+      </a>
+    </div>
+  
+
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "N85dVznr0Vh9jlIIvVLlxPxc-gzGzoHsz",
+            appKey: "ID0DznFMscpigUQk6S2RviUn",
+            avatar: "mm",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>yangfan &copy; 2018 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yangfan.site/2017/02/03/教你快速搭建个人博客/&title=《教你快速搭建个人博客》 — Yangfan's blog&pic=http://yangfan.site/uploads/me.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yangfan.site/2017/02/03/教你快速搭建个人博客/&title=《教你快速搭建个人博客》 — Yangfan's blog&source=html css js 前端 小程序" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yangfan.site/2017/02/03/教你快速搭建个人博客/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《教你快速搭建个人博客》 — Yangfan's blog&url=http://yangfan.site/2017/02/03/教你快速搭建个人博客/&via=http://yangfan.site" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yangfan.site/2017/02/03/教你快速搭建个人博客/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yangfan.site/2017/02/03/教你快速搭建个人博客/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '又好了！';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

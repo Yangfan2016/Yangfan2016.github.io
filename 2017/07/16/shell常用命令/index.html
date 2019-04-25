@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>shell常用命令 | Yangfan&#39;s blog | The site of the Yangfan2016</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="shell常用命令1 ls命令：列出文件 ls -la 列出当前目录下的所有文件和文件夹  ls a* 列出当前目录下所有以a字母开头的文件  ls -l *.txt 列出当前目录下所有后缀名为txt的文件 2 cp命令：复制cp a.txt b.txt 把文件a的内容复制到b文件 cp a.txt ./test  把文件a复制到text目录下 cp -a test test2 递归的把目录tes">
+<meta property="og:type" content="article">
+<meta property="og:title" content="shell常用命令">
+<meta property="og:url" content="http://yangfan.site/2017/07/16/shell常用命令/index.html">
+<meta property="og:site_name" content="Yangfan&#39;s blog">
+<meta property="og:description" content="shell常用命令1 ls命令：列出文件 ls -la 列出当前目录下的所有文件和文件夹  ls a* 列出当前目录下所有以a字母开头的文件  ls -l *.txt 列出当前目录下所有后缀名为txt的文件 2 cp命令：复制cp a.txt b.txt 把文件a的内容复制到b文件 cp a.txt ./test  把文件a复制到text目录下 cp -a test test2 递归的把目录tes">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-04-25T08:59:38.253Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="shell常用命令">
+<meta name="twitter:description" content="shell常用命令1 ls命令：列出文件 ls -la 列出当前目录下的所有文件和文件夹  ls a* 列出当前目录下所有以a字母开头的文件  ls -l *.txt 列出当前目录下所有后缀名为txt的文件 2 cp命令：复制cp a.txt b.txt 把文件a的内容复制到b文件 cp a.txt ./test  把文件a复制到text目录下 cp -a test test2 递归的把目录tes">
+    
+        <link rel="alternate" type="application/atom+xml" title="Yangfan&#39;s blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/uploads/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/uploads/me.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">yangfan</h5>
+          <a href="mailto:zhangh201601@gmail.com" title="zhangh201601@gmail.com" class="mail">zhangh201601@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Yangfan2016" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">shell常用命令</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">shell常用命令</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-07-16T11:59:04.000Z" itemprop="datePublished" class="page-time">
+  2017-07-16
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#shell常用命令"><span class="post-toc-number">1.</span> <span class="post-toc-text">shell常用命令</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-ls命令：列出文件"><span class="post-toc-number">1.0.0.1.</span> <span class="post-toc-text">1 ls命令：列出文件</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-cp命令：复制"><span class="post-toc-number">1.0.0.2.</span> <span class="post-toc-text">2 cp命令：复制</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-cat命令：查看-组合文件"><span class="post-toc-number">1.0.0.3.</span> <span class="post-toc-text">3  cat命令：查看 组合文件</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#4-touch命令：建立文件"><span class="post-toc-number">1.0.0.4.</span> <span class="post-toc-text">4  touch命令：建立文件</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#5-rm命令：删除文件"><span class="post-toc-number">1.0.0.5.</span> <span class="post-toc-text">5  rm命令：删除文件</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#6-mkdir命令：创建目录"><span class="post-toc-number">1.0.0.6.</span> <span class="post-toc-text">6  mkdir命令：创建目录</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#7-rmdir命令：删除目录"><span class="post-toc-number">1.0.0.7.</span> <span class="post-toc-text">7  rmdir命令：删除目录</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#8-echo、cat命令：添加内容"><span class="post-toc-number">1.0.0.8.</span> <span class="post-toc-text">8  echo、cat命令：添加内容</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#9-mv命令：移动-重命名文件"><span class="post-toc-number">1.0.0.9.</span> <span class="post-toc-text">9  mv命令：移动 重命名文件</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#10-cd命令：更换目录"><span class="post-toc-number">1.0.0.10.</span> <span class="post-toc-text">10  cd命令：更换目录</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#11-grep命令：搜索文件"><span class="post-toc-number">1.0.0.11.</span> <span class="post-toc-text">11  grep命令：搜索文件</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#12-find命令：查找文件和目录"><span class="post-toc-number">1.0.0.12.</span> <span class="post-toc-text">12  find命令：查找文件和目录</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#13-rz-sz命令：上传和下载文件"><span class="post-toc-number">1.0.0.13.</span> <span class="post-toc-text">13  rz sz命令：上传和下载文件</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#14-head命令：显示文件的前10行内容"><span class="post-toc-number">1.0.0.14.</span> <span class="post-toc-text">14  head命令：显示文件的前10行内容</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#15-tail命令：显示文件最后10行内容"><span class="post-toc-number">1.0.0.15.</span> <span class="post-toc-text">15  tail命令：显示文件最后10行内容</span></a></li></ol></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-shell常用命令"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">shell常用命令</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-07-16 19:59:04" datetime="2017-07-16T11:59:04.000Z"  itemprop="datePublished">2017-07-16</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="shell常用命令"><a href="#shell常用命令" class="headerlink" title="shell常用命令"></a>shell常用命令</h1><h4 id="1-ls命令：列出文件"><a href="#1-ls命令：列出文件" class="headerlink" title="1 ls命令：列出文件"></a>1 ls命令：列出文件</h4><p> <code>ls -la</code> 列出当前目录下的所有文件和文件夹</p>
+<p> <code>ls a*</code> 列出当前目录下所有以a字母开头的文件</p>
+<p> <code>ls -l *.txt</code> 列出当前目录下所有后缀名为txt的文件</p>
+<h4 id="2-cp命令：复制"><a href="#2-cp命令：复制" class="headerlink" title="2 cp命令：复制"></a>2 cp命令：复制</h4><p><code>cp a.txt b.txt</code> 把文件a的内容复制到b文件</p>
+<p><code>cp a.txt ./test</code>  把文件a复制到text目录下</p>
+<p><code>cp -a test test2</code> 递归的把目录test下所有文件（包括隐藏的文件）复制到新的目录 test2</p>
+<h4 id="3-cat命令：查看-组合文件"><a href="#3-cat命令：查看-组合文件" class="headerlink" title="3  cat命令：查看 组合文件"></a>3  cat命令：查看 组合文件</h4><p><code>cat a.txt</code> 查看文件的内容</p>
+<p><code>cat a.txt &gt;&gt; b.txt</code> 把a文件的内容组合到b文件内容的末尾</p>
+<p><code>cat -n a.txt</code> 查看文件并给文件标上行号</p>
+<h4 id="4-touch命令：建立文件"><a href="#4-touch命令：建立文件" class="headerlink" title="4  touch命令：建立文件"></a>4  touch命令：建立文件</h4><p><code>touch a.txt</code> 建立一个名为a的txt类型文件</p>
+<h4 id="5-rm命令：删除文件"><a href="#5-rm命令：删除文件" class="headerlink" title="5  rm命令：删除文件"></a>5  rm命令：删除文件</h4><p><code>rm -rf a.txt</code> 强制删除文件a.txt</p>
+<p><code>rm -i a.txt</code> 删除文件前会有提示是否确定删除该文件</p>
+<h4 id="6-mkdir命令：创建目录"><a href="#6-mkdir命令：创建目录" class="headerlink" title="6  mkdir命令：创建目录"></a>6  mkdir命令：创建目录</h4><p><code>mkdir test</code> 创建一个名为test的目录</p>
+<h4 id="7-rmdir命令：删除目录"><a href="#7-rmdir命令：删除目录" class="headerlink" title="7  rmdir命令：删除目录"></a>7  rmdir命令：删除目录</h4><p><code>rmdir test</code> 删除一个目录</p>
+<h4 id="8-echo、cat命令：添加内容"><a href="#8-echo、cat命令：添加内容" class="headerlink" title="8  echo、cat命令：添加内容"></a>8  echo、cat命令：添加内容</h4><p><code>echo “hello world!” &gt;&gt; a.txt</code> 添加内容到文件a里面</p>
+<p><code>cat &lt;&lt;EOF&gt;&gt; a.txt</code> 可以添加多行语句到文件本身内容的末尾</p>
+<p><code>cat &lt;&lt;EOF&gt; a.txt</code> 添加内容到文件并覆盖到原始的内容</p>
+<h4 id="9-mv命令：移动-重命名文件"><a href="#9-mv命令：移动-重命名文件" class="headerlink" title="9  mv命令：移动 重命名文件"></a>9  mv命令：移动 重命名文件</h4><p><code>mv a.txt b.txt</code> 文件a重新命名为b</p>
+<p><code>mv a.txt ./test</code> 把文件移动到一个目录下</p>
+<h4 id="10-cd命令：更换目录"><a href="#10-cd命令：更换目录" class="headerlink" title="10  cd命令：更换目录"></a>10  cd命令：更换目录</h4><p><code>cd ~</code>  切换到用户目录</p>
+<p><code>cd ..</code> 返回到上一层目录</p>
+<p><code>cd ../..</code> 返回到上二层目录</p>
+<h4 id="11-grep命令：搜索文件"><a href="#11-grep命令：搜索文件" class="headerlink" title="11  grep命令：搜索文件"></a>11  grep命令：搜索文件</h4><p><code>ls -la | grep a.txt</code> 搜索a.txt文件</p>
+<h4 id="12-find命令：查找文件和目录"><a href="#12-find命令：查找文件和目录" class="headerlink" title="12  find命令：查找文件和目录"></a>12  find命令：查找文件和目录</h4><p><code>find filename</code> 查找当前目录下是否有该文件/目录</p>
+<h4 id="13-rz-sz命令：上传和下载文件"><a href="#13-rz-sz命令：上传和下载文件" class="headerlink" title="13  rz sz命令：上传和下载文件"></a>13  rz sz命令：上传和下载文件</h4><h4 id="14-head命令：显示文件的前10行内容"><a href="#14-head命令：显示文件的前10行内容" class="headerlink" title="14  head命令：显示文件的前10行内容"></a>14  head命令：显示文件的前10行内容</h4><h4 id="15-tail命令：显示文件最后10行内容"><a href="#15-tail命令：显示文件最后10行内容" class="headerlink" title="15  tail命令：显示文件最后10行内容"></a>15  tail命令：显示文件最后10行内容</h4>
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2019-04-25T08:59:38.253Z" itemprop="dateUpdated">2019-04-25 16:59:38</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="http://yangfan.site">
+            <img src="/uploads/me.jpg" alt="yangfan">
+            yangfan
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yangfan.site/2017/07/16/shell常用命令/&title=《shell常用命令》 — Yangfan's blog&pic=http://yangfan.site/uploads/me.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yangfan.site/2017/07/16/shell常用命令/&title=《shell常用命令》 — Yangfan's blog&source=html css js 前端 小程序" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yangfan.site/2017/07/16/shell常用命令/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《shell常用命令》 — Yangfan's blog&url=http://yangfan.site/2017/07/16/shell常用命令/&via=http://yangfan.site" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yangfan.site/2017/07/16/shell常用命令/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/09/20/转-如何监听JS变量的变化/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">[转]如何监听JS变量的变化</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/03/07/高德地图 Javascript API 入门（八）/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">高德地图 Javascript API 入门（八）</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "N85dVznr0Vh9jlIIvVLlxPxc-gzGzoHsz",
+            appKey: "ID0DznFMscpigUQk6S2RviUn",
+            avatar: "mm",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>yangfan &copy; 2018 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yangfan.site/2017/07/16/shell常用命令/&title=《shell常用命令》 — Yangfan's blog&pic=http://yangfan.site/uploads/me.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yangfan.site/2017/07/16/shell常用命令/&title=《shell常用命令》 — Yangfan's blog&source=html css js 前端 小程序" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yangfan.site/2017/07/16/shell常用命令/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《shell常用命令》 — Yangfan's blog&url=http://yangfan.site/2017/07/16/shell常用命令/&via=http://yangfan.site" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yangfan.site/2017/07/16/shell常用命令/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yangfan.site/2017/07/16/shell常用命令/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '又好了！';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

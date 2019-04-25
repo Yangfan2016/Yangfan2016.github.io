@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>[转]如何监听DOM树改变 | Yangfan&#39;s blog | The site of the Yangfan2016</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="如何监听DOM树改变[转]读前必看MutationObserver MDNhttps://developer.mozilla.org/zh-CN/docs/Web/API/MutationObserver      Mutation Observer API   http://javascript.ruanyifeng.com/dom/mutationobserver.html#toc10 1 概">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[转]如何监听DOM树改变">
+<meta property="og:url" content="http://yangfan.site/2017/11/08/转-如何监听DOM树改变/index.html">
+<meta property="og:site_name" content="Yangfan&#39;s blog">
+<meta property="og:description" content="如何监听DOM树改变[转]读前必看MutationObserver MDNhttps://developer.mozilla.org/zh-CN/docs/Web/API/MutationObserver      Mutation Observer API   http://javascript.ruanyifeng.com/dom/mutationobserver.html#toc10 1 概">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-04-25T09:00:43.702Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[转]如何监听DOM树改变">
+<meta name="twitter:description" content="如何监听DOM树改变[转]读前必看MutationObserver MDNhttps://developer.mozilla.org/zh-CN/docs/Web/API/MutationObserver      Mutation Observer API   http://javascript.ruanyifeng.com/dom/mutationobserver.html#toc10 1 概">
+    
+        <link rel="alternate" type="application/atom+xml" title="Yangfan&#39;s blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/uploads/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/uploads/me.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">yangfan</h5>
+          <a href="mailto:zhangh201601@gmail.com" title="zhangh201601@gmail.com" class="mail">zhangh201601@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Yangfan2016" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">[转]如何监听DOM树改变</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">[转]如何监听DOM树改变</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-11-08T02:06:44.000Z" itemprop="datePublished" class="page-time">
+  2017-11-08
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#如何监听DOM树改变-转"><span class="post-toc-number">1.</span> <span class="post-toc-text">如何监听DOM树改变[转]</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#读前必看"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">读前必看</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-概述"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">1 概述</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#它简单的用法如下："><span class="post-toc-number">1.2.1.</span> <span class="post-toc-text">它简单的用法如下：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Mutation-事件列表"><span class="post-toc-number">1.2.2.</span> <span class="post-toc-text">Mutation 事件列表</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Mutation-Events遇到的问题"><span class="post-toc-number">1.2.3.</span> <span class="post-toc-text">Mutation Events遇到的问题</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#兼容性"><span class="post-toc-number">1.2.4.</span> <span class="post-toc-text">兼容性</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-方法"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">2 方法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#构造函数"><span class="post-toc-number">1.3.1.</span> <span class="post-toc-text">构造函数</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-使用实例"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">3 使用实例</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-转-如何监听DOM树改变"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">[转]如何监听DOM树改变</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-11-08 10:06:44" datetime="2017-11-08T02:06:44.000Z"  itemprop="datePublished">2017-11-08</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="如何监听DOM树改变-转"><a href="#如何监听DOM树改变-转" class="headerlink" title="如何监听DOM树改变[转]"></a>如何监听DOM树改变[转]</h1><h2 id="读前必看"><a href="#读前必看" class="headerlink" title="读前必看"></a>读前必看</h2><p>MutationObserver MDN<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/MutationObserver" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/API/MutationObserver</a>     </p>
+<p>Mutation Observer API   <a href="http://javascript.ruanyifeng.com/dom/mutationobserver.html#toc10" target="_blank" rel="noopener">http://javascript.ruanyifeng.com/dom/mutationobserver.html#toc10</a></p>
+<h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1 概述"></a>1 概述</h2><p>Mutation observer 是用于代替 Mutation events 作为观察DOM树结构发生变化时，做出相应处理的API。为什么要使用mutation observer 去代替 mutation events 呢，我们先了解一下mutation events</p>
+<p>Mutation Events</p>
+<p>Mutation events 是在 DOM3中定义，用于监听DOM树结构变化的事件</p>
+<h3 id="它简单的用法如下："><a href="#它简单的用法如下：" class="headerlink" title="它简单的用法如下："></a>它简单的用法如下：</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'list'</span>).addEventListener(<span class="string">"DOMSubtreeModified"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'列表中子元素被修改'</span>);</span><br><span class="line">&#125;, <span class="literal">false</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="Mutation-事件列表"><a href="#Mutation-事件列表" class="headerlink" title="Mutation 事件列表"></a>Mutation 事件列表</h3><p>DOMAttrModified<br>DOMAttributeNameChanged<br>DOMCharacterDataModified<br>DOMElementNameChanged<br>DOMNodeInserted<br>DOMNodeRemoved<br>DOMNodeInsertedIntoDocument<br>DOMSubtreeModified  </p>
+<p>其中DOMNodeRemoved，DOMNodeInserted 和 DOMSubtreeModified 分别用于 监听元素子项的删除，新增，修改(包括删除和新增），<br>DOMAttrModified 是监听元素属性的修改，并且能够提供具体的修改动作。</p>
+<h3 id="Mutation-Events遇到的问题"><a href="#Mutation-Events遇到的问题" class="headerlink" title="Mutation Events遇到的问题"></a>Mutation Events遇到的问题</h3><p>浏览器兼容性问题<br>IE9不支持Mutation Events<br>Webkit内核不支持DOMAttrModified特性，<br>DOMElementNameChanged和DOMAttributeNameChanged 在Firefox上不被支持。<br>性能问题</p>
+<ol>
+<li>Mutation Events是同步执行的，它的每次调用，都需要从事件队列中取出事件，执行，然后事件队列中移除，期间需要移动队列元素。如果事件触发的较为频繁的话，每一次都需要执行上面的这些步骤，那么浏览器会被拖慢。   </li>
+<li>Mutation Events本身是事件，所以捕获是采用的是事件冒泡的形式，如果冒泡捕获期间又触发了其他的MutationEvents的话，很有可能就会导致阻塞Javascript线程，甚至导致浏览器崩溃。</li>
+</ol>
+<p><code>Mutation Observer</code></p>
+<p>Mutation Observer 是在DOM4中定义的，用于替代 mutation events 的新API，它的不同于events的是，所有监听操作以及相应处理都是在其他脚本执行完成之后异步执行的，并且是所以变动触发之后，将变得记录在数组中，统一进行回调的，也就是说，当你使用observer监听多个DOM变化时，并且这若干个DOM发生了变化，那么observer会将变化记录到变化数组中，等待一起都结束了，然后一次性的从变化数组中执行其对应的回调函数。</p>
+<p>Mutation Observer 的浏览器兼容范围</p>
+<h3 id="兼容性"><a href="#兼容性" class="headerlink" title="兼容性"></a>兼容性</h3><h2 id="2-方法"><a href="#2-方法" class="headerlink" title="2 方法"></a>2 方法</h2><h3 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h3><p>用来实例化一个Mutation观察者对象，其中的参数是一个回调函数，它是会在指定的DOM节点发送变化后，执行的函数，并且会被传入两个参数，一个是变化记录数组(MutationRecord)，另一个是观察者对象本身</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">new</span> MutationObserver(<span class="function"><span class="keyword">function</span>(<span class="params">records, itself</span>)</span>&#123;&#125;);</span><br></pre></td></tr></table></figure>
+<p><code>observe</code></p>
+<p>在观察者对象上，注册需要观察的DOM节点，以及相应的参数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">void</span> observe(Node target, optional MutationObserverInit options)</span><br></pre></td></tr></table></figure>
+<p>其中的可选参数 MutationObserverInit的属性如下：</p>
+<p><code>childLIst</code> 观察目标节点的子节点的新增和删除。<br><code>attributes</code> 观察目标节点的属性节点(新增或删除了某个属性,以及某个属性的属性值发生了变化)。<br><code>characterData</code> 如果目标节点为characterData节点(一种抽象接口,具体可以为文本节点,注释节点,以及处理指令节点)时,也要观察该节点的文本内容是否发生变化<br><code>subtree</code> 观察目标节点的所有后代节点(观察目标节点所包含的整棵DOM树上的上述三种节点变化)<br><code>attributeOldValue</code> 在attributes属性已经设为true的前提下, 将发生变化的属性节点之前的属性值记录下来(记录到下面MutationRecord对象的oldValue属性中)<br><code>characterDataOldValue</code> 在characterData属性已经设为true的前提下,将发生变化characterData节点之前的文本内容记录下来(记录到下面MutationRecord对象的oldValue属性中)<br><code>attributeFilter</code> 一个属性名数组(不需要指定命名空间),只有该数组中包含的属性名发生变化时才会被观察到,其他名称的属性发生变化后会被忽略想要设置那些删选参数的话，<br>如果想要使用哪个参数的话，就将其值设定为true  </p>
+<p><code>disconnect</code></p>
+<p>暂定在观察者对象上设置的节点的变化监听，直到重新调用observe方法</p>
+<p><code>takeRecords</code></p>
+<p>在观察者对象上调用takeRecords 会返回 其观察节点上的变化记录(MutationRecord)数组<br>其中MutationRecord数组也会作为，观察者初始化时的回调函数的第一个参数<br>其包含的属性如下：</p>
+<p><code>type</code> 如果是属性发生变化,则返回attributes.如果是一个CharacterData节点发生变化,则返回characterData,如果是目标节点的某个子节点发生了变化,则返回childList.<br><code>target</code> 返回此次变化影响到的节点,具体返回那种节点类型是根据type值的不同而不同的,如果type为attributes,则返回发生变化的属性节点所在的元素节点,如果type值为characterData,则返回发生变化的这个characterData节点.如果type为childList,则返回发生变化的子节点的父节点.<br><code>addedNodes</code> 返回被添加的节点<br><code>removedNodes</code> 返回被删除的节点<br><code>previousSibling</code> 返回被添加或被删除的节点的前一个兄弟节点<br><code>nextSibling</code> 返回被添加或被删除的节点的后一个兄弟节点<br><code>attributeName</code> 返回变更属性的本地名称<br><code>oldValue</code> 根据type值的不同,返回的值也会不同.如果type为attributes,则返回该属性变化之前的属性值.如果type为characterData,则返回该节点变化之前的文本数据.如果type为childList,则返回null   </p>
+<h2 id="3-使用实例"><a href="#3-使用实例" class="headerlink" title="3 使用实例"></a>3 使用实例</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// Firefox和Chrome早期版本中带有前缀</span></span><br><span class="line"><span class="keyword">var</span> MutationObserver = <span class="built_in">window</span>.MutationObserver || <span class="built_in">window</span>.WebKitMutationObserver || <span class="built_in">window</span>.MozMutationObserver</span><br><span class="line"><span class="comment">// 选择目标节点</span></span><br><span class="line"><span class="keyword">var</span> target = <span class="built_in">document</span>.querySelector(<span class="string">'#some-id'</span>); </span><br><span class="line"><span class="comment">// 创建观察者对象</span></span><br><span class="line"><span class="keyword">var</span> observer = <span class="keyword">new</span> MutationObserver(<span class="function"><span class="keyword">function</span>(<span class="params">mutations</span>) </span>&#123;  </span><br><span class="line">  mutations.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">mutation</span>) </span>&#123; </span><br><span class="line">    <span class="built_in">console</span>.log(mutation.type); </span><br><span class="line">  &#125;); </span><br><span class="line">&#125;); </span><br><span class="line"><span class="comment">// 配置观察选项:</span></span><br><span class="line"><span class="keyword">var</span> config = &#123; <span class="attr">attributes</span>: <span class="literal">true</span>, <span class="attr">childList</span>: <span class="literal">true</span>, <span class="attr">characterData</span>: <span class="literal">true</span> &#125; </span><br><span class="line"><span class="comment">// 传入目标节点和观察选项</span></span><br><span class="line">observer.observe(target, config); </span><br><span class="line"><span class="comment">// 随后,你还可以停止观察</span></span><br><span class="line">observer.disconnect();</span><br></pre></td></tr></table></figure>
+<p>原文：<a href="http://www.jianshu.com/p/b5c9e4c7b1e1" target="_blank" rel="noopener">http://www.jianshu.com/p/b5c9e4c7b1e1</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2019-04-25T09:00:43.702Z" itemprop="dateUpdated">2019-04-25 17:00:43</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="http://yangfan.site">
+            <img src="/uploads/me.jpg" alt="yangfan">
+            yangfan
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yangfan.site/2017/11/08/转-如何监听DOM树改变/&title=《[转]如何监听DOM树改变》 — Yangfan's blog&pic=http://yangfan.site/uploads/me.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yangfan.site/2017/11/08/转-如何监听DOM树改变/&title=《[转]如何监听DOM树改变》 — Yangfan's blog&source=html css js 前端 小程序" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yangfan.site/2017/11/08/转-如何监听DOM树改变/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《[转]如何监听DOM树改变》 — Yangfan's blog&url=http://yangfan.site/2017/11/08/转-如何监听DOM树改变/&via=http://yangfan.site" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yangfan.site/2017/11/08/转-如何监听DOM树改变/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/01/12/Vue工程化开发（一）/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Vue工程化开发（一）</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/10/12/axios-入门/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">axios 入门</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "N85dVznr0Vh9jlIIvVLlxPxc-gzGzoHsz",
+            appKey: "ID0DznFMscpigUQk6S2RviUn",
+            avatar: "mm",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>yangfan &copy; 2018 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yangfan.site/2017/11/08/转-如何监听DOM树改变/&title=《[转]如何监听DOM树改变》 — Yangfan's blog&pic=http://yangfan.site/uploads/me.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yangfan.site/2017/11/08/转-如何监听DOM树改变/&title=《[转]如何监听DOM树改变》 — Yangfan's blog&source=html css js 前端 小程序" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yangfan.site/2017/11/08/转-如何监听DOM树改变/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《[转]如何监听DOM树改变》 — Yangfan's blog&url=http://yangfan.site/2017/11/08/转-如何监听DOM树改变/&via=http://yangfan.site" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yangfan.site/2017/11/08/转-如何监听DOM树改变/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yangfan.site/2017/11/08/转-如何监听DOM树改变/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '又好了！';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

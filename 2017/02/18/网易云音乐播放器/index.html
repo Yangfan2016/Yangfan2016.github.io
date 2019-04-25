@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>HTML+CSS+JAVASCRIPT 网易云音乐播放器 | Yangfan&#39;s blog | The site of the Yangfan2016</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="前端,音乐播放器">
+    <meta name="description" content="HTML+CSS+JAVASCRIPT 高仿低配网页版网易云音乐播放器                                                                                             app-poster              前言没有使用任何框架，只是想用最简单纯js的代码实现下    前台: Javascript+jQ">
+<meta name="keywords" content="前端,音乐播放器">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTML+CSS+JAVASCRIPT 网易云音乐播放器">
+<meta property="og:url" content="http://yangfan.site/2017/02/18/网易云音乐播放器/index.html">
+<meta property="og:site_name" content="Yangfan&#39;s blog">
+<meta property="og:description" content="HTML+CSS+JAVASCRIPT 高仿低配网页版网易云音乐播放器                                                                                             app-poster              前言没有使用任何框架，只是想用最简单纯js的代码实现下    前台: Javascript+jQ">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yangfan2016/PicBed/master/Blog/cloud-music-pc.gif">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yangfan2016/PicBed/master/Blog/cloud-music-pc-wins003.JPG">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yangfan2016/PicBed/master/Blog/cloud-music-pc-wins001.JPG">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yangfan2016/PicBed/master/Blog/cloud-music-pc-wins002.JPG">
+<meta property="og:updated_time" content="2019-04-25T09:00:46.714Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HTML+CSS+JAVASCRIPT 网易云音乐播放器">
+<meta name="twitter:description" content="HTML+CSS+JAVASCRIPT 高仿低配网页版网易云音乐播放器                                                                                             app-poster              前言没有使用任何框架，只是想用最简单纯js的代码实现下    前台: Javascript+jQ">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Yangfan2016/PicBed/master/Blog/cloud-music-pc.gif">
+    
+        <link rel="alternate" type="application/atom+xml" title="Yangfan&#39;s blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/uploads/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/uploads/me.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">yangfan</h5>
+          <a href="mailto:zhangh201601@gmail.com" title="zhangh201601@gmail.com" class="mail">zhangh201601@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Yangfan2016" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">HTML+CSS+JAVASCRIPT 网易云音乐播放器</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">HTML+CSS+JAVASCRIPT 网易云音乐播放器</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-02-18T12:15:55.000Z" itemprop="datePublished" class="page-time">
+  2017-02-18
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#HTML-CSS-JAVASCRIPT-高仿低配网页版网易云音乐播放器"><span class="post-toc-number">1.</span> <span class="post-toc-text">HTML+CSS+JAVASCRIPT 高仿低配网页版网易云音乐播放器</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#写在前头的话"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">写在前头的话</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#本播放器要干什么呢"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">本播放器要干什么呢</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#本播放器还能干什么呢"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">本播放器还能干什么呢</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#那闲话不多说，开整吧（原谅一个理科生的表达能力）"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">那闲话不多说，开整吧（原谅一个理科生的表达能力）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#播放器"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">播放器</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#初始化歌单列表"><span class="post-toc-number">1.7.</span> <span class="post-toc-text">初始化歌单列表</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#搜索歌曲"><span class="post-toc-number">1.8.</span> <span class="post-toc-text">搜索歌曲</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#歌曲详情页"><span class="post-toc-number">1.9.</span> <span class="post-toc-text">歌曲详情页</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#先写到这里吧"><span class="post-toc-number">1.10.</span> <span class="post-toc-text">先写到这里吧</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#附录"><span class="post-toc-number">1.11.</span> <span class="post-toc-text">附录</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#大佬，给个start呗"><span class="post-toc-number">1.11.1.</span> <span class="post-toc-text">大佬，给个start呗^_^</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-网易云音乐播放器"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">HTML+CSS+JAVASCRIPT 网易云音乐播放器</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-02-18 20:15:55" datetime="2017-02-18T12:15:55.000Z"  itemprop="datePublished">2017-02-18</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="HTML-CSS-JAVASCRIPT-高仿低配网页版网易云音乐播放器"><a href="#HTML-CSS-JAVASCRIPT-高仿低配网页版网易云音乐播放器" class="headerlink" title="HTML+CSS+JAVASCRIPT 高仿低配网页版网易云音乐播放器"></a>HTML+CSS+JAVASCRIPT 高仿低配网页版网易云音乐播放器</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/Yangfan2016/PicBed/master/Blog/cloud-music-pc.gif" alt="app-poster" title="">
+                </div>
+                <div class="image-caption">app-poster</div>
+            </figure>
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>没有使用任何框架，只是想用最简单纯js的代码实现下  </p>
+<ul>
+<li>前台: Javascript+jQuery  </li>
+<li>后台: php/nodejs（php是参考网上的例子写的，nodejs代码是在php的基础上重新写的）  </li>
+<li>还有她的姊妹篇（网易云音乐移动端），请查看这里  <a href="https://github.com/Yangfan2016/cloud-music-mobile#cloud-music-mobile" target="_blank" rel="noopener">https://github.com/Yangfan2016/cloud-music-mobile#cloud-music-mobile</a></li>
+</ul>
+<h3 id="写在前头的话"><a href="#写在前头的话" class="headerlink" title="写在前头的话"></a>写在前头的话</h3><p>鄙人野生前端一只，gis专业，自学前端已经一年多了，为什么要写个音乐播放器呢？原因有两个：  </p>
+<ol>
+<li>本人是网易云音乐的重度用户，近乎疯狂  </li>
+<li>自学了前端这么久了，也是想检验下自己的成果吧</li>
+</ol>
+<h3 id="本播放器要干什么呢"><a href="#本播放器要干什么呢" class="headerlink" title="本播放器要干什么呢"></a>本播放器要干什么呢</h3><ol>
+<li>简单的 <strong>播放</strong> <strong>暂停</strong> 那当然不能少</li>
+<li>切换歌曲，<strong>上一首</strong> 、 <strong>下一首</strong> 也得有</li>
+<li><strong>进度条</strong> ，这个有点复杂，本来想用 input[range] 写，但是样式不好改，自己用多个div代替吧</li>
+<li>进度条都有了，<strong>音量调节</strong> 不能少吧，毕竟他俩UI样式差不多，照猫画虎呗</li>
+<li>再加一个 <strong>静音功能</strong> ，省的音乐太大声，邻居找茬哦(⊙o⊙)</li>
+</ol>
+<h3 id="本播放器还能干什么呢"><a href="#本播放器还能干什么呢" class="headerlink" title="本播放器还能干什么呢"></a>本播放器还能干什么呢</h3><ol>
+<li><strong>歌词滚动</strong> 有木有</li>
+<li><strong>搜索单曲</strong> </li>
+<li><strong>指定歌单播放</strong>  这个需要知道歌单的 id 不是很好找，（得上<a href="http://music.163.com" target="_blank" rel="noopener">网易云音乐官网</a>登录自己的账号，找到歌单，点进去，抬头看URL 里最后的 id 参数）暂时用的是“我喜欢的音乐”（歌单）的id</li>
+</ol>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/Yangfan2016/PicBed/master/Blog/cloud-music-pc-wins003.JPG" alt="music-163" title="">
+                </div>
+                <div class="image-caption">music-163</div>
+            </figure>
+<h3 id="那闲话不多说，开整吧（原谅一个理科生的表达能力）"><a href="#那闲话不多说，开整吧（原谅一个理科生的表达能力）" class="headerlink" title="那闲话不多说，开整吧（原谅一个理科生的表达能力）"></a>那闲话不多说，开整吧（原谅一个理科生的表达能力）</h3><p>我模仿的是网易云音乐的PC端，所用到的技术都是前端的基本技术 HTML、CSS、JAVASCRIPT<br>由于我是自学的，没有那么多规矩，我这个人看到是我感兴趣的，我立马就会去做，这个播放器也不例外。</p>
+<blockquote>
+<p>首先先的将它“画”出来（HTML+CSS）</p>
+</blockquote>
+<p>我仔细看了下网易云音乐PC端的布局，大致分为四部分，四个模块</p>
+<ol>
+<li>顶部菜单（顶部导航，叫什么名无所谓了）</li>
+<li>底部播放条 这是播放器的核心</li>
+<li>主体内容在右边 歌单的详细信息和歌曲列表</li>
+<li>左侧是导航和歌单组</li>
+<li>左下角还有一个小窗，显示正在播放歌曲的简要信息，点击小窗 展开一个歌曲详情页</li>
+</ol>
+<p>无图不真相<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/Yangfan2016/PicBed/master/Blog/cloud-music-pc-wins001.JPG" alt="pc-music" title="">
+                </div>
+                <div class="image-caption">pc-music</div>
+            </figure><br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/Yangfan2016/PicBed/master/Blog/cloud-music-pc-wins002.JPG" alt="pc-music" title="">
+                </div>
+                <div class="image-caption">pc-music</div>
+            </figure></p>
+<blockquote>
+<p>然后呢，写页面逻辑JavaScript</p>
+</blockquote>
+<h3 id="播放器"><a href="#播放器" class="headerlink" title="播放器"></a>播放器</h3><ol>
+<li>播放器的控制按钮<br>播放(暂停)按钮，这个可以通过<code>play()</code>和<code>pause()</code>方法实现</li>
+<li>进度条<br>这个通过监听<code>timeupdate</code>事件，实施更新当前播放位置，<br>通过监听鼠标移动事件，改变进度条的长度</li>
+<li>静音按钮，可以通过<code>audio.muted=true</code>实现</li>
+</ol>
+<h3 id="初始化歌单列表"><a href="#初始化歌单列表" class="headerlink" title="初始化歌单列表"></a>初始化歌单列表</h3><p>网易云音乐获取歌单的API<br><a href="http://music.163.com/api/playlist/detail?id=[id]" target="_blank" rel="noopener">http://music.163.com/api/playlist/detail?id=[id]</a></p>
+<pre><code>id 歌单id
+</code></pre><p>因为涉及到跨域问题。暂时我前台这边又没有办法跨域，所以参考了网上的代码，<del>写个PHP做代理</del> （2018-09-14更新：现在代码已改为Nodejs做代理服务），这样就不存在跨域问题了。<br>获取到歌单数据后，重新渲染下DOM</p>
+<h3 id="搜索歌曲"><a href="#搜索歌曲" class="headerlink" title="搜索歌曲"></a>搜索歌曲</h3><p>网易云音乐获取歌曲的API<br><a href="http://s.music.163.com/search/get?s=[songname]&amp;type=1&amp;limit=10" target="_blank" rel="noopener">http://s.music.163.com/search/get?s=[songname]&amp;type=1&amp;limit=10</a></p>
+<pre><code>s           搜索内容
+type        搜索类型
+limit       搜索返回结果数
+</code></pre><h3 id="歌曲详情页"><a href="#歌曲详情页" class="headerlink" title="歌曲详情页"></a>歌曲详情页</h3><p>主要是歌词和歌词滚动</p>
+<p>网易云音乐获取歌词API<br><a href="http://music.163.com/api/song/lyric?os=pc&amp;id=[id]" target="_blank" rel="noopener">http://music.163.com/api/song/lyric?os=pc&amp;id=[id]</a></p>
+<pre><code>id 歌曲id
+</code></pre><p>歌词滚动，先把获取到的歌词数据分割成时间点和歌词两部分，将这两部分存入dataset中，<br>通过监听timeupdate事件，判断和当前播放时间相近的歌词，记录它的getBoundingClient()的top值，将滚动条设置到指定位置 例如：<code>ele.srcollTop=100;</code></p>
+<h3 id="先写到这里吧"><a href="#先写到这里吧" class="headerlink" title="先写到这里吧"></a>先写到这里吧</h3><p>总结能力太差了，原谅理科生的无奈</p>
+<h3 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h3><p><a href="https://github.com/Yangfan2016/cloud-music-web" target="_blank" rel="noopener">完整源码，点击查看</a><br><a href="https://github.com/Yangfan2016/cloud-music-web/tree/master/server" target="_blank" rel="noopener">后台代码，点击查看</a></p>
+<p>此文源自我的<a href="https://yangfan2016.github.io/2017/02/18/%E7%BD%91%E6%98%93%E4%BA%91%E9%9F%B3%E4%B9%90%E6%92%AD%E6%94%BE%E5%99%A8/" target="_blank" rel="noopener">博客</a></p>
+<h4 id="大佬，给个start呗"><a href="#大佬，给个start呗" class="headerlink" title="大佬，给个start呗^_^"></a>大佬，给个<a href="https://github.com/Yangfan2016/cloud-music-web" target="_blank" rel="noopener">start</a>呗^_^</h4>
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2019-04-25T09:00:46.714Z" itemprop="dateUpdated">2019-04-25 17:00:46</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="http://yangfan.site">
+            <img src="/uploads/me.jpg" alt="yangfan">
+            yangfan
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/音乐播放器/">音乐播放器</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yangfan.site/2017/02/18/网易云音乐播放器/&title=《HTML+CSS+JAVASCRIPT 网易云音乐播放器》 — Yangfan's blog&pic=http://yangfan.site/uploads/me.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yangfan.site/2017/02/18/网易云音乐播放器/&title=《HTML+CSS+JAVASCRIPT 网易云音乐播放器》 — Yangfan's blog&source=html css js 前端 小程序" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yangfan.site/2017/02/18/网易云音乐播放器/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《HTML+CSS+JAVASCRIPT 网易云音乐播放器》 — Yangfan's blog&url=http://yangfan.site/2017/02/18/网易云音乐播放器/&via=http://yangfan.site" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yangfan.site/2017/02/18/网易云音乐播放器/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/02/20/高德地图 Javascript API 入门（一）/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">高德地图 Javascript API 入门（一）</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/02/03/教你快速搭建个人博客/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">教你快速搭建个人博客</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "N85dVznr0Vh9jlIIvVLlxPxc-gzGzoHsz",
+            appKey: "ID0DznFMscpigUQk6S2RviUn",
+            avatar: "mm",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>yangfan &copy; 2018 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yangfan.site/2017/02/18/网易云音乐播放器/&title=《HTML+CSS+JAVASCRIPT 网易云音乐播放器》 — Yangfan's blog&pic=http://yangfan.site/uploads/me.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yangfan.site/2017/02/18/网易云音乐播放器/&title=《HTML+CSS+JAVASCRIPT 网易云音乐播放器》 — Yangfan's blog&source=html css js 前端 小程序" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yangfan.site/2017/02/18/网易云音乐播放器/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《HTML+CSS+JAVASCRIPT 网易云音乐播放器》 — Yangfan's blog&url=http://yangfan.site/2017/02/18/网易云音乐播放器/&via=http://yangfan.site" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yangfan.site/2017/02/18/网易云音乐播放器/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yangfan.site/2017/02/18/网易云音乐播放器/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '又好了！';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

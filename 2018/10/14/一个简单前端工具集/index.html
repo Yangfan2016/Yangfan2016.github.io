@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>一个简单前端工具集-yanjs | Yangfan&#39;s blog | The site of the Yangfan2016</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="一个简单前端工具集-yanjs This is just a common toolkit for the Front End  安装使用 Install 1$ npm install yanjs  Example 1var yanjs = require(&apos;yanjs&apos;);  Documentation使用文档   造轮子的初衷现在的前端发展正是百花齐放的时代，各种框架、各种库、各种插件层出不穷">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一个简单前端工具集-yanjs">
+<meta property="og:url" content="http://yangfan.site/2018/10/14/一个简单前端工具集/index.html">
+<meta property="og:site_name" content="Yangfan&#39;s blog">
+<meta property="og:description" content="一个简单前端工具集-yanjs This is just a common toolkit for the Front End  安装使用 Install 1$ npm install yanjs  Example 1var yanjs = require(&apos;yanjs&apos;);  Documentation使用文档   造轮子的初衷现在的前端发展正是百花齐放的时代，各种框架、各种库、各种插件层出不穷">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-04-25T09:01:25.711Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="一个简单前端工具集-yanjs">
+<meta name="twitter:description" content="一个简单前端工具集-yanjs This is just a common toolkit for the Front End  安装使用 Install 1$ npm install yanjs  Example 1var yanjs = require(&apos;yanjs&apos;);  Documentation使用文档   造轮子的初衷现在的前端发展正是百花齐放的时代，各种框架、各种库、各种插件层出不穷">
+    
+        <link rel="alternate" type="application/atom+xml" title="Yangfan&#39;s blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/uploads/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/uploads/me.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">yangfan</h5>
+          <a href="mailto:zhangh201601@gmail.com" title="zhangh201601@gmail.com" class="mail">zhangh201601@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Yangfan2016" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">一个简单前端工具集-yanjs</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">一个简单前端工具集-yanjs</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-10-14T06:59:18.000Z" itemprop="datePublished" class="page-time">
+  2018-10-14
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#一个简单前端工具集-yanjs"><span class="post-toc-number">1.</span> <span class="post-toc-text">一个简单前端工具集-yanjs</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装使用"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">安装使用</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#造轮子的初衷"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">造轮子的初衷</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#开发流程"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">开发流程</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#开发心得"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">开发心得</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#碎碎念"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">碎碎念</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-一个简单前端工具集"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">一个简单前端工具集-yanjs</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-10-14 14:59:18" datetime="2018-10-14T06:59:18.000Z"  itemprop="datePublished">2018-10-14</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="一个简单前端工具集-yanjs"><a href="#一个简单前端工具集-yanjs" class="headerlink" title="一个简单前端工具集-yanjs"></a>一个简单前端工具集-yanjs</h2><blockquote>
+<p>This is just a common toolkit for the Front End</p>
+</blockquote>
+<h3 id="安装使用"><a href="#安装使用" class="headerlink" title="安装使用"></a>安装使用</h3><ul>
+<li><p>Install</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install yanjs</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Example</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> yanjs = <span class="built_in">require</span>(<span class="string">'yanjs'</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Documentation<br><a href="https://github.com/Yangfan2016/yanjs#yanjs--" target="_blank" rel="noopener">使用文档</a></p>
+</li>
+</ul>
+<h3 id="造轮子的初衷"><a href="#造轮子的初衷" class="headerlink" title="造轮子的初衷"></a>造轮子的初衷</h3><p>现在的前端发展正是百花齐放的时代，各种框架、各种库、各种插件层出不穷，为何还要重复造轮子内（毕竟大家都知道DRY，Don’t repeat yourself）：</p>
+<ol>
+<li>为了公司内部使用，减少三方插件的依赖</li>
+<li>为了轻量级，加快页面的加载速度，现有业务用目前流行的工具库（如 lodash.js）使用率不是很高，并不是所有功能都用上</li>
+<li>现在业务的技术栈主要是Vue，要进一步去除jQuery的依赖，做一个替代jQuery里部分工具函数的过渡</li>
+<li>为了熟悉实践下前端开发的流程，学习一下如何造轮子（向轮子哥vczh致敬），提升一下自己的水平</li>
+<li>为大前端的发展添砖加瓦，^_^</li>
+</ol>
+<h3 id="开发流程"><a href="#开发流程" class="headerlink" title="开发流程"></a>开发流程</h3><ul>
+<li>开发需求<br>主要是根据平时业务中常用的总结如下需求  </li>
+</ul>
+<ol>
+<li>ajax模块  </li>
+<li>时间格式转换模块</li>
+<li>字符串格式转换模块</li>
+<li>cookie模块</li>
+<li>url解析模块</li>
+<li>浏览器模块</li>
+</ol>
+<ul>
+<li>开发依赖<br>鉴于开发中常用的ajax库是axios，所以就不再重复造轮子了，简单的封装了下，cookie直接使用的是MDN封装好的docCookies</li>
+</ul>
+<ol>
+<li><a href="https://www.npmjs.com/package/axios" target="_blank" rel="noopener">axios</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/DOM/document.cookie" target="_blank" rel="noopener">docCookies</a></li>
+</ol>
+<ul>
+<li>开发环境<br>语言：Typescript 3.x<br>转换：babel 7.x<br>打包：webpack 4.x<br>测试：mocha+chai+phantomjs</li>
+<li>发布环境<br>集成：<a href="https://travis-ci.org/Yangfan2016/yanjs" target="_blank" rel="noopener">Travis-ci</a><br>发布：<a href="https://travis-ci.org/Yangfan2016/yanjs" target="_blank" rel="noopener">npm</a><br>托管：<a href="https://github.com/Yangfan2016/yanjs" target="_blank" rel="noopener">github</a></li>
+</ul>
+<h3 id="开发心得"><a href="#开发心得" class="headerlink" title="开发心得"></a>开发心得</h3><ul>
+<li><p>经历了<br>第一次用typescript编写业务代码<br>第一次发布npm包<br>第一次用mocha测试工具完成代码测试<br>第一次用Travis-ci集成工具  </p>
+</li>
+<li><p>结果<br>完整的体验了一次前端工程化开发，基本熟悉了整个开发流程<br>公司内部已有两个项目在使用此库，已经基本稳定</p>
+</li>
+</ul>
+<h3 id="碎碎念"><a href="#碎碎念" class="headerlink" title="碎碎念"></a>碎碎念</h3><p>鄙人还在成长中，可能还有许多地方考虑不周，欢迎交流学习，欢迎提 <a href="https://github.com/Yangfan2016/yanjs/issues" target="_blank" rel="noopener">issue</a></p>
+<p>联系我：<br>Github：<a href="https://github.com/Yangfan2016" target="_blank" rel="noopener">https://github.com/Yangfan2016</a><br>Blog： <a href="https://yangfan2016.github.io/" target="_blank" rel="noopener">https://yangfan2016.github.io/</a><br>Segmentfault：<a href="https://segmentfault.com/u/yangfan2016" target="_blank" rel="noopener">https://segmentfault.com/u/yangfan2016</a>  </p>
+<p>大佬，点了<a href="https://github.com/Yangfan2016/yanjs" target="_blank" rel="noopener">star</a>再走呗，^_^</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2019-04-25T09:01:25.711Z" itemprop="dateUpdated">2019-04-25 17:01:25</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="http://yangfan.site">
+            <img src="/uploads/me.jpg" alt="yangfan">
+            yangfan
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yangfan.site/2018/10/14/一个简单前端工具集/&title=《一个简单前端工具集-yanjs》 — Yangfan's blog&pic=http://yangfan.site/uploads/me.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yangfan.site/2018/10/14/一个简单前端工具集/&title=《一个简单前端工具集-yanjs》 — Yangfan's blog&source=html css js 前端 小程序" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yangfan.site/2018/10/14/一个简单前端工具集/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《一个简单前端工具集-yanjs》 — Yangfan's blog&url=http://yangfan.site/2018/10/14/一个简单前端工具集/&via=http://yangfan.site" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yangfan.site/2018/10/14/一个简单前端工具集/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/11/15/Canvas-实现一个简单的贪吃蛇/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Canvas 实现一个简单的贪吃蛇</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/09/23/浅析js中的位运算及应用/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">浅析js中的位运算及应用</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "N85dVznr0Vh9jlIIvVLlxPxc-gzGzoHsz",
+            appKey: "ID0DznFMscpigUQk6S2RviUn",
+            avatar: "mm",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>yangfan &copy; 2018 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yangfan.site/2018/10/14/一个简单前端工具集/&title=《一个简单前端工具集-yanjs》 — Yangfan's blog&pic=http://yangfan.site/uploads/me.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yangfan.site/2018/10/14/一个简单前端工具集/&title=《一个简单前端工具集-yanjs》 — Yangfan's blog&source=html css js 前端 小程序" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yangfan.site/2018/10/14/一个简单前端工具集/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《一个简单前端工具集-yanjs》 — Yangfan's blog&url=http://yangfan.site/2018/10/14/一个简单前端工具集/&via=http://yangfan.site" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yangfan.site/2018/10/14/一个简单前端工具集/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yangfan.site/2018/10/14/一个简单前端工具集/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '又好了！';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>You don&#39;t know cross-origin | Yangfan&#39;s blog | The site of the Yangfan2016</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="cross-origin              Why 为什么会存在跨域问题   同源策略由于出于安全考虑，浏览器规定JavaScript不能操作其他域下的页面DOM，不能接受其他域下的xhr请求（不只是js，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="You don&#39;t know cross-origin">
+<meta property="og:url" content="http://yangfan.site/2018/11/19/You-don't-know-cross-origin/index.html">
+<meta property="og:site_name" content="Yangfan&#39;s blog">
+<meta property="og:description" content="cross-origin              Why 为什么会存在跨域问题   同源策略由于出于安全考虑，浏览器规定JavaScript不能操作其他域下的页面DOM，不能接受其他域下的xhr请求（不只是js，">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://raw.githubusercontent.com/Yangfan2016/PicBed/master/Blog/cross-origin.png">
+<meta property="og:updated_time" content="2019-04-25T08:30:47.712Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="You don&#39;t know cross-origin">
+<meta name="twitter:description" content="cross-origin              Why 为什么会存在跨域问题   同源策略由于出于安全考虑，浏览器规定JavaScript不能操作其他域下的页面DOM，不能接受其他域下的xhr请求（不只是js，">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Yangfan2016/PicBed/master/Blog/cross-origin.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="Yangfan&#39;s blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/uploads/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/uploads/me.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">yangfan</h5>
+          <a href="mailto:zhangh201601@gmail.com" title="zhangh201601@gmail.com" class="mail">zhangh201601@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Yangfan2016" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">You don&#39;t know cross-origin</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">You don&#39;t know cross-origin</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-11-19T12:19:05.000Z" itemprop="datePublished" class="page-time">
+  2018-11-19
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Why"><span class="post-toc-number">1.</span> <span class="post-toc-text">Why</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#How"><span class="post-toc-number">2.</span> <span class="post-toc-text">How</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Summary"><span class="post-toc-number">3.</span> <span class="post-toc-text">Summary</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Reference"><span class="post-toc-number">4.</span> <span class="post-toc-text">Reference</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-You-don&#39;t-know-cross-origin"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">You don't know cross-origin</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-11-19 20:19:05" datetime="2018-11-19T12:19:05.000Z"  itemprop="datePublished">2018-11-19</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/Yangfan2016/PicBed/master/Blog/cross-origin.png" alt="cross-origin" title="">
+                </div>
+                <div class="image-caption">cross-origin</div>
+            </figure>
+<h2 id="Why"><a href="#Why" class="headerlink" title="Why"></a>Why</h2><blockquote>
+<p>为什么会存在跨域问题</p>
+</blockquote>
+<ul>
+<li>同源策略<br>由于出于安全考虑，浏览器规定JavaScript不能操作其他域下的页面DOM，不能接受其他域下的xhr请求（不只是js，引用非同域下的字体文件，还有canvas引用非同域下的图片，也被同源策略所约束）<br>只要协议、域名、端口有一者不同，就被视为非同域。</li>
+</ul>
+<h2 id="How"><a href="#How" class="headerlink" title="How"></a>How</h2><blockquote>
+<p>如何解决  </p>
+</blockquote>
+<p>要解决跨域问题，就要绕过浏览器对js的限制，另辟蹊径</p>
+<ol>
+<li>JSONP<br>这是最简单，也是最流行的跨域解决方案，它利用script标签不受同源策略的影响，解决跨域，需要后台配合，返回特殊格式的数据</li>
+</ol>
+<p>前端<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">    <span class="function"><span class="keyword">function</span> <span class="title">JSONP</span>(<span class="params">link</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">let</span> script=<span class="built_in">document</span>.createElement(<span class="string">"script"</span>);</span></span><br><span class="line"><span class="undefined">        script.src=link;</span></span><br><span class="line"><span class="javascript">        <span class="built_in">document</span>.body.appendChild(script);</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">    <span class="function"><span class="keyword">function</span> <span class="title">getUser</span>(<span class="params">data</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="built_in">console</span>.log(data);<span class="comment">// todo</span></span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">const</span> API_URL_USER=<span class="string">'http://cache.video.iqiyi.com/jp/avlist/202861101/1/?callback=getUser'</span>; <span class="comment">// 这里以爱奇艺的接口为例（来源网络，侵删）</span></span></span><br><span class="line"><span class="undefined">    JSONP(API_URL_USER);</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>后端<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Express(Nodejs)</span></span><br><span class="line"><span class="comment">// mock data</span></span><br><span class="line"><span class="keyword">const</span> USERS=[</span><br><span class="line">    &#123;<span class="attr">name</span>:<span class="string">"Tom"</span>,<span class="attr">age</span>:<span class="number">23</span>&#125;,</span><br><span class="line">    &#123;<span class="attr">name</span>:<span class="string">"Jack"</span>,<span class="attr">age</span>:<span class="number">23</span>&#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">app.get(<span class="string">"/user"</span>,<span class="function"><span class="keyword">function</span> (<span class="params">req,res</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> cbName=req.query[<span class="string">"callback"</span>];</span><br><span class="line">    <span class="comment">// 这里做一个容错处理</span></span><br><span class="line">    res.send(<span class="string">`</span></span><br><span class="line"><span class="string">        try&#123;</span></span><br><span class="line"><span class="string">            <span class="subst">$&#123;cbName&#125;</span>(<span class="subst">$&#123;<span class="built_in">JSON</span>.stringify(USRES)&#125;</span>);</span></span><br><span class="line"><span class="string">        &#125;catch(ex) &#123;</span></span><br><span class="line"><span class="string">            console.error("The data is invalid");</span></span><br><span class="line"><span class="string">        &#125;</span></span><br><span class="line"><span class="string">    `</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<ol start="2">
+<li>CORS (cross-origin resource sharing)<br>跨域资源共享，是W3C的一个标准，它允许浏览器发送跨域服务器的请求，CORS需要浏览器和服务器同时支持</li>
+</ol>
+<p>后端</p>
+<p>简单请求和非简单请求详情，请阅读阮一峰老师的<a href="http://www.ruanyifeng.com/blog/2016/04/cors.html" target="_blank" rel="noopener">博文</a>，这里不再敖述<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">app.use(<span class="function"><span class="keyword">function</span> (<span class="params">req,res,next</span>)</span>&#123;</span><br><span class="line">    res.header(<span class="string">'Access-Control-Allow-Origin'</span>, <span class="string">'http://localhost:6666'</span>); <span class="comment">// 允许跨域的白名单，一般不建议使用 * 号</span></span><br><span class="line">    res.header(<span class="string">'Access-Control-Allow-Methods'</span>, <span class="string">'GET,PUT,POST,DELETE'</span>); <span class="comment">// 允许请求的方法，非简单请求，会进行预检</span></span><br><span class="line">    res.header(<span class="string">'Access-Control-Allow-Headers'</span>, <span class="string">'Content-Type'</span>); <span class="comment">// 允许请求携带的头信息，非简单请求，会进行预检</span></span><br><span class="line">    res.header(<span class="string">'Access-Control-Allow-Credentials'</span>,<span class="string">'true'</span>); <span class="comment">// 允许发送cookie，这里前端xhr也需要一起配置 `xhr.withCredentials=true`</span></span><br><span class="line">    next();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<ol start="3">
+<li>代理<br>只要是在与你同域下的服务器，新建一个代理（服务端不存在同源策略），将你的跨域请求全部代理转发</li>
+</ol>
+<p>后端<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> proxy=<span class="built_in">require</span>(<span class="string">"http-proxy-middleware"</span>); <span class="comment">// 这里使用这个中间件完成代理</span></span><br><span class="line">app.use(<span class="string">'/api'</span>, proxy(<span class="string">"http://b.com"</span>)); <span class="comment">// http://a.com/api -&gt; http://b.com/api</span></span><br></pre></td></tr></table></figure></p>
+<ol start="4">
+<li>window.name+iframe<br>MDN里解释道它是<code>获取/设置窗口的名称</code>，因为的它在不同页面甚至域名加载后值都不会改变，该属性也被用于作为 JSONP 的一个更安全的备选来提供跨域通信（cross-domain messaging）</li>
+</ol>
+<p>前端<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--http://a.com/page1.html--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">    <span class="function"><span class="keyword">function</span> <span class="title">request</span>(<span class="params">url,callback</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">let</span> iframe=<span class="built_in">document</span>.createElement(<span class="string">"iframe"</span>);</span></span><br><span class="line"><span class="javascript">        <span class="keyword">let</span> isFirst=<span class="literal">true</span>;</span></span><br><span class="line"><span class="javascript">        iframe.style.display=<span class="string">"none"</span>;</span></span><br><span class="line"><span class="javascript">        iframe.addEventListener(<span class="string">"load"</span>,<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">if</span> (isFirst) &#123; </span></span><br><span class="line"><span class="javascript">                isFirst=<span class="literal">false</span>; <span class="comment">// 防止iframe循环加载</span></span></span><br><span class="line"><span class="javascript">                iframe.src=<span class="string">"http://a.com/page2.html"</span>;</span></span><br><span class="line"><span class="undefined">                callback &amp;&amp; callback(iframe.contentWindow.name);</span></span><br><span class="line"><span class="undefined">                iframe.remove();               </span></span><br><span class="line"><span class="undefined">            &#125;</span></span><br><span class="line"><span class="undefined">        &#125;);</span></span><br><span class="line"><span class="undefined">        iframe.src=url;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">    requeset(<span class="string">"http://b.com/user"</span>,<span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="built_in">console</span>.log(data); <span class="comment">// todo</span></span></span><br><span class="line"><span class="undefined">    &#125;);</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>后端<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Express(Nodejs)</span></span><br><span class="line"><span class="comment">// mock data</span></span><br><span class="line"><span class="keyword">const</span> USERS=[</span><br><span class="line">    &#123;<span class="attr">name</span>:<span class="string">"Tom"</span>,<span class="attr">age</span>:<span class="number">23</span>&#125;,</span><br><span class="line">    &#123;<span class="attr">name</span>:<span class="string">"Jack"</span>,<span class="attr">age</span>:<span class="number">23</span>&#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">app.get(<span class="string">"/user"</span>,<span class="function"><span class="keyword">function</span> (<span class="params">req,res</span>) </span>&#123;</span><br><span class="line">    res.send(<span class="string">`</span></span><br><span class="line"><span class="string">        &lt;script&gt;</span></span><br><span class="line"><span class="string">            ;window.name=<span class="subst">$&#123;<span class="built_in">JSON</span>.stringify(USERS)&#125;</span>;</span></span><br><span class="line"><span class="string">        &lt;/script&gt;</span></span><br><span class="line"><span class="string">    `</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<ol start="5">
+<li><p>document.domian<br>这个使用情况有限，例如<br><a href="http://a.c.com" target="_blank" rel="noopener">http://a.c.com</a><br><a href="http://b.c.com" target="_blank" rel="noopener">http://b.c.com</a><br>主域相同时，分别设置他们页面的<code>document.domain=&quot;c.com&quot;;</code></p>
+</li>
+<li><p>locaction.hash+iframe<br>嵌套两层iframe，达到第一层与第三层同域，就可以互相通信了</p>
+</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--http://a.com/page1.html--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">    <span class="keyword">let</span> iframe=<span class="built_in">document</span>.createElement(<span class="string">"iframe"</span>);</span></span><br><span class="line"><span class="javascript">    iframe.style.display=<span class="string">"none"</span>;</span></span><br><span class="line"><span class="javascript">    iframe.src=<span class="string">"http://b.com/user.html"</span>;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">    <span class="built_in">window</span>.addEventListener(<span class="string">"hashchange"</span>,<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="built_in">console</span>.log(location.hash.slice(<span class="number">1</span>)); <span class="comment">// todo</span></span></span><br><span class="line"><span class="undefined">    &#125;);</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--http://b.com/user.html--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">    <span class="keyword">let</span> iframe=<span class="built_in">document</span>.createElement(<span class="string">"iframe"</span>);</span></span><br><span class="line"><span class="javascript">    iframe.style.display=<span class="string">"none"</span>;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">    <span class="function"><span class="keyword">function</span> <span class="title">getUserData</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        fetch(<span class="string">"http://b.com/user"</span>)</span></span><br><span class="line"><span class="javascript">            .then(<span class="function"><span class="params">res</span>=&gt;</span>&#123;</span></span><br><span class="line"><span class="javascript">                <span class="keyword">let</span> data=res.json();</span></span><br><span class="line"><span class="javascript">                iframe.src=<span class="string">`http://a.com/page2.html#<span class="subst">$&#123;data&#125;</span>`</span>;</span></span><br><span class="line"><span class="undefined">            &#125;);</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">    getUserData();</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">    <span class="built_in">window</span>.addEventListener(<span class="string">"hashchange"</span>,<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="undefined">        getUserData();</span></span><br><span class="line"><span class="undefined">    &#125;);</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">    top.location.hash=<span class="built_in">window</span>.location.hash;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ol start="7">
+<li>图片ping<br>这个只能发出去请求，无法获取到服务器的响应，常常用于网站流量统计</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> img=<span class="keyword">new</span> Image();</span><br><span class="line">img.addEventListener(<span class="string">"load"</span>,<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"Send success"</span>); <span class="comment">// todo</span></span><br><span class="line">&#125;);</span><br><span class="line">img.src=<span class="string">"http://site.c.com/a.gif?count=666"</span>;</span><br></pre></td></tr></table></figure>
+<ol start="8">
+<li>postMessage+iframe</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- http://a.com --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"sendBtn"</span>&gt;</span>从B接口获取用户数据<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">src</span>=<span class="string">"http://b.com"</span> <span class="attr">id</span>=<span class="string">"ifr"</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript"><span class="built_in">window</span>.addEventListener(<span class="string">"message"</span>,<span class="function"><span class="keyword">function</span>(<span class="params">&#123;detail,origin&#125;</span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">if</span> (origin===<span class="string">"http://b.com"</span>) &#123; <span class="comment">// 最好判断下消息来源</span></span></span><br><span class="line"><span class="javascript">        <span class="keyword">if</span> (detail.type===<span class="string">"set-user"</span>) &#123;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(detail.data); <span class="comment">// todo</span></span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">&#125;);</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">sendBtn.addEventListener(<span class="string">"click"</span>,<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="undefined">    ifr.contentWindow.postMessage(&#123;</span></span><br><span class="line"><span class="javascript">        type:<span class="string">"get-user"</span>,</span></span><br><span class="line"><span class="javascript">    &#125;,<span class="string">"http://b.com"</span>);</span></span><br><span class="line"><span class="undefined">&#125;);</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- http://b.com --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript"><span class="built_in">window</span>.addEventListener(<span class="string">"messagae"</span>,<span class="function"><span class="keyword">function</span>(<span class="params">&#123;detail,origin&#125;</span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">if</span> (origin===<span class="string">"http://a.com"</span>) &#123; <span class="comment">// 最好判断下消息来源</span></span></span><br><span class="line"><span class="javascript">        <span class="keyword">if</span> (detail.type===<span class="string">"get-user"</span>) &#123;</span></span><br><span class="line"><span class="javascript">            fetch(<span class="string">"http://b.com/user"</span>)</span></span><br><span class="line"><span class="javascript">            .then(<span class="function"><span class="params">res</span>=&gt;</span>&#123;</span></span><br><span class="line"><span class="undefined">                top.contentWindow.postMessage(&#123;</span></span><br><span class="line"><span class="javascript">                    type:<span class="string">"set-user"</span>,</span></span><br><span class="line"><span class="javascript">                    data:res.json(), <span class="comment">// 假设接口返回的是json格式的数据</span></span></span><br><span class="line"><span class="javascript">                &#125;,<span class="string">"http://a.com"</span>);</span></span><br><span class="line"><span class="undefined">            &#125;)</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">&#125;);</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ol start="9">
+<li>postMessage+form+iframe  </li>
+</ol>
+<p>这个需要后台配合返回特殊格式的数据，TL,DR 可以看这个<a href="https://github.com/Yangfan2016/cross-domain/blob/master/9-iframe_form_postMessage/index.html" target="_blank" rel="noopener">demo</a></p>
+<ol start="10">
+<li>WebSocket  </li>
+</ol>
+<p>WebSocket是一种通信协议，该协议不实行同源政策，<br>注意需要浏览器和服务器都支持的情况下</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"//cdn.bootcss.com/socket.io/1.7.2/socket.io.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> io = io.connect(<span class="string">'http://b.com'</span>);</span></span><br><span class="line"><span class="javascript">    io.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="built_in">console</span>.log(data); <span class="comment">// 接受来自服务器的消息</span></span></span><br><span class="line"><span class="undefined">    &#125;);</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>后端<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Nodejs</span></span><br><span class="line"><span class="keyword">const</span> server = <span class="built_in">require</span>(<span class="string">'http'</span>).createServer();</span><br><span class="line"><span class="keyword">const</span> io = <span class="built_in">require</span>(<span class="string">'socket.io'</span>)(server);</span><br><span class="line"></span><br><span class="line">io.on(<span class="string">'connection'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">client</span>) </span>&#123;</span><br><span class="line">    client.emit(<span class="string">'data'</span>, <span class="string">'This message from "http://b.com"'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><ul>
+<li>目前个人在工作中遇到的解决方法就是这些，当然还有许多其他的方法，你看，其实跨域并不难吧 ^_^</li>
+<li>js通过xhr发的跨域请求，虽然得不到响应，但是可以发送出去，其实如果是单向通信的话，也可以，比如文章阅读统计，网站流量统计</li>
+</ul>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="http://www.ruanyifeng.com/blog/2016/04/cors.html" target="_blank" rel="noopener">跨域资源共享 CORS 详解—阮一峰</a><br><a href="https://segmentfault.com/a/1190000015597029?utm_source=tag-newest" target="_blank" rel="noopener">不要再问我跨域的问题了</a><br><a href="https://github.com/Yangfan2016/cross-domain" target="_blank" rel="noopener">FatDong1/cross-domain</a> </p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2019-04-25T08:30:47.712Z" itemprop="dateUpdated">2019-04-25 16:30:47</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="http://yangfan.site">
+            <img src="/uploads/me.jpg" alt="yangfan">
+            yangfan
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yangfan.site/2018/11/19/You-don't-know-cross-origin/&title=《You don't know cross-origin》 — Yangfan's blog&pic=http://yangfan.site/uploads/me.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yangfan.site/2018/11/19/You-don't-know-cross-origin/&title=《You don't know cross-origin》 — Yangfan's blog&source=html css js 前端 小程序" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yangfan.site/2018/11/19/You-don't-know-cross-origin/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《You don't know cross-origin》 — Yangfan's blog&url=http://yangfan.site/2018/11/19/You-don't-know-cross-origin/&via=http://yangfan.site" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yangfan.site/2018/11/19/You-don't-know-cross-origin/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/01/04/快速构建一个-react-插件/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">快速构建一个 react 插件</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/11/15/Canvas-实现一个简单的贪吃蛇/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Canvas 实现一个简单的贪吃蛇</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "N85dVznr0Vh9jlIIvVLlxPxc-gzGzoHsz",
+            appKey: "ID0DznFMscpigUQk6S2RviUn",
+            avatar: "mm",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>yangfan &copy; 2018 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yangfan.site/2018/11/19/You-don't-know-cross-origin/&title=《You don't know cross-origin》 — Yangfan's blog&pic=http://yangfan.site/uploads/me.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yangfan.site/2018/11/19/You-don't-know-cross-origin/&title=《You don't know cross-origin》 — Yangfan's blog&source=html css js 前端 小程序" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yangfan.site/2018/11/19/You-don't-know-cross-origin/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《You don't know cross-origin》 — Yangfan's blog&url=http://yangfan.site/2018/11/19/You-don't-know-cross-origin/&via=http://yangfan.site" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yangfan.site/2018/11/19/You-don't-know-cross-origin/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yangfan.site/2018/11/19/You-don't-know-cross-origin/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '又好了！';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
