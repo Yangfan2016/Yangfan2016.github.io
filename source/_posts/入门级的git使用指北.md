@@ -122,6 +122,14 @@ $ git config core.safecrlf true # 禁止换行符混用
 $ git config core.eol lf # 设置换行符为 LF 
 ```
 
+## Reset
+
+```bash
+$ git reset HEAD^
+$ git reset HEAD~2
+```
+
+
 ## Relationship
 
 ![git-relationship](https://user-gold-cdn.xitu.io/2018/10/28/166b9e70067850da?w=570&h=184&f=png&s=60462)
