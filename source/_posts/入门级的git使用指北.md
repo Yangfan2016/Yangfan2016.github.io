@@ -99,17 +99,17 @@ $ git log # 查看提交历史记录
 
 ## Undo
 
-git add 之前
+git add 之前 （工作区）
 ```bash
 $ git checkout -- a.js # 撤销某个/某些文件的更改
 ```
 
-git add 之后，git commit 之前
+git add 之后，git commit 之前 （暂存区）
 ```bash
 $ git reset HEAD a.js # 撤销某个/某些文件的添加
 ```
 
-git commit 之后
+git commit 之后 （本地仓库）
 ```bash
 $ git reset HEAD^ --hard # 撤销本次提交（commit）
 $ git reset <commit_id> --hard # 撤回到指定的 commit
@@ -127,6 +127,45 @@ $ git config core.eol lf # 设置换行符为 LF
 ```bash
 $ git reset HEAD^
 $ git reset HEAD~2
+```
+
+## Tag
+
+```bash
+# 新建
+$ git tag v0.1 # git tag <tagname>
+$ git tag -a v0.1 -m "0.1版本" # git tag -a <tagname> -m <message>
+# 显示
+$ git show 
+$ git show v0.1 # git tag show <tagname>
+# 删除
+$ git tag -d v0.1 # git tag -d <tagname>
+$ git tag -d $(git tag -i) # 删除所有 tag
+
+```
+
+## Remote
+
+```bash
+# 新建远程分支
+$ git push origin dev # git push origin <branchname>
+
+# 删除远程分支
+$ git push origin --delete dev
+
+# 同步本地 tag 到远程
+$ git push orign v0.1 # git push origin <tagname>
+# 推送所有 tag 到远程
+$ git push origin --tags
+
+# 删除远程 tag
+$ git push origin --delete v0.1 # git push origin <tagname>
+# 或者 本地删除，同步到远程
+$ git tag -d v0.1 # git tag -d <tagname>
+$ git push origin :refs/tags/v0.1 # git push origin :refs/tags/<tagname>
+# 删除所有远程 tag
+$ git push origin --delete $(git tag -l)
+
 ```
 
 
