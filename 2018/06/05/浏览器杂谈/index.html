@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
     
 
     
@@ -20,7 +20,7 @@
     <meta name="theme-color" content="#3F51B5">
     
     
-    <meta name="keywords" content="">
+    <meta name="keywords" content>
     <meta name="description" content="浏览器缓存（协议层的缓存） 主要分为强缓存和协商缓存，详情 https://segmentfault.com/a/1190000011212929   强缓存 浏览器会先获取该资源缓存的header信息，根据其中的Expires和Cahe-control判断是否命中强缓存，若命中则直接从缓存中获取资源  协商缓存 如果没有命中强缓存，浏览器会发送请求到服务器，该请求会携带第一次请求返回的有关缓存的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="浏览器杂谈">
@@ -47,7 +47,7 @@
 <body>
     <div id="loading" class="active"></div>
 
-    <aside id="menu" class="hide" >
+    <aside id="menu" class="hide">
   <div class="inner flex-row-vertical">
     <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
         <i class="icon icon-lg icon-close"></i>
@@ -67,28 +67,28 @@
       <ul class="nav">
         
             <li class="waves-block waves-effect">
-              <a href="/"  >
+              <a href="/">
                 <i class="icon icon-lg icon-home"></i>
                 主页
               </a>
             </li>
         
             <li class="waves-block waves-effect">
-              <a href="/archives"  >
+              <a href="/archives">
                 <i class="icon icon-lg icon-archives"></i>
                 Archives
               </a>
             </li>
         
             <li class="waves-block waves-effect">
-              <a href="/tags"  >
+              <a href="/tags">
                 <i class="icon icon-lg icon-tags"></i>
                 Tags
               </a>
             </li>
         
             <li class="waves-block waves-effect">
-              <a href="https://github.com/Yangfan2016" target="_blank" >
+              <a href="https://github.com/Yangfan2016" target="_blank">
                 <i class="icon icon-lg icon-github"></i>
                 Github
               </a>
@@ -150,24 +150,23 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#浏览器缓存（协议层的缓存）"><span class="post-toc-number">1.</span> <span class="post-toc-text">浏览器缓存（协议层的缓存）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#reflow-重排-和repaint-重绘"><span class="post-toc-number">2.</span> <span class="post-toc-text">reflow(重排)和repaint(重绘)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#浏览器解析网页的过程"><span class="post-toc-number">2.0.1.</span> <span class="post-toc-text">浏览器解析网页的过程</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#重排与重绘"><span class="post-toc-number">2.0.2.</span> <span class="post-toc-text">重排与重绘</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#AST（抽象语法树）"><span class="post-toc-number">3.</span> <span class="post-toc-text">AST（抽象语法树）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#定义"><span class="post-toc-number">3.0.1.</span> <span class="post-toc-text">定义</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#应用"><span class="post-toc-number">3.0.2.</span> <span class="post-toc-text">应用</span></a></li></ol></li></ol></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#浏览器缓存（协议层的缓存）"><span class="post-toc-number">1.</span> <span class="post-toc-text">浏览器缓存（协议层的缓存）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#reflow-重排-和repaint-重绘"><span class="post-toc-number">2.</span> <span class="post-toc-text">reflow(重排)和repaint(重绘)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#浏览器解析网页的过程"><span class="post-toc-number">2.0.1.</span> <span class="post-toc-text">浏览器解析网页的过程</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#重排与重绘"><span class="post-toc-number">2.0.2.</span> <span class="post-toc-text">重排与重绘</span></a></li></ol></li></ol><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#AST（抽象语法树）"><span class="post-toc-number">3.</span> <span class="post-toc-text">AST（抽象语法树）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#定义"><span class="post-toc-number">3.0.1.</span> <span class="post-toc-text">定义</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#应用"><span class="post-toc-number">3.0.2.</span> <span class="post-toc-text">应用</span></a></li></ol></li>
         </nav>
     </aside>
 
 
-<article id="post-浏览器杂谈"
-  class="post-article article-type-post fade" itemprop="blogPost">
+<article id="post-浏览器杂谈" class="post-article article-type-post fade" itemprop="blogPost">
 
     <div class="post-card">
         <h1 class="post-card-title">浏览器杂谈</h1>
         <div class="post-meta">
-            <time class="post-time" title="2018-06-05 10:56:31" datetime="2018-06-05T02:56:31.000Z"  itemprop="datePublished">2018-06-05</time>
+            <time class="post-time" title="2018-06-05 10:56:31" datetime="2018-06-05T02:56:31.000Z" itemprop="datePublished">2018-06-05</time>
 
             
 
 
             
-<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
     <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
 </span>
 
@@ -356,10 +355,10 @@
     <div class="top">
         
 <p>
-    <span id="busuanzi_container_site_uv" style='display:none'>
+    <span id="busuanzi_container_site_uv" style="display:none">
         站点总访客数：<span id="busuanzi_value_site_uv"></span>
     </span>
-    <span id="busuanzi_container_site_pv" style='display:none'>
+    <span id="busuanzi_container_site_pv" style="display:none">
         站点总访问量：<span id="busuanzi_value_site_pv"></span>
     </span>
 </p>

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
     
 
     
@@ -30,7 +30,7 @@
 <meta property="og:description" content="Git 一种免费的开源分布式版本控制系统  Config12345678910111213# 全局配置 加 --global 标识$ git config --global user.name &quot;your name&quot; $ git config --global user.email &quot;xxx@xxx.xxx&quot;# 本地配置$ git config user.name &quot;your name&quot;# 查看">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/10/28/166b9e70067850da?w=570&h=184&f=png&s=60462">
-<meta property="og:updated_time" content="2019-04-25T09:06:08.151Z">
+<meta property="og:updated_time" content="2019-05-14T06:07:08.770Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="入门级的git使用指北">
 <meta name="twitter:description" content="Git 一种免费的开源分布式版本控制系统  Config12345678910111213# 全局配置 加 --global 标识$ git config --global user.name &quot;your name&quot; $ git config --global user.email &quot;xxx@xxx.xxx&quot;# 本地配置$ git config user.name &quot;your name&quot;# 查看">
@@ -50,7 +50,7 @@
 <body>
     <div id="loading" class="active"></div>
 
-    <aside id="menu" class="hide" >
+    <aside id="menu" class="hide">
   <div class="inner flex-row-vertical">
     <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
         <i class="icon icon-lg icon-close"></i>
@@ -70,28 +70,28 @@
       <ul class="nav">
         
             <li class="waves-block waves-effect">
-              <a href="/"  >
+              <a href="/">
                 <i class="icon icon-lg icon-home"></i>
                 主页
               </a>
             </li>
         
             <li class="waves-block waves-effect">
-              <a href="/archives"  >
+              <a href="/archives">
                 <i class="icon icon-lg icon-archives"></i>
                 Archives
               </a>
             </li>
         
             <li class="waves-block waves-effect">
-              <a href="/tags"  >
+              <a href="/tags">
                 <i class="icon icon-lg icon-tags"></i>
                 Tags
               </a>
             </li>
         
             <li class="waves-block waves-effect">
-              <a href="https://github.com/Yangfan2016" target="_blank" >
+              <a href="https://github.com/Yangfan2016" target="_blank">
                 <i class="icon icon-lg icon-github"></i>
                 Github
               </a>
@@ -153,24 +153,23 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Config"><span class="post-toc-number">1.</span> <span class="post-toc-text">Config</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Basic"><span class="post-toc-number">2.</span> <span class="post-toc-text">Basic</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Diff"><span class="post-toc-number">3.</span> <span class="post-toc-text">Diff</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Branch"><span class="post-toc-number">4.</span> <span class="post-toc-text">Branch</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Merge"><span class="post-toc-number">5.</span> <span class="post-toc-text">Merge</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Clone"><span class="post-toc-number">6.</span> <span class="post-toc-text">Clone</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#View"><span class="post-toc-number">7.</span> <span class="post-toc-text">View</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Undo"><span class="post-toc-number">8.</span> <span class="post-toc-text">Undo</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Editor-amp-amp-Git-Config"><span class="post-toc-number">9.</span> <span class="post-toc-text">Editor &amp;&amp; Git Config</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Reset"><span class="post-toc-number">10.</span> <span class="post-toc-text">Reset</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Relationship"><span class="post-toc-number">11.</span> <span class="post-toc-text">Relationship</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Refs"><span class="post-toc-number">12.</span> <span class="post-toc-text">Refs</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Config"><span class="post-toc-number">1.</span> <span class="post-toc-text">Config</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Basic"><span class="post-toc-number">2.</span> <span class="post-toc-text">Basic</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Diff"><span class="post-toc-number">3.</span> <span class="post-toc-text">Diff</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Branch"><span class="post-toc-number">4.</span> <span class="post-toc-text">Branch</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Merge"><span class="post-toc-number">5.</span> <span class="post-toc-text">Merge</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Clone"><span class="post-toc-number">6.</span> <span class="post-toc-text">Clone</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#View"><span class="post-toc-number">7.</span> <span class="post-toc-text">View</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Undo"><span class="post-toc-number">8.</span> <span class="post-toc-text">Undo</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Editor-amp-amp-Git-Config"><span class="post-toc-number">9.</span> <span class="post-toc-text">Editor &amp;&amp; Git Config</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Reset"><span class="post-toc-number">10.</span> <span class="post-toc-text">Reset</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Tag"><span class="post-toc-number">11.</span> <span class="post-toc-text">Tag</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Remote"><span class="post-toc-number">12.</span> <span class="post-toc-text">Remote</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Relationship"><span class="post-toc-number">13.</span> <span class="post-toc-text">Relationship</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Refs"><span class="post-toc-number">14.</span> <span class="post-toc-text">Refs</span></a></li></ol>
         </nav>
     </aside>
 
 
-<article id="post-入门级的git使用指北"
-  class="post-article article-type-post fade" itemprop="blogPost">
+<article id="post-入门级的git使用指北" class="post-article article-type-post fade" itemprop="blogPost">
 
     <div class="post-card">
         <h1 class="post-card-title">入门级的git使用指北</h1>
         <div class="post-meta">
-            <time class="post-time" title="2018-05-08 12:08:03" datetime="2018-05-08T04:08:03.000Z"  itemprop="datePublished">2018-05-08</time>
+            <time class="post-time" title="2018-05-08 12:08:03" datetime="2018-05-08T04:08:03.000Z" itemprop="datePublished">2018-05-08</time>
 
             
 
 
             
-<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
     <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
 </span>
 
@@ -187,15 +186,17 @@
 <h2 id="Merge"><a href="#Merge" class="headerlink" title="Merge"></a>Merge</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout master <span class="comment"># 切换到 mastet 分支</span></span><br><span class="line">$ git merge dev <span class="comment"># 将 dev 合并到 当前分支（这里是 master）</span></span><br></pre></td></tr></table></figure>
 <h2 id="Clone"><a href="#Clone" class="headerlink" title="Clone"></a>Clone</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> http://xxx.xxx/xxx.git <span class="comment"># git clone &lt;版本库的网址&gt; &lt;本地目录名&gt;</span></span><br><span class="line">$ git <span class="built_in">clone</span> http://xxx.xxx/xxx.git mydir <span class="comment"># git clone &lt;版本库的网址&gt; &lt;本地目录名&gt;</span></span><br><span class="line">$ git <span class="built_in">clone</span> -b dev http://xxx.xxx/xxx.git <span class="comment">#git clone -b &lt;分支名称&gt; &lt;版本库的网址&gt;</span></span><br></pre></td></tr></table></figure>
 <h2 id="View"><a href="#View" class="headerlink" title="View"></a>View</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git status <span class="comment"># 查看当前工作区提交状态</span></span><br><span class="line">$ git <span class="built_in">log</span> <span class="comment"># 查看提交历史记录</span></span><br></pre></td></tr></table></figure>
-<h2 id="Undo"><a href="#Undo" class="headerlink" title="Undo"></a>Undo</h2><p>git add 之前<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout -- a.js <span class="comment"># 撤销某个/某些文件的更改</span></span><br></pre></td></tr></table></figure></p>
-<p>git add 之后，git commit 之前<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git reset HEAD a.js <span class="comment"># 撤销某个/某些文件的添加</span></span><br></pre></td></tr></table></figure></p>
-<p>git commit 之后<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git reset HEAD^ --hard <span class="comment"># 撤销本次提交（commit）</span></span><br><span class="line">$ git reset &lt;commit_id&gt; --hard <span class="comment"># 撤回到指定的 commit</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="Undo"><a href="#Undo" class="headerlink" title="Undo"></a>Undo</h2><p>git add 之前 （工作区）<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout -- a.js <span class="comment"># 撤销某个/某些文件的更改</span></span><br></pre></td></tr></table></figure></p>
+<p>git add 之后，git commit 之前 （暂存区）<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git reset HEAD a.js <span class="comment"># 撤销某个/某些文件的添加</span></span><br></pre></td></tr></table></figure></p>
+<p>git commit 之后 （本地仓库）<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git reset HEAD^ --hard <span class="comment"># 撤销本次提交（commit）</span></span><br><span class="line">$ git reset &lt;commit_id&gt; --hard <span class="comment"># 撤回到指定的 commit</span></span><br></pre></td></tr></table></figure></p>
 <h2 id="Editor-amp-amp-Git-Config"><a href="#Editor-amp-amp-Git-Config" class="headerlink" title="Editor &amp;&amp; Git Config"></a>Editor &amp;&amp; Git Config</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git config core.autocrlf <span class="literal">false</span> <span class="comment"># 禁止自动转换换行符</span></span><br><span class="line">$ git config core.safecrlf <span class="literal">true</span> <span class="comment"># 禁止换行符混用</span></span><br><span class="line">$ git config core.eol lf <span class="comment"># 设置换行符为 LF</span></span><br></pre></td></tr></table></figure>
 <h2 id="Reset"><a href="#Reset" class="headerlink" title="Reset"></a>Reset</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git reset HEAD^</span><br><span class="line">$ git reset HEAD~2</span><br></pre></td></tr></table></figure>
+<h2 id="Tag"><a href="#Tag" class="headerlink" title="Tag"></a>Tag</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 新建</span></span><br><span class="line">$ git tag v0.1 <span class="comment"># git tag &lt;tagname&gt;</span></span><br><span class="line">$ git tag -a v0.1 -m <span class="string">"0.1版本"</span> <span class="comment"># git tag -a &lt;tagname&gt; -m &lt;message&gt;</span></span><br><span class="line"><span class="comment"># 显示</span></span><br><span class="line">$ git show </span><br><span class="line">$ git show v0.1 <span class="comment"># git tag show &lt;tagname&gt;</span></span><br><span class="line"><span class="comment"># 删除</span></span><br><span class="line">$ git tag -d v0.1 <span class="comment"># git tag -d &lt;tagname&gt;</span></span><br><span class="line">$ git tag -d $(git tag -i) <span class="comment"># 删除所有 tag</span></span><br></pre></td></tr></table></figure>
+<h2 id="Remote"><a href="#Remote" class="headerlink" title="Remote"></a>Remote</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 新建远程分支</span></span><br><span class="line">$ git push origin dev <span class="comment"># git push origin &lt;branchname&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除远程分支</span></span><br><span class="line">$ git push origin --delete dev</span><br><span class="line"></span><br><span class="line"><span class="comment"># 同步本地 tag 到远程</span></span><br><span class="line">$ git push orign v0.1 <span class="comment"># git push origin &lt;tagname&gt;</span></span><br><span class="line"><span class="comment"># 推送所有 tag 到远程</span></span><br><span class="line">$ git push origin --tags</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除远程 tag</span></span><br><span class="line">$ git push origin --delete v0.1 <span class="comment"># git push origin &lt;tagname&gt;</span></span><br><span class="line"><span class="comment"># 或者 本地删除，同步到远程</span></span><br><span class="line">$ git tag -d v0.1 <span class="comment"># git tag -d &lt;tagname&gt;</span></span><br><span class="line">$ git push origin :refs/tags/v0.1 <span class="comment"># git push origin :refs/tags/&lt;tagname&gt;</span></span><br><span class="line"><span class="comment"># 删除所有远程 tag</span></span><br><span class="line">$ git push origin --delete $(git tag -l)</span><br></pre></td></tr></table></figure>
 <h2 id="Relationship"><a href="#Relationship" class="headerlink" title="Relationship"></a>Relationship</h2><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="https://user-gold-cdn.xitu.io/2018/10/28/166b9e70067850da?w=570&h=184&f=png&s=60462" alt="git-relationship" title="">
+                    <img src="https://user-gold-cdn.xitu.io/2018/10/28/166b9e70067850da?w=570&h=184&f=png&s=60462" alt="git-relationship" title>
                 </div>
                 <div class="image-caption">git-relationship</div>
             </figure>
@@ -211,7 +212,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2019-04-25T09:06:08.151Z" itemprop="dateUpdated">2019-04-25 17:06:08</time>
+    Last updated: <time datetime="2019-05-14T06:07:08.770Z" itemprop="dateUpdated">2019-05-14 14:07:08</time>
 </span><br>
 
 
@@ -360,10 +361,10 @@
     <div class="top">
         
 <p>
-    <span id="busuanzi_container_site_uv" style='display:none'>
+    <span id="busuanzi_container_site_uv" style="display:none">
         站点总访客数：<span id="busuanzi_value_site_uv"></span>
     </span>
-    <span id="busuanzi_container_site_pv" style='display:none'>
+    <span id="busuanzi_container_site_pv" style="display:none">
         站点总访问量：<span id="busuanzi_value_site_pv"></span>
     </span>
 </p>

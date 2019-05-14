@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
     
 
     
@@ -20,7 +20,7 @@
     <meta name="theme-color" content="#3F51B5">
     
     
-    <meta name="keywords" content="">
+    <meta name="keywords" content>
     <meta name="description" content="如何监听JS变量的变化[转]读前必看Object.defineProperty()  https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty 如何监听 js 中变量的变化?我现在有这样一个需求，需要监控js的某个变量的改变，如果该变量发生变化，则触发">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[转]如何监听JS变量的变化">
@@ -47,7 +47,7 @@
 <body>
     <div id="loading" class="active"></div>
 
-    <aside id="menu" class="hide" >
+    <aside id="menu" class="hide">
   <div class="inner flex-row-vertical">
     <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
         <i class="icon icon-lg icon-close"></i>
@@ -67,28 +67,28 @@
       <ul class="nav">
         
             <li class="waves-block waves-effect">
-              <a href="/"  >
+              <a href="/">
                 <i class="icon icon-lg icon-home"></i>
                 主页
               </a>
             </li>
         
             <li class="waves-block waves-effect">
-              <a href="/archives"  >
+              <a href="/archives">
                 <i class="icon icon-lg icon-archives"></i>
                 Archives
               </a>
             </li>
         
             <li class="waves-block waves-effect">
-              <a href="/tags"  >
+              <a href="/tags">
                 <i class="icon icon-lg icon-tags"></i>
                 Tags
               </a>
             </li>
         
             <li class="waves-block waves-effect">
-              <a href="https://github.com/Yangfan2016" target="_blank" >
+              <a href="https://github.com/Yangfan2016" target="_blank">
                 <i class="icon icon-lg icon-github"></i>
                 Github
               </a>
@@ -155,19 +155,18 @@
     </aside>
 
 
-<article id="post-转-如何监听JS变量的变化"
-  class="post-article article-type-post fade" itemprop="blogPost">
+<article id="post-转-如何监听JS变量的变化" class="post-article article-type-post fade" itemprop="blogPost">
 
     <div class="post-card">
         <h1 class="post-card-title">[转]如何监听JS变量的变化</h1>
         <div class="post-meta">
-            <time class="post-time" title="2017-09-20 14:04:08" datetime="2017-09-20T06:04:08.000Z"  itemprop="datePublished">2017-09-20</time>
+            <time class="post-time" title="2017-09-20 14:04:08" datetime="2017-09-20T06:04:08.000Z" itemprop="datePublished">2017-09-20</time>
 
             
 
 
             
-<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
     <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
 </span>
 
@@ -188,7 +187,7 @@
 <p>ES5的getter与setter<br>在ES5中新增了一个Object.defineProperty，直接在一个对象上定义一个新属性，或者修改一个已经存在的属性， 并返回这个对象。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj, prop, descriptor)</span><br></pre></td></tr></table></figure>
 <p>其接受的第三个参数可以取get和set并各自对应一个getter和setter方法：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> a = &#123; <span class="attr">zhihu</span>:<span class="number">0</span> &#125;;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(a, <span class="string">'zhihu'</span>, &#123;</span><br><span class="line">  get: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'get：'</span> + zhihu);</span><br><span class="line">    <span class="keyword">return</span> zhihu;</span><br><span class="line">  &#125;,</span><br><span class="line">  set: <span class="function"><span class="keyword">function</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">    zhihu = value;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'set:'</span> + zhihu);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line">a.zhihu = <span class="number">2</span>; <span class="comment">// set:2</span></span><br><span class="line"><span class="built_in">console</span>.log(a.zhihu); <span class="comment">// get：2</span></span><br><span class="line">                      <span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> a = &#123; <span class="attr">zhihu</span>:<span class="number">0</span> &#125;;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(a, <span class="string">'zhihu'</span>, &#123;</span><br><span class="line">  <span class="keyword">get</span>: function() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'get：'</span> + zhihu);</span><br><span class="line">    <span class="keyword">return</span> zhihu;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="keyword">set</span>: function(value) &#123;</span><br><span class="line">    zhihu = value;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'set:'</span> + zhihu);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line">a.zhihu = <span class="number">2</span>; <span class="comment">// set:2</span></span><br><span class="line"><span class="built_in">console</span>.log(a.zhihu); <span class="comment">// get：2</span></span><br><span class="line">                      <span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
 <p>基于ES5的getter和setter可以说几乎完美符合了要求。为什么要说几乎呢？</p>
 <p>首先IE8及更低版本IE是无法使用的，而且这个特性是没有polyfill的，无法在不支持的平台实现，<br>这也是基于ES5getter和setter的Vue.js不支持IE8及更低版本IE的原因。也许有人会提到avalon，avalon在低版本IE借助vbscript一些黑魔法实现了类似的功能。</p>
 <p>除此之外，还有一个问题就是修改数组的length，直接用索引设置元素如items[0] = {}，以及数组的push等变异方法是无法触发setter的。<br>如果想要解决这个问题可以参考Vue的做法，在Vue的observer/array.js中，Vue直接修改了数组的原型方法：</p>
@@ -201,7 +200,7 @@
 <p>ES6带来的Proxy<br>人如其名，类似HTTP中的代理：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> p = <span class="keyword">new</span> <span class="built_in">Proxy</span>(target, handler);</span><br><span class="line">target为目标对象，可以是任意类型的对象，比如数组，函数，甚至是另外一个代理对象。</span><br><span class="line">handler为处理器对象，包含了一组代理方法，分别控制所生成代理对象的各种行为。</span><br></pre></td></tr></table></figure>
 <p>举个例子：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">let</span> a = <span class="keyword">new</span> <span class="built_in">Proxy</span>(&#123;&#125;, &#123;</span><br><span class="line">  set: <span class="function"><span class="keyword">function</span>(<span class="params">obj, prop, value</span>) </span>&#123;</span><br><span class="line">    obj[prop] = value;</span><br><span class="line">    <span class="keyword">if</span> (prop === <span class="string">'zhihu'</span>) &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">"set "</span> + prop + <span class="string">": "</span> + obj[prop]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line">a.zhihu = <span class="number">100</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">let</span> a = <span class="keyword">new</span> <span class="built_in">Proxy</span>(&#123;&#125;, &#123;</span><br><span class="line">  <span class="keyword">set</span>: function(obj, prop, value) &#123;</span><br><span class="line">    obj[prop] = value;</span><br><span class="line">    <span class="keyword">if</span> (prop === <span class="string">'zhihu'</span>) &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">"set "</span> + prop + <span class="string">": "</span> + obj[prop]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line">a.zhihu = <span class="number">100</span>;</span><br></pre></td></tr></table></figure>
 <p>当然，Proxy的能力远不止此，还可以实现代理转发等等。</p>
 <p>但是要注意的是目前浏览器中只有Firefox18支持这个特性，而babel官方也表明不支持这个特性：</p>
 <blockquote>
@@ -364,10 +363,10 @@
     <div class="top">
         
 <p>
-    <span id="busuanzi_container_site_uv" style='display:none'>
+    <span id="busuanzi_container_site_uv" style="display:none">
         站点总访客数：<span id="busuanzi_value_site_uv"></span>
     </span>
-    <span id="busuanzi_container_site_pv" style='display:none'>
+    <span id="busuanzi_container_site_pv" style="display:none">
         站点总访问量：<span id="busuanzi_value_site_pv"></span>
     </span>
 </p>
